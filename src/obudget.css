@@ -1,0 +1,147 @@
+/**********/
+/* LAYOUT */
+/**********/
+
+html, body { 
+	direction: rtl;
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+
+div.layout {
+	display: block;
+	clear: both;	
+}
+
+span { 
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+
+	#header {
+		background-color: #ccc;
+		width:100%;
+		height:10%;
+		float:right;
+	}
+
+	#current {
+		background-color: #ddd;
+		float:right;
+		width:60%;
+	}
+	
+       #current h1, 
+       #current h4 { 
+            display:inline;
+	   }
+	   
+	   #current .year-sel {
+	       display:inline-block;
+	       width:5%;
+	       margin:0.2%;
+	       text-align:center;
+           color:#ccc;
+	   }
+
+           #current .year-sel.active {
+                color:#446;
+           }
+
+	#search {
+		float:left;
+		background-color: #eee;
+		width:40%;
+	}
+
+	#current,#search {
+		height:15%;
+	}
+	
+	#visualizations {
+		background-color: #bbb;
+		float:right;
+	}
+	
+	#visualizations, #vis-contents {
+		width:80%;
+	}
+	
+	#feed {
+		background-color: #aaa;
+		float:left;
+		width:20%;
+	}
+	
+	#visualizations, #feed, #vis-contents {
+		height:60%;
+	}
+	
+	#credits {
+		background-color: #bbb;
+		float:left;
+		width:20%;
+	}
+
+	#social {
+		background-color: #ccc;
+		float:right;
+		width:80%;
+	}
+	
+	#credits, #social {
+		height:15%;
+	}
+
+/******************/
+/* VISUALIZATIONS */
+/******************/
+
+#vis-contents {
+	position:absolute;
+	top:25%;
+	width:80%;
+	height:55%;
+}
+
+	.vis-content {
+		position:absolute;
+		width:100%;
+		height:100%;
+		float:right;
+		opacity:0;
+		top:0;
+		right:-100%;
+		transition-property: right, opacity;  
+  		transition-duration: 1s;
+		-moz-transition-property: right, opacity;  
+  		-moz-transition-duration: 1s;
+		-webkit-transition-property: right, opacity;  
+  		-webkit-transition-duration: 1s;
+	}
+
+	.vis-content.active {
+		/*display:inherit;*/
+		opacity:1;
+		right:0;
+	}
+
+#vis-buttons {
+	position:absolute;
+	top:80%;
+	height:5%;
+}
+
+	.vis-button {
+		width: 64px;
+		border: solid 1px #448;
+		display:inline-block;
+		text-align: center;
+	}
+
+#vis-table {
+	overflow-y: scroll;
+	overflow-x: clip;
+}
