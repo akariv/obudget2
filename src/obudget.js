@@ -1,7 +1,6 @@
 (function() {
   var handle_current_item, hash_changed_handler, load_item, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
   set_loading = function(is_loading) {};
-  set_current_source = function(source) {};
   set_current_description = function(description) {
     return $("#current-description").html("" + description);
   };
@@ -13,11 +12,11 @@
   };
   set_active_years = function(years) {
     var year, _i, _len, _results;
-    $(".year-sel").toggleClass('active', false);
+    $(".year-sel").toggleClass('disabled', true);
     _results = [];
     for (_i = 0, _len = years.length; _i < _len; _i++) {
       year = years[_i];
-      _results.push($(".year-sel[rel=" + year + "]").toggleClass('active', true));
+      _results.push($(".year-sel[rel=" + year + "]").toggleClass('disabled', false));
     }
     return _results;
   };
@@ -35,7 +34,9 @@
       }
       return _results;
     })();
-    return set_active_years(years);
+    set_active_years(years);
+    update_area_chart("vis-graph", data);
+    return update_pie_chart("vis-pie", 2009, data);
   };
   load_item = function(hash) {
     set_loading(true);
@@ -51,7 +52,9 @@
       var rel;
       rel = $(this).attr("rel");
       $(".vis-content").toggleClass("active", false);
-      return $(rel).toggleClass("active", true);
+      $(rel).toggleClass("active", true);
+      $(".vis-button").toggleClass("active", false);
+      return $(this).toggleClass("active", true);
     });
     hash_changed_handler();
     return window.onhashchange = hash_changed_handler;

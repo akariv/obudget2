@@ -1,71 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 	<link href="obudget.css" rel="stylesheet" type="text/css"></link>
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="hasadna-api.js"></script>
-	<script type="text/javascript" src="obudget.js"></script>
+	<script type="text/javascript" src="highcharts.js"></script>
+	<script type="text/javascript" src="ob.js"></script>
 </head>
 <body>
-	<div class="layout">
-		<div class="layout" id="header">header</div>
+  <div class="main">
+  	<div class="layout" id="header">header</div>
+	<div id="current">
+	    <h1>
+	      תקציב
+             <span id="current-title"></span>
+	    </h1><br/>
+	    <h4>
+             <span id="current-description"></span>
+             (מקור: <span id="current-source"></span>)
+	    </h4>
+	    <div class='year-selection'>
+               <span class='year-sel' rel='2012'>12'</span>
+               <span class='year-sel' rel='2011'>11'</span>
+               <span class='year-sel' rel='2010'>10'</span>
+               <span class='year-sel' rel='2009'>09'</span>
+               <span class='year-sel' rel='2008'>08'</span>
+               <span class='year-sel' rel='2007'>07'</span>
+               <span class='year-sel' rel='2006'>06'</span>
+               <span class='year-sel' rel='2005'>05'</span>
+               <span class='year-sel' rel='2004'>04'</span>
+               <span class='year-sel' rel='2003'>03'</span>
+               <span class='year-sel' rel='2002'>02'</span>
+               <span class='year-sel' rel='2001'>01'</span>
+               <span class='year-sel' rel='2000'>00'</span>
+               <span class='year-sel' rel='1999'>99'</span>
+               <span class='year-sel' rel='1998'>98'</span>
+               <span class='year-sel' rel='1997'>97'</span>
+               <span class='year-sel' rel='1996'>96'</span>
+           </div>
 	</div>
-	<div class="layout">
-		<div id="current">
-		    <h1>
-		      תקציב
-              <span id="current-title"></span>
-		    </h1><br/>
-		    <h4>
-              <span id="current-description"></span>
-              (מקור: <span id="current-source"></span>)
-		    </h4>
-		    <div class='year-selection'>
-                <span class='year-sel' rel='2012'>12'</span>
-                <span class='year-sel' rel='2011'>11'</span>
-                <span class='year-sel' rel='2010'>10'</span>
-                <span class='year-sel' rel='2009'>09'</span>
-                <span class='year-sel' rel='2008'>08'</span>
-                <span class='year-sel' rel='2007'>07'</span>
-                <span class='year-sel' rel='2006'>06'</span>
-                <span class='year-sel' rel='2005'>05'</span>
-                <span class='year-sel' rel='2004'>04'</span>
-                <span class='year-sel' rel='2003'>03'</span>
-                <span class='year-sel' rel='2002'>02'</span>
-                <span class='year-sel' rel='2001'>01'</span>
-                <span class='year-sel' rel='2000'>00'</span>
-                <span class='year-sel' rel='1999'>99'</span>
-                <span class='year-sel' rel='1998'>98'</span>
-                <span class='year-sel' rel='1997'>97'</span>
-                <span class='year-sel' rel='1996'>96'</span>
-            </div>
-		</div>
-		<div id="search">search</div>
-	</div>
-	<div class="layout">
-		<div id="visualizations">
-			<div id="vis-contents">
-				<div class="vis-content active" id="vis-graph">
-					graph
-				</div>
-				<div class="vis-content" id="vis-pie">
-					pie
-				</div>
-				<div class="vis-content" id="vis-table">
-					table
-				</div>
+	<div id="search">search</div>
+	<div id="visualizations">
+		<div id="vis-contents">
+			<div class="vis-content active" id="vis-graph">
+				graph
 			</div>
-			<div id="vis-buttons">
-				<div class="vis-button" id="vis-graph-button" rel="#vis-graph">G</div>
-				<div class="vis-button" id="vis-pie-button" rel="#vis-pie">P</div>
-				<div class="vis-button" id="vis-table-button" rel="#vis-table">T</div>
+			<div class="vis-content" id="vis-pie">
+				pie
+			</div>
+			<div class="vis-content" id="vis-table">
+				table
 			</div>
 		</div>
-		<div id="feed">feed</div>
+		<div id="vis-buttons">
+			<span class="vis-button active" id="vis-graph-button" rel="#vis-graph"></span>
+			<span class="vis-button" id="vis-pie-button" rel="#vis-pie"></span>
+			<span class="vis-button" id="vis-table-button" rel="#vis-table"></span>
+		</div>
 	</div>
-	<div class="layout">
-		<div id="social">social</div>
-		<div id="credits">credits</div>
-	</div>
+	<div id="feed">feed</div>
+	<div id="social">social</div>
+	<div id="credits">credits</div>
+  </div>
 </body>
 </html>

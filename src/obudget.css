@@ -2,16 +2,22 @@
 /* LAYOUT */
 /**********/
 
+* { margin: 0; padding: 0; }
+
 html, body { 
 	direction: rtl;
-	margin:0px;
-	padding:0px;
-	border:0px;
+	height:100%;
+	margin:0;
+	padding:0;
+	border:0;
+	display:block;
 }
+
+.main { background-color:#eef; height:100%; }
 
 div.layout {
 	display: block;
-	clear: both;	
+	/*clear: both;*/	
 }
 
 span { 
@@ -21,16 +27,16 @@ span {
 }
 
 	#header {
+	    display:block;
 		background-color: #ccc;
 		width:100%;
 		height:10%;
-		float:right;
 	}
 
 	#current {
 		background-color: #ddd;
-		float:right;
 		width:60%;
+		float:right;
 	}
 	
        #current h1, 
@@ -43,11 +49,11 @@ span {
 	       width:5%;
 	       margin:0.2%;
 	       text-align:center;
-           color:#ccc;
+           color:#446;
 	   }
 
-           #current .year-sel.active {
-                color:#446;
+           #current .year-sel.disabled {
+           		color:#ccc;
            }
 
 	#search {
@@ -61,7 +67,7 @@ span {
 	}
 	
 	#visualizations {
-		background-color: #bbb;
+		background-color: #fff;
 		float:right;
 	}
 	
@@ -92,7 +98,7 @@ span {
 	}
 	
 	#credits, #social {
-		height:15%;
+		height:auto;
 	}
 
 /******************/
@@ -104,6 +110,7 @@ span {
 	top:25%;
 	width:80%;
 	height:55%;
+	float:right;
 }
 
 	.vis-content {
@@ -120,26 +127,66 @@ span {
   		-moz-transition-duration: 1s;
 		-webkit-transition-property: right, opacity;  
   		-webkit-transition-duration: 1s;
+  		margin: 0 auto;
 	}
 
-	.vis-content.active {
-		/*display:inherit;*/
-		opacity:1;
-		right:0;
-	}
+		.vis-content.active {
+			opacity:1;
+			right:0;
+		}
+		
+/*		#vis-graph.vis-content {
+			direction:ltr;
+		}
+		
+		      #vis-graph.vis-content text {
+                    text-align:left;
+                    unicode-bidi:"embed"
+		      }*/
 
 #vis-buttons {
 	position:absolute;
 	top:80%;
-	height:5%;
+	height:38px;
+	width:80%;
+	background-color:#ddd;
 }
 
 	.vis-button {
-		width: 64px;
-		border: solid 1px #448;
+	    margin-left:2px;
+		width: 40px;
+		height: 38px;
+        border: 1px solid #bbb;
+        border-top: none;
+        text-indent:0;
 		display:inline-block;
 		text-align: center;
+		background-color:transparent;
+		background-size: 40px 40px;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        float:right;
 	}
+	  
+	  .vis-button:hover {
+	       background-color:#eee;
+	  }
+	  
+	  .vis-button.active {
+	       background-color:#fff;
+	  }
+	
+	   #vis-graph-button.vis-button {
+	       background-image:url(images/area_chart256.png);
+	   }
+
+       #vis-pie-button.vis-button {
+           background-image:url(images/pie_chart256.png);
+       }
+
+       #vis-table-button.vis-button {
+           background-image:url(images/numbers256.png);
+       }
 
 #vis-table {
 	overflow-y: scroll;
