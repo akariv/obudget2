@@ -1,5 +1,3 @@
-
-
 # View related routines 
 
 set_loading = (is_loading) ->
@@ -20,37 +18,68 @@ set_active_years = (years) ->
          
 # Data Loading Routines
 
-handle_current_item = (data) ->
-    #$("#credits").html(JSON.stringify(data))
-    set_loading(false);
-    set_current_title(data.title)
-    set_current_source(data.source)
-    set_current_description(data.notes)
-    years = (year for year of data.sums)
-    set_active_years(years)
-    # set_refs(data.refs)
-    update_area_chart("vis-graph",data)
-    update_pie_chart("vis-pie",2009,data)
-    
-load_item = (hash) ->
-    set_loading(true);
-    H.getRecord( "/data/hasadna/budget-ninja/#{hash}", 
-                 handle_current_item )
-    
-# Main Document Routines 
+class OBudget
 
-hash_changed_handler = ->
-    hash = window.location.hash
-    load_item(hash[1..hash.length])
+    constructor: ->
+        @visualizations = {}
+        @visualization_names = []
+        @selected_visualization = null
+        @year = 2010    
+        window.onhashchange = @hash_changed_handler
 
-$ -> 
-    $(".vis-button").click ->
-        rel = $(this).attr "rel"
+    hash_changed_handler : ->
+        hash = window.location.hash
+        @load_item(hash[1..hash.length])
+    
+    load_item : (hash) ->
+        set_loading(true);
+        H.getRecord( "/data/hasadna/budget-ninja/#{hash}", 
+                     @handle_current_item )
+
+    handle_current_item : (data) =>
+        @loaded_data = $.extend({},data);
+        #$("#credits").html(JSON.stringify(data))
+        set_loading(false);
+        set_current_title(data.title)
+        set_current_source(data.source)
+        set_current_description(data.notes)
+        years = (year for year of data.sums)
+        set_active_years(years)
+        @select_visualization()
+        # set_refs(data.refs)
+
+    select_visualization: (name) ->
+        if not name
+            name = @selected_visualization ? @visualization_names[0]
+        @selected_visualization = name
+        v = @visualizations[name]
         $(".vis-content").toggleClass "active",false
-        $(rel).toggleClass "active",true
+        $("#vis-#{name}").toggleClass "active",true
         $(".vis-button").toggleClass "active",false
-        $(this).toggleClass "active",true
+        $("#vis-#{name}-button").toggleClass "active",true
+        v.setYear @year
+        v.setData @loaded_data
+
+    load_visualizations: (visualizations...) ->
+        for v in visualizations
+            name = v.getName()
+            @visualizations[name] = v
+            @visualization_names[@visualization_names.length] = name
+            
+            $("#vis-contents").append("<div class='vis-content' id='vis-#{name}'>#{name}</div>")
+            $("#vis-buttons").append("<span class='vis-button' id='vis-#{name}-button'></span>")
+            $("#vis-#{name}").css("background-image","url(#{v.getIconUrl})")
+
+            x = (name) =>
+                => @select_visualization name
+
+            $("#vis-#{name}-button").click x(name)
+
+            v.initialize("vis-#{name}")
     
-    hash_changed_handler()    
-        
-    window.onhashchange = hash_changed_handler
+$ ->     
+    ob = new OBudget    
+    ob.load_visualizations( new HcAreaChart, 
+                            new HcPieChart )
+    ob.hash_changed_handler()
+                         

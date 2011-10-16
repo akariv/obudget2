@@ -120,7 +120,7 @@ span {
 		float:right;
 		opacity:0;
 		top:0;
-		right:-100%;
+/*		right:-100%;*/
 		transition-property: right, opacity;  
   		transition-duration: 1s;
 		-moz-transition-property: right, opacity;  
@@ -134,16 +134,7 @@ span {
 			opacity:1;
 			right:0;
 		}
-		
-/*		#vis-graph.vis-content {
-			direction:ltr;
-		}
-		
-		      #vis-graph.vis-content text {
-                    text-align:left;
-                    unicode-bidi:"embed"
-		      }*/
-
+				
 #vis-buttons {
 	position:absolute;
 	top:80%;
@@ -176,14 +167,6 @@ span {
 	       background-color:#fff;
 	  }
 	
-	   #vis-graph-button.vis-button {
-	       background-image:url(images/area_chart256.png);
-	   }
-
-       #vis-pie-button.vis-button {
-           background-image:url(images/pie_chart256.png);
-       }
-
        #vis-table-button.vis-button {
            background-image:url(images/numbers256.png);
        }
