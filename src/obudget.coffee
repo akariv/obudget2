@@ -13,8 +13,10 @@ set_current_title = (title) ->
 
 set_active_years = (years) -> 
     $(".year-sel").toggleClass('disabled',true)
+    $(".year-sel").toggleClass('enabled',false)
     for year in years
         $(".year-sel[rel=#{year}]").toggleClass('disabled',false)
+        $(".year-sel[rel=#{year}]").toggleClass('enabled',true)
          
 # Data Loading Routines
 
@@ -57,6 +59,8 @@ class OBudget
         $("#vis-#{name}").toggleClass "active",true
         $(".vis-button").toggleClass "active",false
         $("#vis-#{name}-button").toggleClass "active",true
+        $("#year-selection").toggleClass("disabled", not v.isYearDependent())
+        $("#year-selection").toggleClass("enabled", v.isYearDependent())
         v.setYear @year
         v.setData @loaded_data
 
@@ -68,7 +72,8 @@ class OBudget
             
             $("#vis-contents").append("<div class='vis-content' id='vis-#{name}'>#{name}</div>")
             $("#vis-buttons").append("<span class='vis-button' id='vis-#{name}-button'></span>")
-            $("#vis-#{name}").css("background-image","url(#{v.getIconUrl})")
+            iconurl = v.getIconUrl()
+            $("#vis-#{name}-button").css("background-image","url(#{iconurl})")
 
             x = (name) =>
                 => @select_visualization name
@@ -80,6 +85,7 @@ class OBudget
 $ ->     
     ob = new OBudget    
     ob.load_visualizations( new HcAreaChart, 
-                            new HcPieChart )
+                            new HcPieChart,
+                            new ItemInfo )
     ob.hash_changed_handler()
                          

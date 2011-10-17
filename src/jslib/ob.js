@@ -1,5 +1,5 @@
 (function() {
-  var HcAreaChart, HcPieChart, OBudget, Visualization, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
+  var HcAreaChart, HcPieChart, ItemInfo, OBudget, Visualization, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -268,6 +268,57 @@
     };
     return HcPieChart;
   })();
+  ItemInfo = (function() {
+    __extends(ItemInfo, Visualization);
+    function ItemInfo() {
+      ItemInfo.__super__.constructor.call(this, "ItemInfo", "images/numbers256.png");
+    }
+    ItemInfo.prototype.initialize = function(div_id) {
+      return ItemInfo.__super__.initialize.call(this, div_id);
+    };
+    ItemInfo.prototype.update = function(data, year) {
+      var code, content, item_years, key, ref, s, table, title, year, years, _i, _j, _len, _len2, _ref, _ref2, _ref3;
+      years = (function() {
+        var _results;
+        _results = [];
+        for (year in data.sums) {
+          _results.push(year);
+        }
+        return _results;
+      })();
+      table = {};
+      _ref = data.refs;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        ref = _ref[_i];
+        if (!ref.title) {
+          continue;
+        }
+        key = "" + ref.code + "|||" + ref.title;
+        if (!table[key]) {
+          table[key] = {};
+        }
+        table[key][ref.year] = ref;
+      }
+      content = ["<td></td><td>" + years.join("</td><td>") + "</td>"];
+      for (key in table) {
+        item_years = table[key];
+        _ref2 = key.split("|||", 2), code = _ref2[0], title = _ref2[1];
+        s = ["" + code + "/" + title];
+        for (_j = 0, _len2 = years.length; _j < _len2; _j++) {
+          year = years[_j];
+          ref = item_years[year];
+          s[s.length] = (_ref3 = ref != null ? ref.gross_revised : void 0) != null ? _ref3 : '';
+        }
+        content[content.length] = "<td>" + s.join("</td><td>") + "</td>";
+      }
+      content = "<tr>" + content.join("</tr><tr>") + "</tr>";
+      return $("#" + this.div_id).html("<table class='iteminfo'>" + content + "</table>");
+    };
+    ItemInfo.prototype.isYearDependent = function() {
+      return false;
+    };
+    return ItemInfo;
+  })();
   set_loading = function(is_loading) {};
   set_current_description = function(description) {
     return $("#current-description").html("" + description);
@@ -281,10 +332,12 @@
   set_active_years = function(years) {
     var year, _i, _len, _results;
     $(".year-sel").toggleClass('disabled', true);
+    $(".year-sel").toggleClass('enabled', false);
     _results = [];
     for (_i = 0, _len = years.length; _i < _len; _i++) {
       year = years[_i];
-      _results.push($(".year-sel[rel=" + year + "]").toggleClass('disabled', false));
+      $(".year-sel[rel=" + year + "]").toggleClass('disabled', false);
+      _results.push($(".year-sel[rel=" + year + "]").toggleClass('enabled', true));
     }
     return _results;
   };
@@ -334,11 +387,13 @@
       $("#vis-" + name).toggleClass("active", true);
       $(".vis-button").toggleClass("active", false);
       $("#vis-" + name + "-button").toggleClass("active", true);
+      $("#year-selection").toggleClass("disabled", !v.isYearDependent());
+      $("#year-selection").toggleClass("enabled", v.isYearDependent());
       v.setYear(this.year);
       return v.setData(this.loaded_data);
     };
     OBudget.prototype.load_visualizations = function() {
-      var name, v, visualizations, x, _i, _len, _results;
+      var iconurl, name, v, visualizations, x, _i, _len, _results;
       visualizations = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       _results = [];
       for (_i = 0, _len = visualizations.length; _i < _len; _i++) {
@@ -348,7 +403,8 @@
         this.visualization_names[this.visualization_names.length] = name;
         $("#vis-contents").append("<div class='vis-content' id='vis-" + name + "'>" + name + "</div>");
         $("#vis-buttons").append("<span class='vis-button' id='vis-" + name + "-button'></span>");
-        $("#vis-" + name).css("background-image", "url(" + v.getIconUrl + ")");
+        iconurl = v.getIconUrl();
+        $("#vis-" + name + "-button").css("background-image", "url(" + iconurl + ")");
         x = __bind(function(name) {
           return __bind(function() {
             return this.select_visualization(name);
@@ -364,7 +420,7 @@
   $(function() {
     var ob;
     ob = new OBudget;
-    ob.load_visualizations(new HcAreaChart, new HcPieChart);
+    ob.load_visualizations(new HcAreaChart, new HcPieChart, new ItemInfo);
     return ob.hash_changed_handler();
   });
 }).call(this);

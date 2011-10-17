@@ -44,17 +44,73 @@ span {
             display:inline;
 	   }
 	   
-	   #current .year-sel {
-	       display:inline-block;
-	       width:5%;
-	       margin:0.2%;
-	       text-align:center;
-           color:#446;
+	   #year-selection {
 	   }
+	   
+		   #year-selection .year-sel {
+		       display:inline-block;
+		       width:5.5%;
+		       padding:0.2%;
+		       margin:0;
+		       text-align:center;
+	           color:#446;
+	           border-right:solid 1px #cce;
+               background-color:#f0f0f8;
+	           float:right;
+		   }
+		      #year-selection .year-sel:first-child {
+		          margin-right:1%;
+		          border-right:none;
+				-moz-border-radius-topleft: 0px;
+				-moz-border-radius-topright: 7px;
+				-moz-border-radius-bottomright: 7px;
+				-moz-border-radius-bottomleft: 0px;
+				-webkit-border-radius: 0px 7px 7px 0px;
+				border-radius: 0px 7px 7px 0px;
+		      }
 
-           #current .year-sel.disabled {
-           		color:#ccc;
-           }
+              #year-selection .year-sel:last-child {
+					-moz-border-radius-topleft: 7px;
+					-moz-border-radius-topright: 0px;
+					-moz-border-radius-bottomright: 0px;
+					-moz-border-radius-bottomleft: 7px;
+					-webkit-border-radius: 7px 0px 0px 7px;
+					border-radius: 7px 0px 0px 7px;
+              }
+
+              #year-selection.enabled .year-sel.enabled:hover {
+                  color:#223;
+                  background-color:#fff;
+              }
+
+              #year-selection.enabled .year-sel.enabled {
+                  cursor: pointer;
+              }
+
+              #year-selection.enabled .year-sel.enabled.active {
+                  color:#000;
+                  font-weight:bold;
+                  background-color:#fff;
+              }
+
+	          #year-selection.enabled .year-sel.disabled {
+	               color:#ccc;
+	          }
+	          
+	       
+          #year-selection.disabled {
+                background-color:#f8f8f8;
+          }
+          
+              #year-selection.disabled .year-sel {
+                    color:#ccc;
+              }
+
+              #year-selection.disabled .year-sel.active {
+                    color:#000;
+                    font-weight:bold;
+                    background-color:#fff;
+              }
 
 	#search {
 		float:left;
@@ -168,10 +224,18 @@ span {
 	  }
 	
        #vis-table-button.vis-button {
-           background-image:url(images/numbers256.png);
+           background-image:url();
        }
 
-#vis-table {
+#vis-ItemInfo {
 	overflow-y: scroll;
 	overflow-x: clip;
 }
+
+    .iteminfo td {
+        padding: 0 20px;
+    }
+    
+    .iteminfo tr {
+        border-bottom: solid 1px #888;
+    }

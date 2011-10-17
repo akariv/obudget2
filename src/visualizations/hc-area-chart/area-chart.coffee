@@ -1,3 +1,4 @@
+
 class HcAreaChart extends Visualization
     
     constructor: ->

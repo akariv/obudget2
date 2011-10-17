@@ -1,3 +1,4 @@
+
 class HcPieChart extends Visualization
     
     constructor: ->
