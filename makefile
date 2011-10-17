@@ -1,6 +1,8 @@
 VISUALIZATIONS = visualization-base \
 				 hc-area-chart/area-chart \
 				 hc-pie-chart/pie-chart \
+				 item-info/item-info \
+				 
 				 
 SRC = $(VISUALIZATIONS:%=visualizations/%) obudget
 OUT = src/jslib/ob.js
