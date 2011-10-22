@@ -13,7 +13,11 @@ html, body {
 	display:block;
 }
 
-.main { background-color:#eef; height:100%; }
+.main { 
+    background-color:#eef; 
+    height:100%;
+    position: relative;
+}
 
 div.layout {
 	display: block;
@@ -26,136 +30,175 @@ span {
 	border:0px;
 }
 
-	#header {
-	    display:block;
-		background-color: #ccc;
-		width:100%;
-		height:10%;
-	}
+#header {
+    display:block;
+	background-color: #ccc;
+	width:100%;
+	height:10%;
+}
 
-	#current {
-		background-color: #ddd;
-		width:60%;
-		float:right;
-	}
-	
-       #current h1, 
-       #current h4 { 
-            display:inline;
-	   }
-	   
-	   #year-selection {
-	   }
-	   
-		   #year-selection .year-sel {
-		       display:inline-block;
-		       width:5.5%;
-		       padding:0.2%;
-		       margin:0;
-		       text-align:center;
-	           color:#446;
-	           border-right:solid 1px #cce;
-               background-color:#f0f0f8;
-	           float:right;
-		   }
-		      #year-selection .year-sel:first-child {
-		          margin-right:1%;
-		          border-right:none;
-				-moz-border-radius-topleft: 0px;
-				-moz-border-radius-topright: 7px;
-				-moz-border-radius-bottomright: 7px;
-				-moz-border-radius-bottomleft: 0px;
-				-webkit-border-radius: 0px 7px 7px 0px;
-				border-radius: 0px 7px 7px 0px;
-		      }
+#current {
+	background-color: #ddd;
+	width:60%;
+	float:right;
+	position: relative;
+}
 
-              #year-selection .year-sel:last-child {
-					-moz-border-radius-topleft: 7px;
-					-moz-border-radius-topright: 0px;
-					-moz-border-radius-bottomright: 0px;
-					-moz-border-radius-bottomleft: 7px;
-					-webkit-border-radius: 7px 0px 0px 7px;
-					border-radius: 7px 0px 0px 7px;
-              }
+#current h1, 
+#current h4 { 
+    display:inline;
+}
+   
+#year-selection {
+}
+   
+#year-selection .year-sel {
+	display:inline-block;
+	width:5.5%;
+	padding:0.2%;
+	margin:0;
+	text-align:center;
+	color:#446;
+	border-right:solid 1px #cce;
+	background-color:#f0f0f8;
+	float:right;
+}
+#year-selection .year-sel:first-child {
+          margin-right:1%;
+          border-right:none;
+		-moz-border-radius-topleft: 0px;
+		-moz-border-radius-topright: 7px;
+		-moz-border-radius-bottomright: 7px;
+		-moz-border-radius-bottomleft: 0px;
+		-webkit-border-radius: 0px 7px 7px 0px;
+		border-radius: 0px 7px 7px 0px;
+}
 
-              #year-selection.enabled .year-sel.enabled:hover {
-                  color:#223;
-                  background-color:#fff;
-              }
+#year-selection .year-sel:last-child {
+			-moz-border-radius-topleft: 7px;
+			-moz-border-radius-topright: 0px;
+			-moz-border-radius-bottomright: 0px;
+			-moz-border-radius-bottomleft: 7px;
+			-webkit-border-radius: 7px 0px 0px 7px;
+			border-radius: 7px 0px 0px 7px;
+}
 
-              #year-selection.enabled .year-sel.enabled {
-                  cursor: pointer;
-              }
+      #year-selection.enabled .year-sel.enabled:hover {
+          color:#223;
+          background-color:#fff;
+      }
 
-              #year-selection.enabled .year-sel.enabled.active {
-                  color:#000;
-                  font-weight:bold;
-                  background-color:#fff;
-              }
+      #year-selection.enabled .year-sel.enabled {
+          cursor: pointer;
+      }
 
-	          #year-selection.enabled .year-sel.disabled {
-	               color:#ccc;
-	          }
-	          
-	       
-          #year-selection.disabled {
-                background-color:#f8f8f8;
+      #year-selection.enabled .year-sel.enabled.active {
+          color:#000;
+          font-weight:bold;
+          background-color:#fff;
+      }
+
+          #year-selection.enabled .year-sel.disabled {
+               color:#ccc;
           }
           
-              #year-selection.disabled .year-sel {
-                    color:#ccc;
-              }
+       
+  #year-selection.disabled {
+        background-color:#f8f8f8;
+  }
+  
+      #year-selection.disabled .year-sel {
+            color:#ccc;
+      }
 
-              #year-selection.disabled .year-sel.active {
-                    color:#000;
-                    font-weight:bold;
-                    background-color:#fff;
-              }
+      #year-selection.disabled .year-sel.active {
+            color:#000;
+            font-weight:bold;
+            background-color:#fff;
+      }
 
-	#search {
-		float:left;
-		background-color: #eee;
-		width:40%;
-	}
+div.result-table {
+    display: table;
+}
 
-	#current,#search {
-		height:15%;
-	}
-	
-	#visualizations {
-		background-color: #fff;
-		float:right;
-	}
-	
-	#visualizations, #vis-contents {
-		width:80%;
-	}
-	
-	#feed {
-		background-color: #aaa;
-		float:left;
-		width:20%;
-	}
-	
-	#visualizations, #feed, #vis-contents {
-		height:60%;
-	}
-	
-	#credits {
-		background-color: #bbb;
-		float:left;
-		width:20%;
-	}
+div.result-row {
+    display: table-row;
+	width:50%;
+    height:50%;
+    background:blue;
+    overflow: scroll;
+	overflow-x: hidden;
+    -ms-overflow-x: hidden;
+}
 
-	#social {
-		background-color: #ccc;
-		float:right;
-		width:80%;
-	}
-	
-	#credits, #social {
-		height:auto;
-	}
+div.result-cell {
+    vertical-align:text-top;
+	background:red;
+    padding:10px;
+    border:5px solid gray;
+    margin:10px; 
+    display: table-cell;
+    overflow: scroll;
+	overflow-x: hidden;
+    -ms-overflow-x: hidden;
+}
+
+span.result-cell {
+    width: 50%;
+    float: right;
+}
+
+#result-container {
+	width: 98%;
+	height: 70%;
+	position: absolute;
+	top: 25%;
+	left: 1%;
+	background:green;
+}
+
+#result-container {
+	z-index: 10;
+}
+
+#current,#search {
+	height:15%;
+}
+
+#visualizations {
+	background-color: #fff;
+	float:right;
+}
+
+#visualizations, #vis-contents {
+	width:80%;
+}
+
+#feed {
+	background-color: #aaa;
+	float:left;
+	width:20%;
+}
+
+#visualizations, #feed, #vis-contents {
+	height:60%;
+}
+
+#credits {
+	background-color: #bbb;
+	float:left;
+	width:20%;
+}
+
+#social {
+	background-color: #ccc;
+	float:right;
+	width:80%;
+}
+
+#credits, #social {
+	height:auto;
+}
 
 /******************/
 /* VISUALIZATIONS */

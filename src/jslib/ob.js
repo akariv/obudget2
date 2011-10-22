@@ -1,5 +1,5 @@
 (function() {
-  var HcAreaChart, HcPieChart, ItemInfo, OBudget, Visualization, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
+  var HcAreaChart, HcPieChart, ItemInfo, OBudget, Visualization, hoverEnd, hoverStart, mouseUpCbk, mouse_is_inside, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -341,8 +341,27 @@
     }
     return _results;
   };
+  mouse_is_inside = false;
+  hoverStart = function() {
+    return mouse_is_inside = true;
+  };
+  hoverEnd = function() {
+    return mouse_is_inside = false;
+  };
+  mouseUpCbk = function() {
+    if (!mouse_is_inside) {
+      return $('#result-container').hide();
+    }
+  };
+  $(document).ready(function() {
+    $('#result-container').hover(hoverStart, hoverEnd);
+    return $("body").mouseup(mouseUpCbk);
+  });
   OBudget = (function() {
     function OBudget() {
+      this.load_search = __bind(this.load_search, this);
+      this.handle_search_results = __bind(this.handle_search_results, this);
+      this.append_table_row = __bind(this.append_table_row, this);
       this.handle_current_item = __bind(this.handle_current_item, this);      this.visualizations = {};
       this.visualization_names = [];
       this.selected_visualization = null;
@@ -415,12 +434,39 @@
       }
       return _results;
     };
+    OBudget.prototype.append_table_row = function(record, index) {
+      $("#results").append("<span class='result-cell'>" + record.title + "</span>");
+      return $("#results").append("<span class='result-cell'>" + record.year + "</span><br/>");
+    };
+    OBudget.prototype.handle_search_results = function(data) {
+      var record, _i, _len, _results;
+      $("#results").html("<h1>תוצאות חיפוש</h1>");
+      _results = [];
+      for (_i = 0, _len = data.length; _i < _len; _i++) {
+        record = data[_i];
+        _results.push(this.append_table_row(record, _i));
+      }
+      return _results;
+    };
+    OBudget.prototype.load_search = function() {
+      $("#search").append("<input type='text' onchange='window.ob.search_db(this.value)'> </input>");
+      this.search_path = "/data/gov/mof/budget/";
+      return $("#results").html("<h1>תוצאות חיפוש</h1>");
+    };
+    OBudget.prototype.search_db = function(string) {
+      $("#result-container").show();
+      return H.findRecords(this.search_path, this.handle_search_results, {
+        "title": {
+          "$regex": string
+        }
+      }, null, 1, 100);
+    };
     return OBudget;
   })();
   $(function() {
-    var ob;
-    ob = new OBudget;
-    ob.load_visualizations(new HcAreaChart, new HcPieChart, new ItemInfo);
-    return ob.hash_changed_handler();
+    window.ob = new OBudget;
+    window.ob.load_visualizations(new HcAreaChart, new HcPieChart, new ItemInfo);
+    window.ob.hash_changed_handler();
+    return window.ob.load_search();
   });
 }).call(this);
