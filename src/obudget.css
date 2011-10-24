@@ -119,28 +119,28 @@ span {
 
 div.result-table {
     display: table;
+    border-radius: 15px;
 }
 
 div.result-row {
     display: table-row;
-	width:50%;
-    height:50%;
-    background:blue;
-    overflow: scroll;
-	overflow-x: hidden;
-    -ms-overflow-x: hidden;
 }
 
 div.result-cell {
-    vertical-align:text-top;
+    display: table-cell;
 	background:red;
     padding:10px;
     border:5px solid gray;
     margin:10px; 
-    display: table-cell;
-    overflow: scroll;
-	overflow-x: hidden;
-    -ms-overflow-x: hidden;
+    border-radius: 15px;
+    width: 50%;
+    height: 50%;
+}
+
+div.scroll {
+    height:150px;
+    vertical-align:text-top;
+    overflow: auto;
 }
 
 span.result-cell {
@@ -154,7 +154,6 @@ span.result-cell {
 	position: absolute;
 	top: 25%;
 	left: 1%;
-	background:green;
 }
 
 #result-container {

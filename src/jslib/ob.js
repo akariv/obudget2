@@ -1,5 +1,5 @@
 (function() {
-  var HcAreaChart, HcPieChart, ItemInfo, OBudget, Visualization, hoverEnd, hoverStart, mouseUpCbk, mouse_is_inside, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
+  var HcAreaChart, HcPieChart, ItemInfo, OBudget, Visualization, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -341,22 +341,6 @@
     }
     return _results;
   };
-  mouse_is_inside = false;
-  hoverStart = function() {
-    return mouse_is_inside = true;
-  };
-  hoverEnd = function() {
-    return mouse_is_inside = false;
-  };
-  mouseUpCbk = function() {
-    if (!mouse_is_inside) {
-      return $('#result-container').hide();
-    }
-  };
-  $(document).ready(function() {
-    $('#result-container').hover(hoverStart, hoverEnd);
-    return $("body").mouseup(mouseUpCbk);
-  });
   OBudget = (function() {
     function OBudget() {
       this.load_search = __bind(this.load_search, this);
@@ -366,6 +350,8 @@
       this.visualization_names = [];
       this.selected_visualization = null;
       this.year = 2010;
+      this.mouse_is_inside = false;
+      this.search_focus = false;
       window.onhashchange = this.hash_changed_handler;
     }
     OBudget.prototype.hash_changed_handler = function() {
@@ -435,12 +421,13 @@
       return _results;
     };
     OBudget.prototype.append_table_row = function(record, index) {
-      $("#results").append("<span class='result-cell'>" + record.title + "</span>");
-      return $("#results").append("<span class='result-cell'>" + record.year + "</span><br/>");
+      $("#res_scroller").append("<span class='result-cell'>" + record.title + "</span>");
+      return $("#res_scroller").append("<span class='result-cell'>" + record.year + "</span><br/>");
     };
     OBudget.prototype.handle_search_results = function(data) {
       var record, _i, _len, _results;
       $("#results").html("<h1>תוצאות חיפוש</h1>");
+      $("#results").append("<div class='scroll' id='res_scroller'></div>");
       _results = [];
       for (_i = 0, _len = data.length; _i < _len; _i++) {
         record = data[_i];
@@ -448,8 +435,32 @@
       }
       return _results;
     };
+    OBudget.prototype.hoverStart = function() {
+      return this.mouse_is_inside = true;
+    };
+    OBudget.prototype.hoverEnd = function() {
+      return this.mouse_is_inside = false;
+    };
+    OBudget.prototype.mouseUpCbk = function() {
+      if (!this.mouse_is_inside) {
+        $('#result-container').hide();
+        if (this.search_focus) {
+          $("#search-box").val("");
+          return $.Watermark.ShowAll();
+        }
+      }
+    };
     OBudget.prototype.load_search = function() {
-      $("#search").append("<input type='text' onchange='window.ob.search_db(this.value)'> </input>");
+      $('#result-container').append('<div id="row_1" class="result-row"></div>');
+      $('#row_1').append('<div id="results" class="result-cell"></div>');
+      $('#row_1').append('<div class="result-cell">הכי נצפים בשבוע האחרון</div>');
+      $('#result-container').append('<div id="row_2" class="result-row"></div>');
+      $('#row_2').append('<div class="result-cell">תגובות רלוונטיות</div>');
+      $('#row_2').append('<div class="result-cell">הכי מדוברים בשבוע האחרון</div>');
+      $('#result-container').hover(this.hoverStart, this.hoverEnd);
+      $("body").mouseup(this.mouseUpCbk);
+      $("#search").append("<input id='search-box' type='text' onfocus='search_focus=true;$(\"#search-box\").val(\"\");$.Watermark.HideAll();' onblur='search_focus=false;$(\"#search-box\").val(\"\");$.Watermark.ShowAll();' onchange='window.ob.search_db(this.value)'></input>");
+      $("#search-box").Watermark("חיפוש");
       this.search_path = "/data/gov/mof/budget/";
       return $("#results").html("<h1>תוצאות חיפוש</h1>");
     };

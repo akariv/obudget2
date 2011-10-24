@@ -18,24 +18,6 @@ set_active_years = (years) ->
         $(".year-sel[rel=#{year}]").toggleClass('disabled',false)
         $(".year-sel[rel=#{year}]").toggleClass('enabled',true)
 
-mouse_is_inside = false;
-
-hoverStart = () ->
-    mouse_is_inside=true 
-    
-hoverEnd = () ->
-    mouse_is_inside=false
-
-mouseUpCbk = () ->
-    $('#result-container').hide() if !mouse_is_inside
-    
-$(document).ready(()->
-    $('#result-container').hover(hoverStart, hoverEnd)
-
-    $("body").mouseup(mouseUpCbk)
-)
-
-         
 # Data Loading Routines
 
 class OBudget
@@ -44,6 +26,8 @@ class OBudget
         @visualization_names = []
         @selected_visualization = null
         @year = 2010  
+        @mouse_is_inside = false;
+        @search_focus = false;
         window.onhashchange = @hash_changed_handler
 
     hash_changed_handler : ->
@@ -101,21 +85,38 @@ class OBudget
             v.initialize("vis-#{name}")
     
     append_table_row: (record, index) =>
-        #$("#search_results").append("<div class='result-row' id='res_row#{index}'>")
-        #$("#res_row#{index}").append("<div class='result-cell' id='res_title#{index}'>")
-        #$("#res_row#{index}").append("<a>#{record.title}</a>")
-        #$("#res_row#{index}").append("<div class='result-cell' id='res_year#{index}'>")
-        #$("#res_row#{index}").append("<a>#{record.year}</a><br/>")
-        $("#results").append("<span class='result-cell'>#{record.title}</span>")
-        $("#results").append("<span class='result-cell'>#{record.year}</span><br/>")
+        $("#res_scroller").append("<span class='result-cell'>#{record.title}</span>")
+        $("#res_scroller").append("<span class='result-cell'>#{record.year}</span><br/>")
     
     handle_search_results: (data) =>
         $("#results").html("<h1>תוצאות חיפוש</h1>")
-        #$("#results").append("<div id='search_results' class='result-table'></div>")
+        $("#results").append("<div class='scroll' id='res_scroller'></div>")
         @append_table_row record,_i for record in data
 
+    hoverStart : ->
+        @mouse_is_inside=true 
+        
+    hoverEnd : ->
+        @mouse_is_inside=false
+
+    mouseUpCbk : ->
+        if !@mouse_is_inside
+            $('#result-container').hide()
+            if @search_focus
+                $("#search-box").val("")
+                $.Watermark.ShowAll()
+
     load_search : =>
-        $("#search").append("<input type='text' onchange='window.ob.search_db(this.value)'> </input>")
+        $('#result-container').append('<div id="row_1" class="result-row"></div>')
+        $('#row_1').append('<div id="results" class="result-cell"></div>')
+        $('#row_1').append('<div class="result-cell">הכי נצפים בשבוע האחרון</div>')
+        $('#result-container').append('<div id="row_2" class="result-row"></div>')
+        $('#row_2').append('<div class="result-cell">תגובות רלוונטיות</div>')
+        $('#row_2').append('<div class="result-cell">הכי מדוברים בשבוע האחרון</div>')
+        $('#result-container').hover(@hoverStart, @hoverEnd)
+        $("body").mouseup(@mouseUpCbk)
+        $("#search").append("<input id='search-box' type='text' onfocus='search_focus=true;$(\"#search-box\").val(\"\");$.Watermark.HideAll();' onblur='search_focus=false;$(\"#search-box\").val(\"\");$.Watermark.ShowAll();' onchange='window.ob.search_db(this.value)'></input>")
+        $("#search-box").Watermark("חיפוש")
         @search_path = "/data/gov/mof/budget/"	
         $("#results").html("<h1>תוצאות חיפוש</h1>")
     
