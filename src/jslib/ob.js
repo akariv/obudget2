@@ -460,7 +460,17 @@
         }
       }
     };
+    OBudget.prototype.search_db = function(string) {
+      $("#results").append("<img src='images/ajax-loader.gif/>");
+      $("#result-container").show();
+      return H.findRecords(this.search_path, this.handle_search_results, {
+        "title": {
+          "$regex": string
+        }
+      }, null, 1, 100);
+    };
     OBudget.prototype.load_search = function() {
+      this.search_path = "/data/hasadna/budget-ninja/";
       $('#result-container').append('<div id="row_1" class="result-row"></div>');
       $('#row_1').append('<div id="results" class="result-cell"></div>');
       $('#row_1').append('<div class="result-cell">הכי נצפים בשבוע האחרון</div>');
@@ -469,21 +479,40 @@
       $('#row_2').append('<div class="result-cell">הכי מדוברים בשבוע האחרון</div>');
       $('#result-container').hover(this.hoverStart, this.hoverEnd);
       $("body").mouseup(this.mouseUpCbk);
-      $("#search").append("<input id='search-box' type='text' onfocus='search_focus=true;$(\"#search-box\").val(\"\");$.Watermark.HideAll();' onblur='search_focus=false;$(\"#search-box\").val(\"\");$.Watermark.ShowAll();' onchange='window.ob.search_db(this.value)'></input>");
-      $("#search-box").Watermark("חיפוש");
-      this.search_path = "/data/hasadna/budget-ninja/";
-      return $("#results").html("<h1>תוצאות חיפוש</h1>");
-    };
-    OBudget.prototype.search_db = function(string) {
-      $("#result-container").show();
-      return H.findRecords(this.search_path, this.handle_search_results, {
-        "title": {
-          "$regex": string
+      $("#search").append("<input id='search-box' type='text'></input>");
+      return $("#search").change(function(e) {
+        var evt;
+        evt = window.event || e;
+        if (!evt.target) {
+          evt.target = evt.srcElement;
         }
-      }, null, 1, 100);
+        return window.ob.search_db(evt.target.value);
+      });
     };
     return OBudget;
   })();
+  $("#search").blur(function(e) {
+    var evt;
+    evt = window.event || e;
+    if (!evt.target) {
+      evt.target = evt.srcElement;
+    }
+    window.ob.search_focus = false;
+    evt.target.value = "";
+    return $.Watermark.ShowAll();
+  });
+  $("#search").blur(function(e) {
+    var evt;
+    evt = window.event || e;
+    if (!evt.target) {
+      evt.target = evt.srcElement;
+    }
+    window.ob.search_focus = true;
+    evt.target.value = "";
+    return $.Watermark.HideAll();
+  });
+  $("#search-box").Watermark("חיפוש");
+  $("#results").html("<h1>תוצאות חיפוש</h1>");
   $(function() {
     window.ob = new OBudget;
     window.ob.load_visualizations(new HcAreaChart, new HcPieChart, new ItemInfo);

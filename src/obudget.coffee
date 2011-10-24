@@ -110,24 +110,43 @@ class OBudget
                 $("#search-box").val("")
                 $.Watermark.ShowAll()
 
+    search_db : (string) ->
+        $("#results").append("<img src='images/ajax-loader.gif/>")
+        $("#result-container").show()
+        H.findRecords(@search_path,@handle_search_results,{"title":{"$regex":string}},null,1,100)
+        
     load_search : =>
+        @search_path = "/data/hasadna/budget-ninja/"
         $('#result-container').append('<div id="row_1" class="result-row"></div>')
-        $('#row_1').append('<div id="results" class="result-cell"></div>')
+        $('#row_1').append('<div id="results" class="result-cell"></div>')              
         $('#row_1').append('<div class="result-cell">הכי נצפים בשבוע האחרון</div>')
         $('#result-container').append('<div id="row_2" class="result-row"></div>')
         $('#row_2').append('<div class="result-cell">תגובות רלוונטיות</div>')
         $('#row_2').append('<div class="result-cell">הכי מדוברים בשבוע האחרון</div>')
         $('#result-container').hover(@hoverStart, @hoverEnd)
         $("body").mouseup(@mouseUpCbk)
-        $("#search").append("<input id='search-box' type='text' onfocus='search_focus=true;$(\"#search-box\").val(\"\");$.Watermark.HideAll();' onblur='search_focus=false;$(\"#search-box\").val(\"\");$.Watermark.ShowAll();' onchange='window.ob.search_db(this.value)'></input>")
-        $("#search-box").Watermark("חיפוש")
-        @search_path = "/data/hasadna/budget-ninja/"	
-        $("#results").html("<h1>תוצאות חיפוש</h1>")
-    
-    search_db : (string) ->
-        $("#result-container").show()
-        H.findRecords(@search_path,@handle_search_results,{"title":{"$regex":string}},null,1,100)
-        
+        $("#search").append("<input id='search-box' type='text'></input>")
+        $("#search").change((e)->
+                                evt=window.event || e
+                                evt.target=evt.srcElement if (!evt.target)
+                                window.ob.search_db(evt.target.value)
+                           )
+        $("#search").blur((e)->
+                                evt=window.event || e
+                                evt.target=evt.srcElement if (!evt.target)
+                                window.ob.search_focus=false;
+                                evt.target.value = ""
+                                $.Watermark.ShowAll()
+                         )
+        $("#search").blur((e)->
+                            evt=window.event || e
+                            evt.target=evt.srcElement if (!evt.target)
+                            window.ob.search_focus=true
+                            evt.target.value = ""
+                            $.Watermark.HideAll()
+                         )
+        $("#search-box").Watermark("חיפוש")	
+        $("#results").html("<h1>תוצאות חיפוש</h1>")        
 
 $ ->       
     window.ob = new OBudget  
