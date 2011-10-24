@@ -84,15 +84,19 @@ class OBudget
 
             v.initialize("vis-#{name}")
     
-    append_table_row: (record, index) =>
+    append_table_row: (record) =>
+        year_list = []
+        year_list.push(parseInt(year)) for own year, value of record.sums
+        min_year = Math.min.apply(null, year_list)
+        max_year = Math.max.apply(null, year_list)
         $("#res_scroller").append("<span class='result-cell'>#{record.title}</span>")
-        $("#res_scroller").append("<span class='result-cell'>#{record.year}</span><br/>")
+        $("#res_scroller").append("<span class='result-cell'>#{max_year} - #{min_year}</span><br/>")
     
     handle_search_results: (data) =>
         $("#results").html("<h1>תוצאות חיפוש</h1>")
         $("#results").append("<div class='scroll' id='res_scroller'></div>")
-        @append_table_row record,_i for record in data
-
+        @append_table_row record for record in data
+ 
     hoverStart : ->
         @mouse_is_inside=true 
         
@@ -117,7 +121,7 @@ class OBudget
         $("body").mouseup(@mouseUpCbk)
         $("#search").append("<input id='search-box' type='text' onfocus='search_focus=true;$(\"#search-box\").val(\"\");$.Watermark.HideAll();' onblur='search_focus=false;$(\"#search-box\").val(\"\");$.Watermark.ShowAll();' onchange='window.ob.search_db(this.value)'></input>")
         $("#search-box").Watermark("חיפוש")
-        @search_path = "/data/gov/mof/budget/"	
+        @search_path = "/data/hasadna/budget-ninja/"	
         $("#results").html("<h1>תוצאות חיפוש</h1>")
     
     search_db : (string) ->

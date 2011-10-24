@@ -420,9 +420,19 @@
       }
       return _results;
     };
-    OBudget.prototype.append_table_row = function(record, index) {
+    OBudget.prototype.append_table_row = function(record) {
+      var max_year, min_year, value, year, year_list, _ref;
+      year_list = [];
+      _ref = record.sums;
+      for (year in _ref) {
+        if (!__hasProp.call(_ref, year)) continue;
+        value = _ref[year];
+        year_list.push(parseInt(year));
+      }
+      min_year = Math.min.apply(null, year_list);
+      max_year = Math.max.apply(null, year_list);
       $("#res_scroller").append("<span class='result-cell'>" + record.title + "</span>");
-      return $("#res_scroller").append("<span class='result-cell'>" + record.year + "</span><br/>");
+      return $("#res_scroller").append("<span class='result-cell'>" + max_year + " - " + min_year + "</span><br/>");
     };
     OBudget.prototype.handle_search_results = function(data) {
       var record, _i, _len, _results;
@@ -431,7 +441,7 @@
       _results = [];
       for (_i = 0, _len = data.length; _i < _len; _i++) {
         record = data[_i];
-        _results.push(this.append_table_row(record, _i));
+        _results.push(this.append_table_row(record));
       }
       return _results;
     };
@@ -461,7 +471,7 @@
       $("body").mouseup(this.mouseUpCbk);
       $("#search").append("<input id='search-box' type='text' onfocus='search_focus=true;$(\"#search-box\").val(\"\");$.Watermark.HideAll();' onblur='search_focus=false;$(\"#search-box\").val(\"\");$.Watermark.ShowAll();' onchange='window.ob.search_db(this.value)'></input>");
       $("#search-box").Watermark("חיפוש");
-      this.search_path = "/data/gov/mof/budget/";
+      this.search_path = "/data/hasadna/budget-ninja/";
       return $("#results").html("<h1>תוצאות חיפוש</h1>");
     };
     OBudget.prototype.search_db = function(string) {
