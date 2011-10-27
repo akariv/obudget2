@@ -96,8 +96,9 @@ class OBudget
         $("##{hash}").append("<span class='result-cell'>#{max_year} - #{min_year}</span>")
     
     handle_search_results: (data) =>
-        $("#results").html("<h1>תוצאות חיפוש</h1>")
-        $("#results").append("<div class='scroll' id='res_scroller'></div>")
+        $("#res_scroller").html("")
+        $("#res_scroller").removeClass("loader")
+        $("#res_scroller").addClass("scroll")
         @append_table_row record for record in data
  
     hoverStart : ->
@@ -114,7 +115,9 @@ class OBudget
                 $.Watermark.ShowAll()
 
     search_db : (string) ->
-        $("#results").append("<img src='images/ajax-loader.gif/>")
+        $("#results").html("<h1>תוצאות חיפוש</h1>")
+        $("#results").append("<div class='loader' id='res_scroller'></div>")
+        $("#res_scroller").append("<img class='loader' src='images/ajax-loader.gif'/>")
         $("#result-container").show()
         H.findRecords(@search_path,@handle_search_results,{"title":{"$regex":string}},null,1,100)
         

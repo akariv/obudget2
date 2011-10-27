@@ -439,8 +439,9 @@
     };
     OBudget.prototype.handle_search_results = function(data) {
       var record, _i, _len, _results;
-      $("#results").html("<h1>תוצאות חיפוש</h1>");
-      $("#results").append("<div class='scroll' id='res_scroller'></div>");
+      $("#res_scroller").html("");
+      $("#res_scroller").removeClass("loader");
+      $("#res_scroller").addClass("scroll");
       _results = [];
       for (_i = 0, _len = data.length; _i < _len; _i++) {
         record = data[_i];
@@ -464,7 +465,9 @@
       }
     };
     OBudget.prototype.search_db = function(string) {
-      $("#results").append("<img src='images/ajax-loader.gif/>");
+      $("#results").html("<h1>תוצאות חיפוש</h1>");
+      $("#results").append("<div class='loader' id='res_scroller'></div>");
+      $("#res_scroller").append("<img class='loader' src='images/ajax-loader.gif'/>");
       $("#result-container").show();
       return H.findRecords(this.search_path, this.handle_search_results, {
         "title": {

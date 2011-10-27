@@ -143,6 +143,11 @@ div.scroll {
     overflow: auto;
 }
 
+.loader {
+    text-align: center;
+    vertical-align: middle;
+}
+
 span.result-cell {
     width: 50%;
     float: right;
