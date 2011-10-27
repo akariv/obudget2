@@ -128,8 +128,8 @@ div.result-row {
 
 div.result-cell {
     display: table-cell;
-	background:red;
     padding:10px;
+    background:#f0f0f0;
     border:5px solid gray;
     margin:10px; 
     border-radius: 15px;

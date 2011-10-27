@@ -30,15 +30,16 @@ class OBudget
         @search_focus = false;
         window.onhashchange = @hash_changed_handler
 
-    hash_changed_handler : ->
-        hash = window.location.hash
-        @load_item(hash[1..hash.length])
-	
-    
     load_item : (hash) ->
         set_loading(true);
         H.getRecord( "/data/hasadna/budget-ninja/#{hash}", 
                      @handle_current_item )
+
+    hash_changed_handler : ->
+        $('#result-container').hide()
+        hash = window.location.hash
+        # "this" object does not point to the Obudget object after reloading the page
+        window.ob.load_item(hash[1..hash.length])
 
     handle_current_item : (data) =>
         @loaded_data = $.extend({},data);
@@ -89,8 +90,10 @@ class OBudget
         year_list.push(parseInt(year)) for own year, value of record.sums
         min_year = Math.min.apply(null, year_list)
         max_year = Math.max.apply(null, year_list)
-        $("#res_scroller").append("<span class='result-cell'>#{record.title}</span>")
-        $("#res_scroller").append("<span class='result-cell'>#{max_year} - #{min_year}</span><br/>")
+        hash = record._src.split("/")[3]
+        $("#res_scroller").append("<a id=#{hash} href='obudget.html##{hash}'></a>")
+        $("##{hash}").append("<span class='result-cell'>#{record.title}</span>")
+        $("##{hash}").append("<span class='result-cell'>#{max_year} - #{min_year}</span>")
     
     handle_search_results: (data) =>
         $("#results").html("<h1>תוצאות חיפוש</h1>")
@@ -98,13 +101,13 @@ class OBudget
         @append_table_row record for record in data
  
     hoverStart : ->
-        @mouse_is_inside=true 
-        
+        @mouse_is_inside=true
+
     hoverEnd : ->
         @mouse_is_inside=false
 
     mouseUpCbk : ->
-        if !@mouse_is_inside
+        if @mouse_is_inside == false
             $('#result-container').hide()
             if @search_focus
                 $("#search-box").val("")

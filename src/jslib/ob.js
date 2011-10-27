@@ -354,14 +354,15 @@
       this.search_focus = false;
       window.onhashchange = this.hash_changed_handler;
     }
-    OBudget.prototype.hash_changed_handler = function() {
-      var hash;
-      hash = window.location.hash;
-      return this.load_item(hash.slice(1, (hash.length + 1) || 9e9));
-    };
     OBudget.prototype.load_item = function(hash) {
       set_loading(true);
       return H.getRecord("/data/hasadna/budget-ninja/" + hash, this.handle_current_item);
+    };
+    OBudget.prototype.hash_changed_handler = function() {
+      var hash;
+      $('#result-container').hide();
+      hash = window.location.hash;
+      return window.ob.load_item(hash.slice(1, (hash.length + 1) || 9e9));
     };
     OBudget.prototype.handle_current_item = function(data) {
       var year, years;
@@ -421,7 +422,7 @@
       return _results;
     };
     OBudget.prototype.append_table_row = function(record) {
-      var max_year, min_year, value, year, year_list, _ref;
+      var hash, max_year, min_year, value, year, year_list, _ref;
       year_list = [];
       _ref = record.sums;
       for (year in _ref) {
@@ -431,8 +432,10 @@
       }
       min_year = Math.min.apply(null, year_list);
       max_year = Math.max.apply(null, year_list);
-      $("#res_scroller").append("<span class='result-cell'>" + record.title + "</span>");
-      return $("#res_scroller").append("<span class='result-cell'>" + max_year + " - " + min_year + "</span><br/>");
+      hash = record._src.split("/")[3];
+      $("#res_scroller").append("<a id=" + hash + " href='obudget.html#" + hash + "'></a>");
+      $("#" + hash).append("<span class='result-cell'>" + record.title + "</span>");
+      return $("#" + hash).append("<span class='result-cell'>" + max_year + " - " + min_year + "</span>");
     };
     OBudget.prototype.handle_search_results = function(data) {
       var record, _i, _len, _results;
@@ -452,7 +455,7 @@
       return this.mouse_is_inside = false;
     };
     OBudget.prototype.mouseUpCbk = function() {
-      if (!this.mouse_is_inside) {
+      if (this.mouse_is_inside === false) {
         $('#result-container').hide();
         if (this.search_focus) {
           $("#search-box").val("");
