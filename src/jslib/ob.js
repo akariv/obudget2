@@ -355,16 +355,12 @@
   };
   OBudget = (function() {
     function OBudget() {
-<<<<<<< HEAD
-      this.handle_current_item = __bind(this.handle_current_item, this);
-      var year_sel_click;
-      this.visualizations = {};
-=======
       this.load_search = __bind(this.load_search, this);
       this.handle_search_results = __bind(this.handle_search_results, this);
       this.append_table_row = __bind(this.append_table_row, this);
-      this.handle_current_item = __bind(this.handle_current_item, this);      this.visualizations = {};
->>>>>>> d60991a66fc40c45da7c32c2ddf10c4f24c7ed12
+      this.handle_current_item = __bind(this.handle_current_item, this);
+      var year_sel_click;
+      this.visualizations = {};
       this.visualization_names = [];
       this.selected_visualization = null;
       this.year = 2010;
