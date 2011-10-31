@@ -355,12 +355,21 @@
   };
   OBudget = (function() {
     function OBudget() {
+<<<<<<< HEAD
       this.handle_current_item = __bind(this.handle_current_item, this);
       var year_sel_click;
       this.visualizations = {};
+=======
+      this.load_search = __bind(this.load_search, this);
+      this.handle_search_results = __bind(this.handle_search_results, this);
+      this.append_table_row = __bind(this.append_table_row, this);
+      this.handle_current_item = __bind(this.handle_current_item, this);      this.visualizations = {};
+>>>>>>> d60991a66fc40c45da7c32c2ddf10c4f24c7ed12
       this.visualization_names = [];
       this.selected_visualization = null;
       this.year = 2010;
+      this.mouse_is_inside = false;
+      this.search_focus = false;
       window.onhashchange = this.hash_changed_handler;
       year_sel_click = function(obj) {
         return function() {
@@ -373,11 +382,6 @@
       };
       $(".year-sel").click(year_sel_click(this));
     }
-    OBudget.prototype.hash_changed_handler = function() {
-      var hash;
-      hash = window.location.hash;
-      return this.load_item(hash.slice(1, (hash.length + 1) || 9e9));
-    };
     OBudget.prototype.load_item = function(hash) {
       set_loading(true);
       return this.handle_current_item({
@@ -1403,6 +1407,12 @@
         "_srcslug": "data__hasadna__budget-ninja__0020_eef9f8e320e4e7e9f0e5ea"
       });
     };
+    OBudget.prototype.hash_changed_handler = function() {
+      var hash;
+      $('#result-container').hide();
+      hash = window.location.hash;
+      return window.ob.load_item(hash.slice(1, (hash.length + 1) || 9e9));
+    };
     OBudget.prototype.handle_current_item = function(data) {
       var year, years;
       this.loaded_data = $.extend({}, data);
@@ -1467,12 +1477,108 @@
       }
       return _results;
     };
+    OBudget.prototype.append_table_row = function(record) {
+      var hash, max_year, min_year, value, year, year_list, _ref;
+      year_list = [];
+      _ref = record.sums;
+      for (year in _ref) {
+        if (!__hasProp.call(_ref, year)) continue;
+        value = _ref[year];
+        year_list.push(parseInt(year));
+      }
+      min_year = Math.min.apply(null, year_list);
+      max_year = Math.max.apply(null, year_list);
+      hash = record._src.split("/")[3];
+      $("#res_scroller").append("<a id=" + hash + " href='obudget.html#" + hash + "'></a>");
+      $("#" + hash).append("<span class='result-cell'>" + record.title + "</span>");
+      return $("#" + hash).append("<span class='result-cell'>" + max_year + " - " + min_year + "</span>");
+    };
+    OBudget.prototype.handle_search_results = function(data) {
+      var record, _i, _len, _results;
+      $("#res_scroller").html("");
+      $("#res_scroller").removeClass("loader");
+      $("#res_scroller").addClass("scroll");
+      _results = [];
+      for (_i = 0, _len = data.length; _i < _len; _i++) {
+        record = data[_i];
+        _results.push(this.append_table_row(record));
+      }
+      return _results;
+    };
+    OBudget.prototype.hoverStart = function() {
+      return this.mouse_is_inside = true;
+    };
+    OBudget.prototype.hoverEnd = function() {
+      return this.mouse_is_inside = false;
+    };
+    OBudget.prototype.mouseUpCbk = function() {
+      if (this.mouse_is_inside === false) {
+        $('#result-container').hide();
+        if (this.search_focus) {
+          $("#search-box").val("");
+          return $.Watermark.ShowAll();
+        }
+      }
+    };
+    OBudget.prototype.search_db = function(string) {
+      $("#results").html("<h1>תוצאות חיפוש</h1>");
+      $("#results").append("<div class='loader' id='res_scroller'></div>");
+      $("#res_scroller").append("<img class='loader' src='images/ajax-loader.gif'/>");
+      $("#result-container").show();
+      return H.findRecords(this.search_path, this.handle_search_results, {
+        "title": {
+          "$regex": string
+        }
+      }, null, 1, 100);
+    };
+    OBudget.prototype.load_search = function() {
+      this.search_path = "/data/hasadna/budget-ninja/";
+      $('#result-container').append('<div id="row_1" class="result-row"></div>');
+      $('#row_1').append('<div id="results" class="result-cell"></div>');
+      $('#row_1').append('<div class="result-cell">הכי נצפים בשבוע האחרון</div>');
+      $('#result-container').append('<div id="row_2" class="result-row"></div>');
+      $('#row_2').append('<div class="result-cell">תגובות רלוונטיות</div>');
+      $('#row_2').append('<div class="result-cell">הכי מדוברים בשבוע האחרון</div>');
+      $('#result-container').hover(this.hoverStart, this.hoverEnd);
+      $("body").mouseup(this.mouseUpCbk);
+      $("#search").append("<input id='search-box' type='text'></input>");
+      return $("#search").change(function(e) {
+        var evt;
+        evt = window.event || e;
+        if (!evt.target) {
+          evt.target = evt.srcElement;
+        }
+        return window.ob.search_db(evt.target.value);
+      });
+    };
     return OBudget;
   })();
+  $("#search").blur(function(e) {
+    var evt;
+    evt = window.event || e;
+    if (!evt.target) {
+      evt.target = evt.srcElement;
+    }
+    window.ob.search_focus = false;
+    evt.target.value = "";
+    return $.Watermark.ShowAll();
+  });
+  $("#search").blur(function(e) {
+    var evt;
+    evt = window.event || e;
+    if (!evt.target) {
+      evt.target = evt.srcElement;
+    }
+    window.ob.search_focus = true;
+    evt.target.value = "";
+    return $.Watermark.HideAll();
+  });
+  $("#search-box").Watermark("חיפוש");
+  $("#results").html("<h1>תוצאות חיפוש</h1>");
   $(function() {
-    var ob;
-    ob = new OBudget;
-    ob.load_visualizations(new HcAreaChart, new HcPieChart, new ItemInfo);
-    return ob.hash_changed_handler();
+    window.ob = new OBudget;
+    window.ob.load_visualizations(new HcAreaChart, new HcPieChart, new ItemInfo);
+    window.ob.hash_changed_handler();
+    return window.ob.load_search();
   });
 }).call(this);
