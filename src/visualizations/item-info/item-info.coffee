@@ -10,18 +10,24 @@ class ItemInfo extends Visualization
     update: (data,year) -> 
         years = (year for year of data.sums)
         table = {}
+        keys = []
         for ref in data.refs
             unless ref.title 
                 continue
-            key = "#{ref.code}|||#{ref.title}"
+            padding = "00000000000000"[0..(14-ref.code.length)]
+            key = "#{padding}|||#{ref.code}|||#{ref.title}"
             unless table[key]
                 table[key] = {}
+                keys[keys.length] = key
             table[key][ref.year] = ref
 
         content = [ "<td></td><td>" + years.join("</td><td>") + "</td>" ]
         
-        for key, item_years of table
-            [code, title] = key.split("|||",2)
+        keys = keys.sort()
+        
+        for key in keys
+            item_years = table[key]
+            [padding,code, title] = key.split("|||",3)
             s = [ "#{code}/#{title}" ]
             for year in years
                 ref = item_years[year]
