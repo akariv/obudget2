@@ -1,5 +1,5 @@
 (function() {
-  var HcAreaChart, HcPieChart, ItemInfo, OBudget, Visualization, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
+  var HcAreaChart, HcPieChart, ItemInfo, OBudget, Visualization, mouse_is_inside, search_key_pressed, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -341,6 +341,8 @@
     }
     return _results;
   };
+  mouse_is_inside = false;
+  search_key_pressed = false;
   OBudget = (function() {
     function OBudget() {
       this.load_search = __bind(this.load_search, this);
@@ -354,14 +356,14 @@
       this.search_focus = false;
       window.onhashchange = this.hash_changed_handler;
     }
-    OBudget.prototype.load_item = function(hash) {
-      set_loading(true);
-      return H.getRecord("/data/hasadna/budget-ninja/" + hash, this.handle_current_item);
-    };
     OBudget.prototype.hash_changed_handler = function() {
       var hash;
       $('#result-container').hide();
-      hash = window.location.hash;
+      return hash = window.location.hash;
+    };
+    OBudget.prototype.load_item = function(hash) {
+      set_loading(true);
+      H.getRecord("/data/hasadna/budget-ninja/" + hash, this.handle_current_item);
       return window.ob.load_item(hash.slice(1, (hash.length + 1) || 9e9));
     };
     OBudget.prototype.handle_current_item = function(data) {
@@ -422,7 +424,7 @@
       return _results;
     };
     OBudget.prototype.append_table_row = function(record) {
-      var hash, max_year, min_year, value, year, year_list, _ref;
+      var flat_title, hash, max_year, min_year, value, year, year_list, _ref;
       year_list = [];
       _ref = record.sums;
       for (year in _ref) {
@@ -433,9 +435,10 @@
       min_year = Math.min.apply(null, year_list);
       max_year = Math.max.apply(null, year_list);
       hash = record._src.split("/")[3];
-      $("#res_scroller").append("<a id=" + hash + " href='obudget.html#" + hash + "'></a>");
-      $("#" + hash).append("<span class='result-cell'>" + record.title + "</span>");
-      return $("#" + hash).append("<span class='result-cell'>" + max_year + " - " + min_year + "</span>");
+      $("#res_scroller").append("<a class='result-cell' id=" + hash + " href='obudget.html#" + hash + "'></a><br/>");
+      flat_title = record.title.replace(/\n/g, '');
+      flat_title = flat_title.replace(/\r/g, '');
+      return $("#" + hash).append("<span class='result-cell'>" + flat_title + " , " + max_year + " - " + min_year + "</span>");
     };
     OBudget.prototype.handle_search_results = function(data) {
       var record, _i, _len, _results;
@@ -450,15 +453,15 @@
       return _results;
     };
     OBudget.prototype.hoverStart = function() {
-      return this.mouse_is_inside = true;
+      return mouse_is_inside = true;
     };
     OBudget.prototype.hoverEnd = function() {
-      return this.mouse_is_inside = false;
+      return mouse_is_inside = false;
     };
     OBudget.prototype.mouseUpCbk = function() {
-      if (this.mouse_is_inside === false) {
+      if (mouse_is_inside === false && search_key_pressed === false) {
         $('#result-container').hide();
-        if (this.search_focus) {
+        if (search_focus) {
           $("#search-box").val("");
           return $.Watermark.ShowAll();
         }
@@ -479,46 +482,61 @@
       this.search_path = "/data/hasadna/budget-ninja/";
       $('#result-container').append('<div id="row_1" class="result-row"></div>');
       $('#row_1').append('<div id="results" class="result-cell"></div>');
-      $('#row_1').append('<div class="result-cell">הכי נצפים בשבוע האחרון</div>');
+      $('#row_1').append('<div class="result-cell"><h1>הכי נצפים בשבוע האחרון</h1></div>');
       $('#result-container').append('<div id="row_2" class="result-row"></div>');
-      $('#row_2').append('<div class="result-cell">תגובות רלוונטיות</div>');
-      $('#row_2').append('<div class="result-cell">הכי מדוברים בשבוע האחרון</div>');
+      $('#row_2').append('<div class="result-cell"><h1>תגובות רלוונטיות</h1></div>');
+      $('#row_2').append('<div class="result-cell"><h1>הכי מדוברים בשבוע האחרון</h1></div>');
       $('#result-container').hover(this.hoverStart, this.hoverEnd);
       $("body").mouseup(this.mouseUpCbk);
       $("#search").append("<input id='search-box' type='text'></input>");
-      return $("#search").change(function(e) {
-        var evt;
+      $("#search").append("<a><span class='button' id='search-button'>חפש</span></a>");
+      $("#search-button").mouseup(function(e) {
+        $('#search-button').removeClass('button-pressed');
+        $('#search-button').addClass('button');
+        return search_key_pressed = false;
+      });
+      $("#search-button").mousedown(function(e) {
+        search_key_pressed = true;
+        $('#search-button').removeClass('button');
+        $('#search-button').addClass('button-pressed');
+        return window.ob.search_db($("#search-box").val());
+      });
+      $("#search-box").keypress(function(e) {
+        var code, evt;
+        evt = window.event || e;
+        code = evt.keyCode ? evt.keyCode : evt.which;
+        if (code === 13) {
+          if (!evt.target) {
+            evt.target = evt.srcElement;
+          }
+          return window.ob.search_db(evt.target.value);
+        }
+      });
+      $("#search-box").blur(function(e) {
+        var evt, search_focus;
         evt = window.event || e;
         if (!evt.target) {
           evt.target = evt.srcElement;
         }
-        return window.ob.search_db(evt.target.value);
+        search_focus = false;
+        evt.target.value = "";
+        return $.Watermark.ShowAll();
       });
+      $("#search-box").focus(function(e) {
+        var evt, search_focus;
+        evt = window.event || e;
+        if (!evt.target) {
+          evt.target = evt.srcElement;
+        }
+        search_focus = true;
+        evt.target.value = "";
+        return $.Watermark.HideAll();
+      });
+      $("#search-box").Watermark("חיפוש");
+      return $("#results").html("<h1>תוצאות חיפוש</h1>");
     };
     return OBudget;
   })();
-  $("#search").blur(function(e) {
-    var evt;
-    evt = window.event || e;
-    if (!evt.target) {
-      evt.target = evt.srcElement;
-    }
-    window.ob.search_focus = false;
-    evt.target.value = "";
-    return $.Watermark.ShowAll();
-  });
-  $("#search").blur(function(e) {
-    var evt;
-    evt = window.event || e;
-    if (!evt.target) {
-      evt.target = evt.srcElement;
-    }
-    window.ob.search_focus = true;
-    evt.target.value = "";
-    return $.Watermark.HideAll();
-  });
-  $("#search-box").Watermark("חיפוש");
-  $("#results").html("<h1>תוצאות חיפוש</h1>");
   $(function() {
     window.ob = new OBudget;
     window.ob.load_visualizations(new HcAreaChart, new HcPieChart, new ItemInfo);

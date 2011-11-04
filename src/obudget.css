@@ -149,8 +149,26 @@ div.scroll {
 }
 
 span.result-cell {
-    width: 50%;
     float: right;
+    overflow: auto;
+}
+
+a.result-cell {
+    overflow: auto;
+}
+
+.button {
+    background: #C9D6DC;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    border: 2px solid #D7E4EB;
+}
+
+.button-pressed {
+    background: #537E92;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    border: 2px solid #D7E4EB;
 }
 
 #result-container {

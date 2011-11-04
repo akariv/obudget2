@@ -18,6 +18,11 @@ set_active_years = (years) ->
         $(".year-sel[rel=#{year}]").toggleClass('disabled',false)
         $(".year-sel[rel=#{year}]").toggleClass('enabled',true)
 
+# search related routines
+
+mouse_is_inside = false
+search_key_pressed = false
+
 # Data Loading Routines
 
 class OBudget
@@ -29,15 +34,15 @@ class OBudget
         @mouse_is_inside = false;
         @search_focus = false;
         window.onhashchange = @hash_changed_handler
+    hash_changed_handler : ->
+        $('#result-container').hide()
+        hash = window.location.hash
 
     load_item : (hash) ->
         set_loading(true);
         H.getRecord( "/data/hasadna/budget-ninja/#{hash}", 
                      @handle_current_item )
 
-    hash_changed_handler : ->
-        $('#result-container').hide()
-        hash = window.location.hash
         # "this" object does not point to the Obudget object after reloading the page
         window.ob.load_item(hash[1..hash.length])
 
@@ -91,9 +96,11 @@ class OBudget
         min_year = Math.min.apply(null, year_list)
         max_year = Math.max.apply(null, year_list)
         hash = record._src.split("/")[3]
-        $("#res_scroller").append("<a id=#{hash} href='obudget.html##{hash}'></a>")
-        $("##{hash}").append("<span class='result-cell'>#{record.title}</span>")
-        $("##{hash}").append("<span class='result-cell'>#{max_year} - #{min_year}</span>")
+        $("#res_scroller").append("<a class='result-cell' id=#{hash} href='obudget.html##{hash}'></a><br/>")
+        flat_title = record.title.replace(/\n/g,'')
+        flat_title = flat_title.replace(/\r/g,'')
+        $("##{hash}").append("<span class='result-cell'>#{flat_title} , #{max_year} - #{min_year}</span>")
+        #$("##{hash}").append("<span class='result-cell'></span>")
     
     handle_search_results: (data) =>
         $("#res_scroller").html("")
@@ -102,15 +109,15 @@ class OBudget
         @append_table_row record for record in data
  
     hoverStart : ->
-        @mouse_is_inside=true
+        mouse_is_inside=true
 
     hoverEnd : ->
-        @mouse_is_inside=false
+        mouse_is_inside=false
 
     mouseUpCbk : ->
-        if @mouse_is_inside == false
+        if mouse_is_inside == false and search_key_pressed == false
             $('#result-container').hide()
-            if @search_focus
+            if search_focus
                 $("#search-box").val("")
                 $.Watermark.ShowAll()
 
@@ -125,33 +132,43 @@ class OBudget
         @search_path = "/data/hasadna/budget-ninja/"
         $('#result-container').append('<div id="row_1" class="result-row"></div>')
         $('#row_1').append('<div id="results" class="result-cell"></div>')              
-        $('#row_1').append('<div class="result-cell">הכי נצפים בשבוע האחרון</div>')
+        $('#row_1').append('<div class="result-cell"><h1>הכי נצפים בשבוע האחרון</h1></div>')
         $('#result-container').append('<div id="row_2" class="result-row"></div>')
-        $('#row_2').append('<div class="result-cell">תגובות רלוונטיות</div>')
-        $('#row_2').append('<div class="result-cell">הכי מדוברים בשבוע האחרון</div>')
+        $('#row_2').append('<div class="result-cell"><h1>תגובות רלוונטיות</h1></div>')
+        $('#row_2').append('<div class="result-cell"><h1>הכי מדוברים בשבוע האחרון</h1></div>')
         $('#result-container').hover(@hoverStart, @hoverEnd)
         $("body").mouseup(@mouseUpCbk)
         $("#search").append("<input id='search-box' type='text'></input>")
-        $("#search").change((e)->
+        $("#search").append("<a><span class='button' id='search-button'>חפש</span></a>")
+        $("#search-button").mouseup((e)->
+                                    $('#search-button').removeClass('button-pressed')
+                                    $('#search-button').addClass('button')
+                                    search_key_pressed = false)
+        $("#search-button").mousedown((e)->
+                                    search_key_pressed = true
+                                    $('#search-button').removeClass('button')
+                                    $('#search-button').addClass('button-pressed')
+                                    window.ob.search_db($("#search-box").val()))
+        $("#search-box").keypress((e)->
+                                evt=window.event || e
+                                code = if evt.keyCode then evt.keyCode else evt.which
+                                if code == 13
+                                    evt.target=evt.srcElement if (!evt.target)
+                                    window.ob.search_db(evt.target.value)
+                                )
+        $("#search-box").blur((e)->
                                 evt=window.event || e
                                 evt.target=evt.srcElement if (!evt.target)
-                                window.ob.search_db(evt.target.value)
-                           )
-        $("#search").blur((e)->
-                                evt=window.event || e
-                                evt.target=evt.srcElement if (!evt.target)
-                                window.ob.search_focus=false;
+                                search_focus=false;
                                 evt.target.value = ""
-                                $.Watermark.ShowAll()
-                         )
-        $("#search").blur((e)->
+                                $.Watermark.ShowAll())
+        $("#search-box").focus((e)->
                             evt=window.event || e
                             evt.target=evt.srcElement if (!evt.target)
-                            window.ob.search_focus=true
+                            search_focus=true
                             evt.target.value = ""
-                            $.Watermark.HideAll()
-                         )
-        $("#search-box").Watermark("חיפוש")	
+                            $.Watermark.HideAll())
+        $("#search-box").Watermark("חיפוש")
         $("#results").html("<h1>תוצאות חיפוש</h1>")        
 
 $ ->       
@@ -161,3 +178,4 @@ $ ->
                             new ItemInfo )
     window.ob.hash_changed_handler()
     window.ob.load_search()
+    
