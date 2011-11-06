@@ -20,9 +20,93 @@ set_active_years = (years) ->
 
 # search related routines
 
-mouse_is_inside = false
-search_key_pressed = false
+# should be replaced by an AJAX call to a server view
+build_results_popup = () ->
+    $('#result-container').append('<div id="row_1" class="result-row"></div>')
+    $('#row_1').append('<div id="results" class="result-cell"></div>')              
+    $('#row_1').append('<div class="result-cell"><h1>הכי נצפים בשבוע האחרון</h1></div>')
+    $('#result-container').append('<div id="row_2" class="result-row"></div>')
+    $('#row_2').append('<div class="result-cell"><h1>תגובות רלוונטיות</h1></div>')
+    $('#row_2').append('<div class="result-cell"><h1>הכי מדוברים בשבוע האחרון</h1></div>')
+    $("#results").html("<h1>תוצאות חיפוש</h1>")
 
+mouse_is_inside     = false
+search_key_pressed  = false
+search_focus        = false
+
+class SearchUI
+    #constructor : ->
+    #    @load_search()
+    
+    load_search : =>
+        # TBD - replace with AJAX call
+        build_results_popup()
+                
+        $('#result-container').hover(@hoverStart, @hoverEnd)
+        $("body").mouseup(@mouseUpCbk)
+        $("#search").append("<input id='search-box' type='text'></input>")
+        $("#search").append("<a><span class='button' id='search-button'>חפש</span></a>")
+        $("#search-button").mouseup((e)->
+                                    $('#search-button').removeClass('button-pressed')
+                                    $('#search-button').addClass('button')
+                                    search_key_pressed = false)
+        $("#search-button").mousedown((e)->
+                                    search_key_pressed = true
+                                    $('#search-button').removeClass('button')
+                                    $('#search-button').addClass('button-pressed')
+                                    window.ob.search_db($("#search-box").val()))
+        $("#search-box").keypress((e)->
+                                evt=window.event || e
+                                code = if evt.keyCode then evt.keyCode else evt.which
+                                if code == 13
+                                    evt.target=evt.srcElement if (!evt.target)
+                                    window.ob.search_db(evt.target.value)
+                                )
+        $("#search-box").blur((e)->
+                                evt=window.event || e
+                                evt.target=evt.srcElement if (!evt.target)
+                                search_focus=false;
+                                evt.target.value = ""
+                                $.Watermark.ShowAll())
+        $("#search-box").focus((e)->
+                            evt=window.event || e
+                            evt.target=evt.srcElement if (!evt.target)
+                            search_focus=true
+                            evt.target.value = ""
+                            $.Watermark.HideAll())
+        $("#search-box").Watermark("חיפוש")
+    
+    append_table_row: (record) =>
+        year_list = []
+        year_list.push(parseInt(year)) for own year, value of record.sums
+        min_year = Math.min.apply(null, year_list)
+        max_year = Math.max.apply(null, year_list)
+        hash = record._src.split("/")[3]
+        $("#res_scroller").append("<a class='result-cell' id=#{hash} href='obudget.html##{hash}'></a><br/>")
+        flat_title = record.title.replace(/\n/g,'')
+        flat_title = flat_title.replace(/\r/g,'')
+        $("##{hash}").append("<span class='result-cell'>#{flat_title} , #{max_year} - #{min_year}</span>")
+        #$("##{hash}").append("<span class='result-cell'></span>")
+    
+    handle_search_results: (data) =>
+        $("#res_scroller").html("")
+        $("#res_scroller").removeClass("loader")
+        $("#res_scroller").addClass("scroll")
+        @append_table_row record for record in data
+ 
+    hoverStart : ->
+        mouse_is_inside=true
+
+    hoverEnd : ->
+        mouse_is_inside=false
+
+    mouseUpCbk : ->
+        if mouse_is_inside == false and search_key_pressed == false
+            $('#result-container').hide()
+            
+    hideResultPopup : ->
+        $('#result-container').hide()
+                
 # Data Loading Routines
 
 class OBudget
@@ -31,20 +115,19 @@ class OBudget
         @visualization_names = []
         @selected_visualization = null
         @year = 2010  
-        @mouse_is_inside = false;
-        @search_focus = false;
         window.onhashchange = @hash_changed_handler
+        @search_path = "/data/hasadna/budget-ninja/"
+    
     hash_changed_handler : ->
-        $('#result-container').hide()
+        window.searchUI.hideResultPopup()
         hash = window.location.hash
+        # "this" object does not point to the Obudget object after reloading the page
+        window.ob.load_item(hash[1..hash.length])
 
     load_item : (hash) ->
         set_loading(true);
         H.getRecord( "/data/hasadna/budget-ninja/#{hash}", 
                      @handle_current_item )
-
-        # "this" object does not point to the Obudget object after reloading the page
-        window.ob.load_item(hash[1..hash.length])
 
     handle_current_item : (data) =>
         @loaded_data = $.extend({},data);
@@ -89,93 +172,21 @@ class OBudget
             $("#vis-#{name}-button").click x(name)
 
             v.initialize("vis-#{name}")
-    
-    append_table_row: (record) =>
-        year_list = []
-        year_list.push(parseInt(year)) for own year, value of record.sums
-        min_year = Math.min.apply(null, year_list)
-        max_year = Math.max.apply(null, year_list)
-        hash = record._src.split("/")[3]
-        $("#res_scroller").append("<a class='result-cell' id=#{hash} href='obudget.html##{hash}'></a><br/>")
-        flat_title = record.title.replace(/\n/g,'')
-        flat_title = flat_title.replace(/\r/g,'')
-        $("##{hash}").append("<span class='result-cell'>#{flat_title} , #{max_year} - #{min_year}</span>")
-        #$("##{hash}").append("<span class='result-cell'></span>")
-    
-    handle_search_results: (data) =>
-        $("#res_scroller").html("")
-        $("#res_scroller").removeClass("loader")
-        $("#res_scroller").addClass("scroll")
-        @append_table_row record for record in data
- 
-    hoverStart : ->
-        mouse_is_inside=true
-
-    hoverEnd : ->
-        mouse_is_inside=false
-
-    mouseUpCbk : ->
-        if mouse_is_inside == false and search_key_pressed == false
-            $('#result-container').hide()
-            if search_focus
-                $("#search-box").val("")
-                $.Watermark.ShowAll()
 
     search_db : (string) ->
         $("#results").html("<h1>תוצאות חיפוש</h1>")
         $("#results").append("<div class='loader' id='res_scroller'></div>")
         $("#res_scroller").append("<img class='loader' src='images/ajax-loader.gif'/>")
         $("#result-container").show()
-        H.findRecords(@search_path,@handle_search_results,{"title":{"$regex":string}},null,1,100)
-        
-    load_search : =>
-        @search_path = "/data/hasadna/budget-ninja/"
-        $('#result-container').append('<div id="row_1" class="result-row"></div>')
-        $('#row_1').append('<div id="results" class="result-cell"></div>')              
-        $('#row_1').append('<div class="result-cell"><h1>הכי נצפים בשבוע האחרון</h1></div>')
-        $('#result-container').append('<div id="row_2" class="result-row"></div>')
-        $('#row_2').append('<div class="result-cell"><h1>תגובות רלוונטיות</h1></div>')
-        $('#row_2').append('<div class="result-cell"><h1>הכי מדוברים בשבוע האחרון</h1></div>')
-        $('#result-container').hover(@hoverStart, @hoverEnd)
-        $("body").mouseup(@mouseUpCbk)
-        $("#search").append("<input id='search-box' type='text'></input>")
-        $("#search").append("<a><span class='button' id='search-button'>חפש</span></a>")
-        $("#search-button").mouseup((e)->
-                                    $('#search-button').removeClass('button-pressed')
-                                    $('#search-button').addClass('button')
-                                    search_key_pressed = false)
-        $("#search-button").mousedown((e)->
-                                    search_key_pressed = true
-                                    $('#search-button').removeClass('button')
-                                    $('#search-button').addClass('button-pressed')
-                                    window.ob.search_db($("#search-box").val()))
-        $("#search-box").keypress((e)->
-                                evt=window.event || e
-                                code = if evt.keyCode then evt.keyCode else evt.which
-                                if code == 13
-                                    evt.target=evt.srcElement if (!evt.target)
-                                    window.ob.search_db(evt.target.value)
-                                )
-        $("#search-box").blur((e)->
-                                evt=window.event || e
-                                evt.target=evt.srcElement if (!evt.target)
-                                search_focus=false;
-                                evt.target.value = ""
-                                $.Watermark.ShowAll())
-        $("#search-box").focus((e)->
-                            evt=window.event || e
-                            evt.target=evt.srcElement if (!evt.target)
-                            search_focus=true
-                            evt.target.value = ""
-                            $.Watermark.HideAll())
-        $("#search-box").Watermark("חיפוש")
-        $("#results").html("<h1>תוצאות חיפוש</h1>")        
+        H.findRecords(@search_path,window.searchUI.handle_search_results,{"title":{"$regex":string}},null,1,100)
 
 $ ->       
+    window.searchUI = new SearchUI
+    window.searchUI.load_search()
+    
     window.ob = new OBudget  
     window.ob.load_visualizations( new HcAreaChart, 
                             new HcPieChart,
                             new ItemInfo )
     window.ob.hash_changed_handler()
-    window.ob.load_search()
     
