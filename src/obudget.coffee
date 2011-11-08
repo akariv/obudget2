@@ -125,7 +125,8 @@ class OBudget
                 if $(this).hasClass('enabled')
                     year = $(this).attr('rel')
                     obj.select_year(parseInt year)
-        $(".year-sel").click year_sel_click(this)        
+        $(".year-sel").click year_sel_click(this)
+        @search_path = "/data/hasadna/budget-ninja"        
     
     load_item : (hash) ->
         set_loading(true);

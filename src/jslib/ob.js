@@ -486,6 +486,7 @@
         };
       };
       $(".year-sel").click(year_sel_click(this));
+      this.search_path = "/data/hasadna/budget-ninja";
     }
     OBudget.prototype.load_item = function(hash) {
       set_loading(true);
