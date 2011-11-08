@@ -466,6 +466,10 @@
     };
     return SearchUI;
   })();
+  set_active_year = function(year) {
+    $(".year-sel").toggleClass('active', false);
+    return $(".year-sel[rel=" + year + "]").toggleClass('active', true);
+  };
   OBudget = (function() {
     function OBudget() {
       this.handle_current_item = __bind(this.handle_current_item, this);
@@ -486,7 +490,7 @@
         };
       };
       $(".year-sel").click(year_sel_click(this));
-      this.search_path = "/data/hasadna/budget-ninja";
+      this.search_path = "/data/hasadna/budget-ninja/";
     }
     OBudget.prototype.load_item = function(hash) {
       set_loading(true);
