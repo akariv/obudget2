@@ -19,6 +19,7 @@ class HcPieChart extends Visualization
                         y:
                              ref.gross_revised
     
+        refs = refs.sort( (a,b) -> b.y-a.y )
         ch = new Highcharts.Chart
                 chart:
                    renderTo: @div_id

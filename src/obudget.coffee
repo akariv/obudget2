@@ -107,6 +107,11 @@ class SearchUI
     hideResultPopup : ->
         $('#result-container').hide()
                 
+
+set_active_year = (year) ->
+    $(".year-sel").toggleClass('active',false)
+    $(".year-sel[rel=#{year}]").toggleClass('active',true)
+         
 # Data Loading Routines
 
 class OBudget
@@ -117,7 +122,14 @@ class OBudget
         @year = 2010  
         window.onhashchange = @hash_changed_handler
         @search_path = "/data/hasadna/budget-ninja/"
-    
+
+        year_sel_click = (obj) ->
+            return  -> 
+                if $(this).hasClass('enabled')
+                    year = $(this).attr('rel')
+                    obj.select_year(parseInt year)
+        $(".year-sel").click year_sel_click(this)        
+
     hash_changed_handler : ->
         window.searchUI.hideResultPopup()
         hash = window.location.hash
@@ -140,6 +152,12 @@ class OBudget
         set_active_years(years)
         @select_visualization()
         # set_refs(data.refs)
+
+    select_year: (year) ->
+        v = @visualizations[@selected_visualization]
+        v.setYear year 
+        set_active_year year
+        v.setData @loaded_data
 
     select_visualization: (name) ->
         if not name

@@ -1,5 +1,5 @@
 (function() {
-  var HcAreaChart, HcPieChart, ItemInfo, OBudget, SearchUI, Visualization, build_results_popup, mouse_is_inside, search_focus, search_key_pressed, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
+  var HcAreaChart, HcPieChart, ItemInfo, OBudget, SearchUI, Visualization, build_results_popup, mouse_is_inside, search_focus, search_key_pressed, set_active_year, set_active_years, set_current_description, set_current_source, set_current_title, set_loading;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -225,6 +225,9 @@
           }
         }
       }
+      refs = refs.sort(function(a, b) {
+        return b.y - a.y;
+      });
       return ch = new Highcharts.Chart({
         chart: {
           renderTo: this.div_id,
@@ -277,7 +280,7 @@
       return ItemInfo.__super__.initialize.call(this, div_id);
     };
     ItemInfo.prototype.update = function(data, year) {
-      var code, content, item_years, key, ref, s, table, title, year, years, _i, _j, _len, _len2, _ref, _ref2, _ref3;
+      var code, content, item_years, key, keys, padding, ref, s, table, title, year, years, _i, _j, _k, _len, _len2, _len3, _ref, _ref2, _ref3;
       years = (function() {
         var _results;
         _results = [];
@@ -287,25 +290,30 @@
         return _results;
       })();
       table = {};
+      keys = [];
       _ref = data.refs;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         ref = _ref[_i];
         if (!ref.title) {
           continue;
         }
-        key = "" + ref.code + "|||" + ref.title;
+        padding = "00000000000000".slice(0, (14 - ref.code.length + 1) || 9e9);
+        key = "" + padding + "|||" + ref.code + "|||" + ref.title;
         if (!table[key]) {
           table[key] = {};
+          keys[keys.length] = key;
         }
         table[key][ref.year] = ref;
       }
       content = ["<td></td><td>" + years.join("</td><td>") + "</td>"];
-      for (key in table) {
+      keys = keys.sort();
+      for (_j = 0, _len2 = keys.length; _j < _len2; _j++) {
+        key = keys[_j];
         item_years = table[key];
-        _ref2 = key.split("|||", 2), code = _ref2[0], title = _ref2[1];
+        _ref2 = key.split("|||", 3), padding = _ref2[0], code = _ref2[1], title = _ref2[2];
         s = ["" + code + "/" + title];
-        for (_j = 0, _len2 = years.length; _j < _len2; _j++) {
-          year = years[_j];
+        for (_k = 0, _len3 = years.length; _k < _len3; _k++) {
+          year = years[_k];
           ref = item_years[year];
           s[s.length] = (_ref3 = ref != null ? ref.gross_revised : void 0) != null ? _ref3 : '';
         }
@@ -454,14 +462,30 @@
     };
     return SearchUI;
   })();
+  set_active_year = function(year) {
+    $(".year-sel").toggleClass('active', false);
+    return $(".year-sel[rel=" + year + "]").toggleClass('active', true);
+  };
   OBudget = (function() {
     function OBudget() {
-      this.handle_current_item = __bind(this.handle_current_item, this);      this.visualizations = {};
+      this.handle_current_item = __bind(this.handle_current_item, this);
+      var year_sel_click;
+      this.visualizations = {};
       this.visualization_names = [];
       this.selected_visualization = null;
       this.year = 2010;
       window.onhashchange = this.hash_changed_handler;
       this.search_path = "/data/hasadna/budget-ninja/";
+      year_sel_click = function(obj) {
+        return function() {
+          var year;
+          if ($(this).hasClass('enabled')) {
+            year = $(this).attr('rel');
+            return obj.select_year(parseInt(year));
+          }
+        };
+      };
+      $(".year-sel").click(year_sel_click(this));
     }
     OBudget.prototype.hash_changed_handler = function() {
       var hash;
@@ -490,6 +514,13 @@
       })();
       set_active_years(years);
       return this.select_visualization();
+    };
+    OBudget.prototype.select_year = function(year) {
+      var v;
+      v = this.visualizations[this.selected_visualization];
+      v.setYear(year);
+      set_active_year(year);
+      return v.setData(this.loaded_data);
     };
     OBudget.prototype.select_visualization = function(name) {
       var v, _ref;
