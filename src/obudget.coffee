@@ -73,7 +73,7 @@ class SearchUI
         $("#search-button").mousedown((e)->
                                     $('#search-button').removeClass('button')
                                     $('#search-button').addClass('button-pressed')
-                                    window.ob.search_db($("#search-box").val()))
+                                    window.searchUI.search_db($("#search-box").val()))
         $("#search-box").keypress((e)->
                                     window.searchUI.search_db($(this).val()) if e.keyCode == 13)
         $("#search-box").blur((e)->
@@ -136,9 +136,8 @@ class OBudget
                       @handle_current_item )
 
     hash_changed_handler : =>
-        $('#result-container').hide()
+        window.searchUI.hideResultPopup()
         hash = window.location.hash
-        # "this" object does not point to the Obudget object after reloading the page
         @load_item(hash[1..hash.length])
 
     handle_current_item : (data) =>

@@ -406,7 +406,7 @@
       $("#search-button").mousedown(function(e) {
         $('#search-button').removeClass('button');
         $('#search-button').addClass('button-pressed');
-        return window.ob.search_db($("#search-box").val());
+        return window.searchUI.search_db($("#search-box").val());
       });
       $("#search-box").keypress(function(e) {
         if (e.keyCode === 13) {
@@ -505,7 +505,7 @@
     };
     OBudget.prototype.hash_changed_handler = function() {
       var hash;
-      $('#result-container').hide();
+      window.searchUI.hideResultPopup();
       hash = window.location.hash;
       return this.load_item(hash.slice(1, (hash.length + 1) || 9e9));
     };
