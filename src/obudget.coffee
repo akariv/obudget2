@@ -18,6 +18,10 @@ set_active_years = (years) ->
         $(".year-sel[rel=#{year}]").toggleClass('disabled',false)
         $(".year-sel[rel=#{year}]").toggleClass('enabled',true)
 
+set_active_year = (year) ->
+    $(".year-sel").toggleClass('active',false)
+    $(".year-sel[rel=#{year}]").toggleClass('active',true)
+         
 # search related routines
 
 # should be replaced by an AJAX call to a server view
@@ -106,7 +110,6 @@ class SearchUI
     hideResultPopup : ->
         @$dialog.dialog("close")
                 
-
 set_active_year = (year) ->
     $(".year-sel").toggleClass('active',false)
     $(".year-sel[rel=#{year}]").toggleClass('active',true)
@@ -120,24 +123,23 @@ class OBudget
         @selected_visualization = null
         @year = 2010  
         window.onhashchange = @hash_changed_handler
-
         year_sel_click = (obj) ->
             return  -> 
                 if $(this).hasClass('enabled')
                     year = $(this).attr('rel')
                     obj.select_year(parseInt year)
-        $(".year-sel").click year_sel_click(this)        
-
-    hash_changed_handler : ->
-        window.searchUI.hideResultPopup()
-        hash = window.location.hash
-        # "this" object does not point to the Obudget object after reloading the page
-        window.ob.load_item(hash[1..hash.length])
-
+        $(".year-sel").click year_sel_click(this)
+    
     load_item : (hash) ->
         set_loading(true);
         H.getRecord( "/data/hasadna/budget-ninja/#{hash}", 
-                     @handle_current_item )
+                      @handle_current_item )
+
+    hash_changed_handler : =>
+        $('#result-container').hide()
+        hash = window.location.hash
+        # "this" object does not point to the Obudget object after reloading the page
+        @load_item(hash[1..hash.length])
 
     handle_current_item : (data) =>
         @loaded_data = $.extend({},data);
@@ -195,7 +197,7 @@ $ ->
     
     window.ob = new OBudget  
     window.ob.load_visualizations( new HcAreaChart, 
-                            new HcPieChart,
-                            new ItemInfo )
+                                   new HcPieChart,
+                                   new ItemInfo )
     window.ob.hash_changed_handler()
     

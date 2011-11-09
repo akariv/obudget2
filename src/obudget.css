@@ -300,31 +300,31 @@ a.result-cell {
 	overflow-x: clip;
 }
 
-.iteminfo {
-    border-collapse: collapse;
-}
-
-    .iteminfo td {
-        padding: 0.3em 2em;
-        border-bottom:solid 1px #ccc;
+    .iteminfo {
+        border-collapse: collapse;
     }
-        
-            
-    .iteminfo tr td:nth-child(2n) {
-        background-color:#eee;
-    }
-
-    .iteminfo tr td:nth-child(2n+1) {
-        background-color:#f0f0ff;
-    }
-
-    .iteminfo tr td:first-child {
-        background-color:#fff;
-    }
-
-    .iteminfo tr:first-child td {
-        border-bottom: solid 1px #888;
-        font-weight: bold;
-        background-color:#fff;
-    }
+    
+	    .iteminfo td {
+	        padding: 0.3em 2em;
+	        border-bottom:solid 1px #ccc;
+	    }
+	    
+	        
+		    .iteminfo tr td:nth-child(2n) {
+		        background-color:#eee;
+		    }
+		
+		    .iteminfo tr td:nth-child(2n+1) {
+		        background-color:#f0f0ff;
+		    }
+		
+		    .iteminfo tr td:first-child {
+		        background-color:#fff;
+		    }
+	
+	    .iteminfo tr:first-child td {
+	        border-bottom: solid 1px #888;
+	        font-weight: bold;
+	        background-color:#fff;
+	    }
 	    

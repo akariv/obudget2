@@ -349,6 +349,10 @@
     }
     return _results;
   };
+  set_active_year = function(year) {
+    $(".year-sel").toggleClass('active', false);
+    return $(".year-sel[rel=" + year + "]").toggleClass('active', true);
+  };
   build_results_popup = function() {
     var popup;
     return popup = '<div id="result-container" class="result-table">\
@@ -477,6 +481,7 @@
   OBudget = (function() {
     function OBudget() {
       this.handle_current_item = __bind(this.handle_current_item, this);
+      this.hash_changed_handler = __bind(this.hash_changed_handler, this);
       var year_sel_click;
       this.visualizations = {};
       this.visualization_names = [];
@@ -494,15 +499,15 @@
       };
       $(".year-sel").click(year_sel_click(this));
     }
-    OBudget.prototype.hash_changed_handler = function() {
-      var hash;
-      window.searchUI.hideResultPopup();
-      hash = window.location.hash;
-      return window.ob.load_item(hash.slice(1, (hash.length + 1) || 9e9));
-    };
     OBudget.prototype.load_item = function(hash) {
       set_loading(true);
       return H.getRecord("/data/hasadna/budget-ninja/" + hash, this.handle_current_item);
+    };
+    OBudget.prototype.hash_changed_handler = function() {
+      var hash;
+      $('#result-container').hide();
+      hash = window.location.hash;
+      return this.load_item(hash.slice(1, (hash.length + 1) || 9e9));
     };
     OBudget.prototype.handle_current_item = function(data) {
       var year, years;
