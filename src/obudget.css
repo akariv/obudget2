@@ -19,6 +19,10 @@ html, body {
     position: relative;
 }
 
+h1 {
+    font-size: 18px;
+}
+
 div.layout {
 	display: block;
 	/*clear: both;*/	
@@ -130,9 +134,8 @@ div.result-cell {
     display: table-cell;
     padding:10px;
     background:#f0f0f0;
-    border:5px solid gray;
-    margin:10px; 
-    border-radius: 15px;
+    border:1px dashed gray;
+    margin:2px; 
     width: 50%;
     height: 50%;
 }
@@ -151,6 +154,7 @@ div.scroll {
 span.result-cell {
     float: right;
     overflow: auto;
+    font-size:14px;
 }
 
 a.result-cell {
@@ -173,10 +177,7 @@ a.result-cell {
 
 #result-container {
 	width: 98%;
-	height: 70%;
-	position: absolute;
-	top: 25%;
-	left: 1%;
+	height: 98%;
 }
 
 #result-container {
