@@ -23,15 +23,13 @@ $.extend
 						categories.push value.year
 					return)
 
-				###
-				refresh the data in the chart
-				###
-				view.line.setTitle(
-					(text: "תקציב " + data.title),
-					text: "מקור: " + data.source)
-				view.line.xAxis[0].setCategories(categories, false)
-				view.line.series[0].setData(net_allocated, false)
-				view.line.redraw()
+				chartData =
+					title : data.title
+					source: data.source
+					categories : categories
+					sums : net_allocated
+
+				view.setData chartData
 				return)
 
 		model.addListener mlist
