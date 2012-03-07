@@ -3,8 +3,8 @@
   $(function() {
     var controller, model, view;
     model = new $.ChartModel;
-    view = new $.ChartView($("#container"));
-    return controller = new $.ChartController(model, view);
+    view = new $.TableView($("#container"));
+    return controller = new $.TableController(model, view);
   });
 
   $.extend({
@@ -34,7 +34,7 @@
           categories = [];
           $.each(sums, function(index, value) {
             if (value.sums.net_allocated != null) {
-              net_allocated.push(value.sums.net_allocated);
+              net_allocated.push(parseInt(value.sums.net_allocated));
               categories.push(value.year);
             }
           });
@@ -49,6 +49,33 @@
           view.line.xAxis[0].setCategories(categories, false);
           view.line.series[0].setData(net_allocated, false);
           view.line.redraw();
+        }
+      });
+      model.addListener(mlist);
+      /*
+      		Request the data from the model
+      */
+      model.getData();
+    }
+  });
+
+  $.extend({
+    TableController: function(model, view) {
+      /*
+      		listen to the model
+      */
+      var mlist;
+      mlist = $.ModelListener({
+        loadItem: function(data) {
+          var table;
+          table = [];
+          $.each(data.sums, function(index, value) {
+            if (value.net_allocated != null) {
+              console.log(index);
+              table.push([parseInt(value.net_allocated), index]);
+            }
+          });
+          view.setData(table);
         }
       });
       model.addListener(mlist);
@@ -146,6 +173,32 @@
           }
         ]
       });
+    }
+  });
+
+  $.extend({
+    TableView: function($container) {
+      this.setData = function(data) {
+        $('#example').dataTable().fnClearTable(false);
+        return $('#example').dataTable().fnAddData(data);
+      };
+      $container.html('\
+		<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">\
+			<thead>\
+				<tr>\
+					<th>תקציב</th>\
+					<th>שנה</th>\
+				</tr>\
+			</thead>\
+			<tbody>\
+				<tr class="odd gradeX">\
+					<td>אין נתונים</td>\
+					<td>1948</td>\
+				</tr>\
+			</tbody>\
+		</table>\
+		');
+      $('#example').dataTable();
     }
   });
 

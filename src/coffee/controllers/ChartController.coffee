@@ -19,7 +19,7 @@ $.extend
 				categories = []
 				$.each(sums, (index, value) ->
 					if value.sums.net_allocated?
-						net_allocated.push value.sums.net_allocated
+						net_allocated.push parseInt value.sums.net_allocated
 						categories.push value.year
 					return)
 

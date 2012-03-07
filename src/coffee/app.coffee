@@ -1,5 +1,5 @@
 $(->
 	model = new $.ChartModel
-	view = new $.ChartView $ "#container"
-	controller = new $.ChartController(model, view)
+	view = new $.TableView $ "#container"
+	controller = new $.TableController(model, view)
 )
