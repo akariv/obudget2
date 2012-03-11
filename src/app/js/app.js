@@ -1,90 +1,111 @@
 (function() {
 
+  $.Visualization = {};
+
+  $.Visualization.controllers = [];
+
   $(function() {
-    var controller, model, view;
-    model = new $.ChartModel;
-    view = new $.TableView($("#container"));
-    return controller = new $.TableController(model, view);
+    var vizCon, _i, _len, _ref;
+    _ref = $.Visualization.controllers;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      vizCon = _ref[_i];
+      console.log(vizCon.init);
+      vizCon.init($("#vis-contents"));
+    }
+    /*
+    	Add visualization button
+    */
   });
 
   $.extend({
-    ChartController: function(model, view) {
-      /*
-      		listen to the model
-      */
-      var mlist;
-      mlist = $.ModelListener({
-        loadItem: function(data) {
-          var categories, net_allocated, sums;
-          sums = [];
-          $.each(data.sums, function(index, value) {
-            sums.push({
-              year: index,
-              sums: value
+    ChartController: {
+      init: function($container) {
+        var chartViz, mlist, model, view;
+        if ($container == null) $container = 'visualization';
+        chartViz = ($("<div id='chartViz'></div>")).appendTo($container);
+        model = new $.ChartModel;
+        view = new $.ChartView(chartViz);
+        /*
+        			listen to the model
+        */
+        mlist = $.ModelListener({
+          loadItem: function(data) {
+            var categories, chartData, net_allocated, sums;
+            sums = [];
+            $.each(data.sums, function(index, value) {
+              sums.push({
+                year: index,
+                sums: value
+              });
             });
-          });
-          sums.sort(function(o1, o2) {
-            if (parseInt(o1.year) > parseInt(o2.year)) {
-              return 1;
-            } else {
-              return -1;
-            }
-          });
-          net_allocated = [];
-          categories = [];
-          $.each(sums, function(index, value) {
-            if (value.sums.net_allocated != null) {
-              net_allocated.push(parseInt(value.sums.net_allocated));
-              categories.push(value.year);
-            }
-          });
-          /*
-          				refresh the data in the chart
-          */
-          view.line.setTitle({
-            text: "תקציב " + data.title
-          }, {
-            text: "מקור: " + data.source
-          });
-          view.line.xAxis[0].setCategories(categories, false);
-          view.line.series[0].setData(net_allocated, false);
-          view.line.redraw();
-        }
-      });
-      model.addListener(mlist);
-      /*
-      		Request the data from the model
-      */
-      model.getData();
+            sums.sort(function(o1, o2) {
+              if (parseInt(o1.year) > parseInt(o2.year)) {
+                return 1;
+              } else {
+                return -1;
+              }
+            });
+            net_allocated = [];
+            categories = [];
+            $.each(sums, function(index, value) {
+              if (value.sums.net_allocated != null) {
+                net_allocated.push(parseInt(value.sums.net_allocated));
+                categories.push(value.year);
+              }
+            });
+            chartData = {
+              title: data.title,
+              source: data.source,
+              categories: categories,
+              sums: net_allocated
+            };
+            view.setData(chartData);
+          }
+        });
+        model.addListener(mlist);
+        /*
+        			Request the data from the model
+        */
+        model.getData();
+      }
     }
   });
 
+  $.Visualization.controllers.push($.ChartController);
+
   $.extend({
-    TableController: function(model, view) {
-      /*
-      		listen to the model
-      */
-      var mlist;
-      mlist = $.ModelListener({
-        loadItem: function(data) {
-          var table;
-          table = [];
-          $.each(data.sums, function(index, value) {
-            if (value.net_allocated != null) {
-              console.log(index);
-              table.push([parseInt(value.net_allocated), index]);
-            }
-          });
-          view.setData(table);
-        }
-      });
-      model.addListener(mlist);
-      /*
-      		Request the data from the model
-      */
-      model.getData();
+    TableController: {
+      init: function($container) {
+        var mlist, model, tableViz, view;
+        if ($container == null) $container = 'visualization';
+        tableViz = ($("<div id='tableViz'></div>")).appendTo($container);
+        model = new $.ChartModel;
+        view = new $.TableView(tableViz);
+        /*
+        			listen to the model
+        */
+        mlist = $.ModelListener({
+          loadItem: function(data) {
+            var table;
+            table = [];
+            $.each(data.sums, function(index, value) {
+              if (value.net_allocated != null) {
+                table.push([parseInt(value.net_allocated), index]);
+              }
+            });
+            view.setData(table);
+          }
+        });
+        model.addListener(mlist);
+        /*
+        			Request the data from the model
+        */
+        model.getData();
+      }
     }
   });
+
+  $.Visualization.controllers.push($.TableController);
 
   $.extend({
     ChartModel: function() {
@@ -143,6 +164,20 @@
 
   $.extend({
     ChartView: function($container) {
+      var that;
+      that = this;
+      this.setData = function(data) {
+        /*
+        			refresh the data in the chart
+        */        that.line.setTitle({
+          text: "תקציב " + data.title
+        }, {
+          text: "מקור: " + data.source
+        });
+        that.line.xAxis[0].setCategories(data.categories, false);
+        that.line.series[0].setData(data.sums, false);
+        return that.line.redraw();
+      };
       this.line = new Highcharts.Chart({
         chart: {
           renderTo: $container[0].id,

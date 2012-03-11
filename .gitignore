@@ -2,3 +2,5 @@
 *.orig
 out/
 /תוכנית עבודה.ods
+/.settings
+/.settings/org.eclipse.core.resources.prefs
