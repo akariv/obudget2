@@ -1,4 +1,6 @@
 (function() {
+  var _Singleton,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   $.Visualization = {};
 
@@ -9,9 +11,11 @@
     _ref = $.Visualization.controllers;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       vizCon = _ref[_i];
-      console.log(vizCon.init);
       vizCon.init($("#vis-contents"));
     }
+    window.setTimeout(function() {
+      return $("#" + $.Visualization.controllers[0].id).toggleClass("active", true)}, 2000
+    );
     /*
     	Add visualization button
     */
@@ -22,8 +26,8 @@
       init: function($container) {
         var chartViz, mlist, model, view;
         if ($container == null) $container = 'visualization';
-        chartViz = ($("<div id='chartViz'></div>")).appendTo($container);
-        model = new $.ChartModel;
+        chartViz = ($("<div id='" + this.id + "'></div>")).appendTo($container);
+        model = $.Model.get();
         view = new $.ChartView(chartViz);
         /*
         			listen to the model
@@ -67,7 +71,8 @@
         			Request the data from the model
         */
         model.getData();
-      }
+      },
+      id: 'chartViz'
     }
   });
 
@@ -78,8 +83,8 @@
       init: function($container) {
         var mlist, model, tableViz, view;
         if ($container == null) $container = 'visualization';
-        tableViz = ($("<div id='tableViz'></div>")).appendTo($container);
-        model = new $.ChartModel;
+        tableViz = ($("<div id='" + this.id + "'></div>")).appendTo($container);
+        model = $.Model.get();
         view = new $.TableView(tableViz);
         /*
         			listen to the model
@@ -101,53 +106,88 @@
         			Request the data from the model
         */
         model.getData();
-      }
+      },
+      id: 'tableViz'
     }
   });
 
   $.Visualization.controllers.push($.TableController);
 
-  $.extend({
-    ChartModel: function() {
+  $.Model = (function() {
+    var _instance;
+
+    function Model() {}
+
+    _instance = void 0;
+
+    Model.get = function(args) {
+      return _instance != null ? _instance : _instance = new _Singleton(args);
+    };
+
+    return Model;
+
+  })();
+
+  _Singleton = (function() {
+
+    function _Singleton(args) {
+      var that;
+      this.args = args;
+      this.addListener = __bind(this.addListener, this);
+      this.getData = __bind(this.getData, this);
+      that = this;
       /*
       		our local cache  of data
       */
-      var cache, listeners, loadResponse, that;
-      cache = [];
-      /*
-      		a reference to ourselves
-      */
-      that = this;
+      this.cache = [];
       /*
       		who is listening to us?
       */
-      listeners = [];
+      this.listeners = [];
+      this.loading = false;
       /*
       		load a json response from an ajax call
       */
-      loadResponse = function(data) {
+      this.loadResponse = function(data) {
+        that.loading = false;
         console.log(data);
-        cache[data._src] = data;
+        that.cache[data._src] = data;
         that.notifyItemLoaded(data);
-      };
-      this.getData = function(slug) {
-        return H.getRecord("/data/hasadna/budget-ninja/" + "00_e4eee3e9f0e4", loadResponse);
-      };
-      /*
-      		add a listener to this model
-      */
-      this.addListener = function(list) {
-        listeners.push(list);
       };
       /*
       		tell everyone the item we've loaded
       */
       this.notifyItemLoaded = function(item) {
-        $.each(listeners, function(i) {
-          listeners[i].loadItem(item);
+        $.each(that.listeners, function(i) {
+          that.listeners[i].loadItem(item);
         });
       };
-    },
+    }
+
+    _Singleton.prototype.getData = function(slug) {
+      if (this.loading) {
+        return;
+      } else {
+        H.getRecord("/data/hasadna/budget-ninja/" + "00_e4eee3e9f0e4", this.loadResponse);
+        this.loading = true;
+      }
+    };
+
+    /*
+    	add a listener to this model
+    */
+
+    _Singleton.prototype.addListener = function(list) {
+      console.log(this);
+      this.listeners.push(list);
+    };
+
+    return _Singleton;
+
+  })();
+
+  $.extend({
+    Model1: function() {},
     /*
     	allow people create listeners easily
     */

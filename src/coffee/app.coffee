@@ -5,14 +5,12 @@ $(->
 
 
 	for vizCon in $.Visualization.controllers
-		console.log vizCon.init
 		vizCon.init $ "#vis-contents"
 
-#	model = new $.ChartModel
-#	view = new $.ChartView $ "#vis-contents"
-#	controller = $.ChartController.init(model, view)
+	$("#" + $.Visualization.controllers[0].id).toggleClass "active",true
 
 	return
+
 	###
 	Add visualization button
 	###

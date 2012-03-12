@@ -1,0 +1,22 @@
+#vis-contents > div.active {
+	opacity:1;
+	right:0;
+}
+
+#vis-contents > div{
+	width:100%;
+	height:100%;
+	opacity:0;
+	transition-property: right, opacity;
+  	transition-duration: 1s;
+	-moz-transition-property: right, opacity;
+  	-moz-transition-duration: 1s;
+	-webkit-transition-property: right, opacity;
+  	-webkit-transition-duration: 1s;
+}
+
+
+#tableViz{
+	opacity : 0;
+}
+

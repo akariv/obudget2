@@ -1,8 +1,8 @@
 $.extend
 	ChartController:
 		init : ($container = 'visualization')->
-			chartViz = ($ "<div id='chartViz'></div>").appendTo $container
-			model = new $.ChartModel
+			chartViz = ($ "<div id='#{@id}'></div>").appendTo $container
+			model = $.Model.get()
 			view = new $.ChartView chartViz
 
 			###
@@ -44,5 +44,6 @@ $.extend
 			###
 			model.getData()
 			return
+		id : 'chartViz'
 
 $.Visualization.controllers.push $.ChartController
