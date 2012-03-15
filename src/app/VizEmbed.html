@@ -19,13 +19,17 @@
 </head>
 <body>
 	<script>
+		var embed = function(){
+			var type  = $.OB.getURLParameter('type');
+			console.log(type);
+			var cont = $.Visualization.controllerByType(type);
+			console.log(cont);
+			cont.init($("#visualization"));
+			cont.visible();
+		}
 		$($.OB.initControllers);
-		$($.OB.main);
+		$(embed);
 	</script>
-	<div id="visualizations">
-		<div id="vis-contents">
-		</div>
-		<div id="vis-buttons">
-		</div>
+	<div id="visualization">
 	</div>
 </body>

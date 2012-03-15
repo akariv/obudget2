@@ -1,12 +1,14 @@
 #vis-contents > div.active {
 	opacity:1;
-	right:0;
+	top:0;
 }
 
 #vis-contents > div{
 	width:100%;
 	height:100%;
 	opacity:0;
+	position:absolute;
+	float: top;
 	transition-property: right, opacity;
   	transition-duration: 1s;
 	-moz-transition-property: right, opacity;
@@ -15,8 +17,10 @@
   	-webkit-transition-duration: 1s;
 }
 
-
-#tableViz{
-	opacity : 0;
+#vis-buttons {
+	position:absolute;
+	top:90%;
+	height:38px;
+	width:80%;
+	background-color:#ddd;
 }
-

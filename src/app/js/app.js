@@ -1,32 +1,35 @@
 (function() {
   var _Singleton,
+    _this = this,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  $.Visualization = {};
-
-  $.Visualization.controllers = [];
-
-  $(function() {
-    var vizCon, _i, _len, _ref;
-    _ref = $.Visualization.controllers;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      vizCon = _ref[_i];
-      vizCon.init($("#vis-contents"));
+  $.extend({
+    OB: {
+      initControllers: function() {
+        $.Visualization.addController($.TableController);
+        return $.Visualization.addController($.ChartController);
+      },
+      main: function() {
+        var vizCon, _i, _len, _ref;
+        _ref = $.Visualization.controllers();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          vizCon = _ref[_i];
+          vizCon.init($("#vis-contents"), $("#vis-buttons"));
+        }
+        $.Visualization.showController($.Visualization.controllers()[0]);
+      },
+      getURLParameter: function(name) {
+        return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|#|;|$)').exec(location.search) || ["", ""])[1].replace(/\+/g, '%20')) || null;
+      }
     }
-    window.setTimeout(function() {
-      return $("#" + $.Visualization.controllers[0].id).toggleClass("active", true)}, 2000
-    );
-    /*
-    	Add visualization button
-    */
   });
 
   $.extend({
     ChartController: {
-      init: function($container) {
+      init: function($viz) {
         var chartViz, mlist, model, view;
-        if ($container == null) $container = 'visualization';
-        chartViz = ($("<div id='" + this.id + "'></div>")).appendTo($container);
+        if ($viz == null) $viz = 'visualization';
+        chartViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
         model = $.Model.get();
         view = new $.ChartView(chartViz);
         /*
@@ -72,18 +75,20 @@
         */
         model.getData();
       },
-      id: 'chartViz'
+      id: 'chartViz',
+      visible: function(visible) {
+        if (visible == null) visible = true;
+        return $("#" + $.ChartController.id).toggleClass("active", visible);
+      }
     }
   });
 
-  $.Visualization.controllers.push($.ChartController);
-
   $.extend({
     TableController: {
-      init: function($container) {
+      init: function($viz) {
         var mlist, model, tableViz, view;
-        if ($container == null) $container = 'visualization';
-        tableViz = ($("<div id='" + this.id + "'></div>")).appendTo($container);
+        if ($viz == null) $viz = 'visualization';
+        tableViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
         model = $.Model.get();
         view = new $.TableView(tableViz);
         /*
@@ -107,11 +112,56 @@
         */
         model.getData();
       },
-      id: 'tableViz'
+      id: 'tableViz',
+      visible: function(visible) {
+        if (visible == null) visible = true;
+        return $("#" + $.TableController.id).toggleClass("active", visible);
+      }
     }
   });
 
-  $.Visualization.controllers.push($.TableController);
+  $.extend({
+    Visualization: {
+      visibleCont: function() {
+        return _visCont;
+      },
+      controllers: function() {
+        if (!_this._controllers) _this._controllers = [];
+        return _this._controllers;
+      },
+      addController: function(cont) {
+        var button, controllers;
+        controllers = $.Visualization.controllers();
+        controllers.push(cont);
+        /*
+        			add button to select the visualization represented bythe controller
+        */
+        button = $("<input type='button' class='vis-button' value='Show " + cont.id + "' id='vis-" + cont.id + "-button'/>");
+        button.click(function() {
+          return $.Visualization.showController(cont);
+        });
+        $("#vis-buttons").append(button);
+      },
+      showController: function(cont) {
+        if ((_this._visCont != null) && _this._visCont !== cont) {
+          _this._visCont.visible(false);
+        }
+        _this._visCont = cont;
+        cont.visible(true);
+      },
+      controllerByType: function(type) {
+        var cont, controllers;
+        controllers = $.Visualization.controllers();
+        console.log("controllers");
+        console.log(controllers);
+        cont = null;
+        $.each(controllers, function(index, value) {
+          if (value.id === type) cont = value;
+        });
+        return cont;
+      }
+    }
+  });
 
   $.Model = (function() {
     var _instance;

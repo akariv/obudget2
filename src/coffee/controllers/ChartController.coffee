@@ -1,7 +1,11 @@
 $.extend
 	ChartController:
-		init : ($container = 'visualization')->
-			chartViz = ($ "<div id='#{@id}'></div>").appendTo $container
+		init : ($viz = 'visualization')->
+			chartViz = ($ "<div id='#{@id}'></div>").appendTo $viz
+#			chartButton = ($ "<input type='button' id='#{@id}-btn'>select chart</div>").appendTo $btn
+#			chartButton.css("background-image", "url()");
+#			chartButton.click @visible
+
 			model = $.Model.get()
 			view = new $.ChartView chartViz
 
@@ -45,5 +49,6 @@ $.extend
 			model.getData()
 			return
 		id : 'chartViz'
-
-$.Visualization.controllers.push $.ChartController
+		visible : (visible=true) ->
+			# Yack. There must be a better way to access $.ChartController.id
+			$("#" + $.ChartController.id).toggleClass "active",visible

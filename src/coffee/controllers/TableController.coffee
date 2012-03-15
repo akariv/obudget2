@@ -1,7 +1,12 @@
 $.extend
 	TableController:
-		init : ($container = 'visualization') ->
-			tableViz = ($ "<div id='#{@id}'></div>").appendTo $container
+		init : ($viz = 'visualization')->
+			tableViz = ($ "<div id='#{@id}'></div>").appendTo $viz
+
+#			tableButton = ($ "<input type='button' id='#{@id}-btn'>select table</div>").appendTo $btn
+#			tableButton.css("background-image", "url()");
+#			tableButton.click @visible
+
 			model = $.Model.get()
 			view = new $.TableView tableViz
 
@@ -27,5 +32,5 @@ $.extend
 			model.getData()
 			return
 		id : 'tableViz'
-
-$.Visualization.controllers.push $.TableController
+		visible : (visible=true) ->
+			$("#" + $.TableController.id).toggleClass "active",visible
