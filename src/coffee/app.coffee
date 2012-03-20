@@ -4,9 +4,7 @@ $.extend
 			$.Visualization.addController $.TableController
 			$.Visualization.addController $.ChartController
 		main : ->
-			for vizCon in $.Visualization.controllers()
-				vizCon.init ($ "#vis-contents"),$ "#vis-buttons"
-
+			$.Visualization.initControllers ($ "#vis-contents"),$ "#vis-buttons"
 			$.Visualization.showController $.Visualization.controllers()[0]
 			return
 

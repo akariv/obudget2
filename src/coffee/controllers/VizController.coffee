@@ -11,16 +11,24 @@ $.extend
 			controllers = $.Visualization.controllers()
 			controllers.push cont
 
-			###
-			add button to select the visualization represented bythe controller
-			###
-			button = $("<input type='button' class='vis-button' value='Show " + cont.id + "' id='vis-" + cont.id + "-button'/>")
-			button.click  ->
-				$.Visualization.showController cont
+			return
+		initControllers : ($vizContents, $visButtons)->
+			for cont in $.Visualization.controllers()
+				do (cont) ->
+					cont.init $vizContents
+					###
+					add button to select the visualization represented bythe controller
+					###
+					button = $("<input type='button' class='vis-button' value='Show " + cont.id + "' id='vis-" + cont.id + "-button'/>")
+					button.click  ->
+						$.Visualization.showController cont
+						return
 
-			$("#vis-buttons").append button
+					$visButtons.append button
+					return
 
 			return
+
 		showController : (cont) =>
 			if (@_visCont? and @_visCont != cont)
 				@_visCont.visible(false);

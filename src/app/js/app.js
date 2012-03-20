@@ -10,12 +10,7 @@
         return $.Visualization.addController($.ChartController);
       },
       main: function() {
-        var vizCon, _i, _len, _ref;
-        _ref = $.Visualization.controllers();
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          vizCon = _ref[_i];
-          vizCon.init($("#vis-contents"), $("#vis-buttons"));
-        }
+        $.Visualization.initControllers($("#vis-contents"), $("#vis-buttons"));
         $.Visualization.showController($.Visualization.controllers()[0]);
       },
       getURLParameter: function(name) {
@@ -130,17 +125,29 @@
         return _this._controllers;
       },
       addController: function(cont) {
-        var button, controllers;
+        var controllers;
         controllers = $.Visualization.controllers();
         controllers.push(cont);
-        /*
-        			add button to select the visualization represented bythe controller
-        */
-        button = $("<input type='button' class='vis-button' value='Show " + cont.id + "' id='vis-" + cont.id + "-button'/>");
-        button.click(function() {
-          return $.Visualization.showController(cont);
-        });
-        $("#vis-buttons").append(button);
+      },
+      initControllers: function($vizContents, $visButtons) {
+        var cont, _fn, _i, _len, _ref;
+        _ref = $.Visualization.controllers();
+        _fn = function(cont) {
+          var button;
+          cont.init($vizContents);
+          /*
+          					add button to select the visualization represented bythe controller
+          */
+          button = $("<input type='button' class='vis-button' value='Show " + cont.id + "' id='vis-" + cont.id + "-button'/>");
+          button.click(function() {
+            $.Visualization.showController(cont);
+          });
+          $visButtons.append(button);
+        };
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          cont = _ref[_i];
+          _fn(cont);
+        }
       },
       showController: function(cont) {
         if ((_this._visCont != null) && _this._visCont !== cont) {
