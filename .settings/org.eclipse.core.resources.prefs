@@ -1,3 +1,4 @@
-#Sat Oct 15 14:34:02 IST 2011
+#Wed Mar 21 11:56:53 IST 2012
 eclipse.preferences.version=1
-encoding//src/visualizations/hc-pie-chart/pie-chart.coffee=utf-8
+encoding/.gitignore=UTF-8
+encoding//src/coffee/views/TableView.coffee=UTF-8
