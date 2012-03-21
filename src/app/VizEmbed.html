@@ -21,9 +21,7 @@
 	<script>
 		var embed = function(){
 			var type  = $.OB.getURLParameter('type');
-			console.log(type);
 			var cont = $.Visualization.controllerByType(type);
-			console.log(cont);
 			cont.init($("#visualization"));
 			cont.visible();
 		}

@@ -148,6 +148,10 @@
           cont = _ref[_i];
           _fn(cont);
         }
+        /*
+        			Add the Embed button
+        */
+        ($("#embed-widget")).html('Embed Code: <textarea></textarea>');
       },
       showController: function(cont) {
         if ((_this._visCont != null) && _this._visCont !== cont) {
@@ -155,6 +159,7 @@
         }
         _this._visCont = cont;
         cont.visible(true);
+        ($("#embed-widget textarea")).html('&lt;iframe width="560" height="315" src="VizEmbed.html?' + cont.id + '" &gt;&lt;/iframe&gt;');
       },
       controllerByType: function(type) {
         var cont, controllers;
