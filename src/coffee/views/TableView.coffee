@@ -16,7 +16,7 @@ $.extend
 			</thead>
 			<tbody>
 				<tr class="odd gradeX">
-					<td>אין נתונים</td>
+					<td>1234.0</td>
 					<td>1948</td>
 				</tr>
 			</tbody>
