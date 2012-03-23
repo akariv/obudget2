@@ -46,7 +46,8 @@ $.extend
 			###
 			Request the data from the model
 			###
-			model.getData()
+			# TODO create a "default slug" and make it accessible to all controllers
+			model.getData "00_e4eee3e9f0e4"
 			return
 		id : 'chartViz'
 		visible : (visible=true) ->

@@ -32,6 +32,12 @@ $.extend
 			###
 			($ "#embed-widget").html 'Embed Code: <textarea></textarea>'
 
+			###
+			Year Span radio button selector
+			###
+			$("#yearspanform").change (event)->
+  				console.log ($ ':checked',event.currentTarget).val()
+  				return
 
 			return
 

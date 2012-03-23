@@ -13,6 +13,9 @@
         $.Visualization.initControllers($("#vis-contents"), $("#vis-buttons"));
         $.Visualization.showController($.Visualization.controllers()[0]);
       },
+      /*
+      		For use by the embed html
+      */
       getURLParameter: function(name) {
         return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|#|;|$)').exec(location.search) || ["", ""])[1].replace(/\+/g, '%20')) || null;
       }
@@ -68,7 +71,7 @@
         /*
         			Request the data from the model
         */
-        model.getData();
+        model.getData("00_e4eee3e9f0e4");
       },
       id: 'chartViz',
       visible: function(visible) {
@@ -91,11 +94,21 @@
         */
         mlist = $.ModelListener({
           loadItem: function(data) {
-            var table;
+            var currentYear, ref, table;
+            currentYear = (function() {
+              var _i, _len, _ref, _results;
+              _ref = data.refs;
+              _results = [];
+              for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                ref = _ref[_i];
+                if (ref.year === 2011) _results.push(ref);
+              }
+              return _results;
+            })();
             table = [];
-            $.each(data.sums, function(index, value) {
+            $.each(currentYear, function(index, value) {
               if (value.net_allocated != null) {
-                table.push([parseInt(value.net_allocated), index]);
+                table.push([parseInt(value.net_allocated), value.title]);
               }
             });
             view.setData(table);
@@ -105,7 +118,7 @@
         /*
         			Request the data from the model
         */
-        model.getData();
+        model.getData("00_e4eee3e9f0e4");
       },
       id: 'tableViz',
       visible: function(visible) {
@@ -152,6 +165,12 @@
         			Add the Embed button
         */
         ($("#embed-widget")).html('Embed Code: <textarea></textarea>');
+        /*
+        			Year Span radio button selector
+        */
+        $("#yearspanform").change(function(event) {
+          console.log(($(':checked', event.currentTarget)).val());
+        });
       },
       showController: function(cont) {
         if ((_this._visCont != null) && _this._visCont !== cont) {
@@ -211,10 +230,13 @@
       		load a json response from an ajax call
       */
       this.loadResponse = function(data) {
+        var slug;
         that.loading = false;
         console.log(data);
         that.cache[data._src] = data;
         that.notifyItemLoaded(data);
+        slug = data._src.substring((data._src.lastIndexOf('/')) + 1);
+        localStorage.setItem("ob_data" + slug, JSON.stringify(data));
       };
       /*
       		tell everyone the item we've loaded
@@ -227,11 +249,17 @@
     }
 
     _Singleton.prototype.getData = function(slug) {
+      var data;
       if (this.loading) {
         return;
       } else {
-        H.getRecord("/data/hasadna/budget-ninja/" + "00_e4eee3e9f0e4", this.loadResponse);
-        this.loading = true;
+        data = JSON.parse(localStorage.getItem("ob_data" + slug));
+        if (data != null) {
+          this.loadResponse(data);
+        } else {
+          H.getRecord("/data/hasadna/budget-ninja/" + slug, this.loadResponse);
+          this.loading = true;
+        }
       }
     };
 

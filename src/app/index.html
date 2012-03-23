@@ -18,16 +18,24 @@
 
 </head>
 <body>
+	<!-- Run some Javascript when then page has loaded-->
 	<script>
 		$($.OB.initControllers);
 		$($.OB.main);
 	</script>
 	<div id="visualizations">
+		<div id="yearspan">
+			<form id="yearspanform" action="">
+				<input type="radio" name="group1" value="year">לפי שנה<br>
+				<input type="radio" name="group1" value="period" checked>על פני תקופה<br>
+			</form>
+			<hr>
+		</div>
 		<div id="vis-contents">
 		</div>
 		<div id="vis-buttons">
 		</div>
-	</div>
-	<div id="embed-widget">
+		<div id="embed-widget">
+		</div>
 	</div>
 </body>

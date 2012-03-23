@@ -25,6 +25,9 @@ class _Singleton
 			console.log data
 			that.cache[data._src] = data
 			that.notifyItemLoaded data
+			slug = data._src.substring (data._src.lastIndexOf '/') + 1
+			localStorage.setItem "ob_data" + slug, JSON.stringify data
+
 			return
 
 		###
@@ -40,8 +43,12 @@ class _Singleton
 		if @loading
 			return
 		else
-			H.getRecord("/data/hasadna/budget-ninja/" + "00_e4eee3e9f0e4", @loadResponse)
-			@loading = true
+			data = JSON.parse localStorage.getItem "ob_data" + slug
+			if data?
+				@loadResponse data
+			else
+				H.getRecord("/data/hasadna/budget-ninja/" + slug, @loadResponse)
+				@loading = true
 		return
 
 	###
