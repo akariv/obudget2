@@ -6,16 +6,20 @@ $.extend
 			if not @_controllers
 				@_controllers = []
 			@_controllers
-		addController : (cont) ->
+		addController : (cont,$vizContents, $visButtons) ->
 			# Yack. There must be a better way to access controllers
 			controllers = $.Visualization.controllers()
-			controllers.push cont
+			controllers.push new cont $vizContents
 
 			return
 		initControllers : ($vizContents, $visButtons)->
+			# TODO create a "default slug" and make it accessible to all controllers
+			model = $.Model.get()
+			model.getData "00_e4eee3e9f0e4"
+
 			for cont in $.Visualization.controllers()
 				do (cont) ->
-					cont.init $vizContents
+					#new cont $vizContents
 					###
 					add button to select the visualization represented bythe controller
 					###
@@ -35,9 +39,11 @@ $.extend
 			###
 			Year Span radio button selector
 			###
-			$("#yearspanform").change (event)->
+			$("#multiYearForm").change (event)->
   				console.log ($ ':checked',event.currentTarget).val()
+  				$.Visualization.visibleCont().setYearSpan true
   				return
+
 
 			return
 
@@ -51,8 +57,6 @@ $.extend
 			return
 		controllerByType : (type) =>
 			controllers = $.Visualization.controllers()
-			console.log "controllers"
-			console.log controllers
 			cont = null
 			$.each controllers,(index,value)->
 				if value.id == type

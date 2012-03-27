@@ -6,8 +6,8 @@
   $.extend({
     OB: {
       initControllers: function() {
-        $.Visualization.addController($.TableController);
-        return $.Visualization.addController($.ChartController);
+        $.Visualization.addController($.TableController, $("#vis-contents"), $("#vis-buttons"));
+        $.Visualization.addController($.ChartController, $("#vis-contents"), $("#vis-buttons"));
       },
       main: function() {
         $.Visualization.initControllers($("#vis-contents"), $("#vis-buttons"));
@@ -22,111 +22,132 @@
     }
   });
 
-  $.extend({
-    ChartController: {
-      init: function($viz) {
-        var chartViz, mlist, model, view;
-        if ($viz == null) $viz = 'visualization';
-        chartViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
-        model = $.Model.get();
-        view = new $.ChartView(chartViz);
-        /*
-        			listen to the model
-        */
-        mlist = $.ModelListener({
-          loadItem: function(data) {
-            var categories, chartData, net_allocated, sums;
-            sums = [];
-            $.each(data.sums, function(index, value) {
-              sums.push({
-                year: index,
-                sums: value
-              });
-            });
-            sums.sort(function(o1, o2) {
-              if (parseInt(o1.year) > parseInt(o2.year)) {
-                return 1;
-              } else {
-                return -1;
-              }
-            });
-            net_allocated = [];
-            categories = [];
-            $.each(sums, function(index, value) {
-              if (value.sums.net_allocated != null) {
-                net_allocated.push(parseInt(value.sums.net_allocated));
-                categories.push(value.year);
-              }
-            });
-            chartData = {
-              title: data.title,
-              source: data.source,
-              categories: categories,
-              sums: net_allocated
-            };
-            view.setData(chartData);
-          }
-        });
-        model.addListener(mlist);
-        /*
-        			Request the data from the model
-        */
-        model.getData("00_e4eee3e9f0e4");
-      },
-      id: 'chartViz',
-      visible: function(visible) {
-        if (visible == null) visible = true;
-        return $("#" + $.ChartController.id).toggleClass("active", visible);
-      }
-    }
-  });
+  $.ChartController = (function() {
 
-  $.extend({
-    TableController: {
-      init: function($viz) {
-        var mlist, model, tableViz, view;
-        if ($viz == null) $viz = 'visualization';
-        tableViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
-        model = $.Model.get();
-        view = new $.TableView(tableViz);
-        /*
-        			listen to the model
-        */
-        mlist = $.ModelListener({
-          loadItem: function(data) {
-            var currentYear, ref, table;
-            currentYear = (function() {
-              var _i, _len, _ref, _results;
-              _ref = data.refs;
-              _results = [];
-              for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-                ref = _ref[_i];
-                if (ref.year === 2011) _results.push(ref);
-              }
-              return _results;
-            })();
-            table = [];
-            $.each(currentYear, function(index, value) {
-              if (value.net_allocated != null) {
-                table.push([parseInt(value.net_allocated), value.title]);
-              }
+    function ChartController($viz) {
+      var chartViz, mlist, model, view;
+      if ($viz == null) $viz = 'visualization';
+      this.id = 'chartViz';
+      chartViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
+      model = $.Model.get();
+      view = new $.ChartView(chartViz);
+      /*
+      		listen to the model
+      */
+      mlist = $.ModelListener({
+        loadItem: function(data) {
+          var categories, chartData, net_allocated, sums;
+          sums = [];
+          $.each(data.sums, function(index, value) {
+            sums.push({
+              year: index,
+              sums: value
             });
-            view.setData(table);
-          }
-        });
-        model.addListener(mlist);
-        /*
-        			Request the data from the model
-        */
-        model.getData("00_e4eee3e9f0e4");
-      },
-      id: 'tableViz',
-      visible: function(visible) {
-        if (visible == null) visible = true;
-        return $("#" + $.TableController.id).toggleClass("active", visible);
-      }
+          });
+          sums.sort(function(o1, o2) {
+            if (parseInt(o1.year) > parseInt(o2.year)) {
+              return 1;
+            } else {
+              return -1;
+            }
+          });
+          net_allocated = [];
+          categories = [];
+          $.each(sums, function(index, value) {
+            if (value.sums.net_allocated != null) {
+              net_allocated.push(parseInt(value.sums.net_allocated));
+              categories.push(value.year);
+            }
+          });
+          chartData = {
+            title: data.title,
+            source: data.source,
+            categories: categories,
+            sums: net_allocated
+          };
+          view.setData(chartData);
+        }
+      });
+      model.addListener(mlist);
+      return;
     }
-  });
+
+    ChartController.prototype.visible = function(visible) {
+      if (visible == null) visible = true;
+      return $("#" + this.id).toggleClass("active", visible);
+    };
+
+    return ChartController;
+
+  })();
+
+  $.TableController = (function() {
+
+    function TableController($viz) {
+      var mlist, model, mutliYearData, singleYearTable, tableViz, view;
+      if ($viz == null) $viz = 'visualization';
+      this.id = 'tableViz';
+      tableViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
+      model = $.Model.get();
+      this.view = new $.TableView(tableViz);
+      view = this.view;
+      singleYearTable = [];
+      this.singleYearTable = singleYearTable;
+      mutliYearData = [];
+      this.mutliYearData = mutliYearData;
+      /*
+      		listen to the model
+      */
+      mlist = $.ModelListener({
+        loadItem: function(data) {
+          var currentYear, ref;
+          singleYearTable = [];
+          mutliYearData = [];
+          currentYear = (function() {
+            var _i, _len, _ref, _results;
+            _ref = data.refs;
+            _results = [];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              ref = _ref[_i];
+              if (ref.year === 2011) _results.push(ref);
+            }
+            return _results;
+          })();
+          $.each(currentYear, function(index, value) {
+            if (value.net_allocated != null) {
+              singleYearTable.push([parseInt(value.net_allocated), value.title]);
+            }
+          });
+          view.setData(singleYearTable);
+          mutliYearData = [];
+          $.each(data.sums, function(index, value) {
+            if (value.net_allocated != null) {
+              mutliYearData.push([parseInt(value.net_allocated), index]);
+            }
+          });
+        }
+      });
+      model.addListener(mlist);
+      return;
+    }
+
+    TableController.prototype.setYearSpan = function(multiYear) {
+      if (multiYear == null) multiYear = true;
+      if (multiYear) {
+        this.view.setData(this.mutliYearData);
+      } else {
+        this.view.setData(this.singleYearTable);
+      }
+    };
+
+    TableController.prototype.visible = function(visible) {
+      if (visible == null) visible = true;
+      return $("#" + this.id).toggleClass("active", visible);
+    };
+
+    return TableController;
+
+  })();
 
   $.extend({
     Visualization: {
@@ -137,20 +158,21 @@
         if (!_this._controllers) _this._controllers = [];
         return _this._controllers;
       },
-      addController: function(cont) {
+      addController: function(cont, $vizContents, $visButtons) {
         var controllers;
         controllers = $.Visualization.controllers();
-        controllers.push(cont);
+        controllers.push(new cont($vizContents));
       },
       initControllers: function($vizContents, $visButtons) {
-        var cont, _fn, _i, _len, _ref;
+        var cont, model, _fn, _i, _len, _ref;
+        model = $.Model.get();
+        model.getData("00_e4eee3e9f0e4");
         _ref = $.Visualization.controllers();
         _fn = function(cont) {
-          var button;
-          cont.init($vizContents);
           /*
           					add button to select the visualization represented bythe controller
           */
+          var button;
           button = $("<input type='button' class='vis-button' value='Show " + cont.id + "' id='vis-" + cont.id + "-button'/>");
           button.click(function() {
             $.Visualization.showController(cont);
@@ -168,8 +190,9 @@
         /*
         			Year Span radio button selector
         */
-        $("#yearspanform").change(function(event) {
+        $("#multiYearForm").change(function(event) {
           console.log(($(':checked', event.currentTarget)).val());
+          $.Visualization.visibleCont().setYearSpan(true);
         });
       },
       showController: function(cont) {
@@ -183,8 +206,6 @@
       controllerByType: function(type) {
         var cont, controllers;
         controllers = $.Visualization.controllers();
-        console.log("controllers");
-        console.log(controllers);
         cont = null;
         $.each(controllers, function(index, value) {
           if (value.id === type) cont = value;
@@ -268,7 +289,6 @@
     */
 
     _Singleton.prototype.addListener = function(list) {
-      console.log(this);
       this.listeners.push(list);
     };
 
@@ -277,9 +297,8 @@
   })();
 
   $.extend({
-    Model1: function() {},
     /*
-    	allow people create listeners easily
+    	allow people to create listeners easily
     */
     ModelListener: function(list) {
       if (list == null) list = {};

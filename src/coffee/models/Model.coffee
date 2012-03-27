@@ -55,15 +55,12 @@ class _Singleton
 	add a listener to this model
 	###
 	addListener : (list) =>
-		console.log this
 		@listeners.push list
 		return
 
 $.extend
-	Model1 : ->
-
 	###
-	allow people create listeners easily
+	allow people to create listeners easily
 	###
 	ModelListener : (list = {}) ->
 		$.extend(
