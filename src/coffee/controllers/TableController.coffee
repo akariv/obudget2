@@ -1,54 +1,35 @@
-class $.TableController
+class $.TableController extends $.Controller
 	constructor : ($viz = 'visualization')->
 		@id = 'tableViz'
+		@createSingleYearView = (div)->
+				new $.TableView div
+		@createMultiYearView = @createSingleYearView
 
-		tableViz = ($ "<div id='#{@id}' class='viz'></div>").appendTo $viz
+		super $viz
+		return
+	dataLoaded : (data) =>
+		# initialization
+		singleYearData = []
+		multiYearData = []
 
-		model = $.Model.get()
-		@view = new $.TableView tableViz
+		# Fetch from data.refs only the objects who's 'year' value is 2012
+		currentYear = (ref for ref in data.refs when ref.year == 2011)
 
-		@singleYearTable = []
-		@mutliYearData = []
+		# Take the net allocated value and display in the table
+		$.each(currentYear, (index, value) ->
+			if value.net_allocated?
+				singleYearData.push [(parseInt value.net_allocated), value.title]
+			return)
 
-		that = this
-		###
-		listen to the model
-		###
-		mlist = $.ModelListener(
-			loadItem : (data) ->
-				# initialization
-				that.singleYearTable = []
-				that.mutliYearData = []
+		@getSingleYearView().setData singleYearData
 
-				# Fetch from data.refs only the objects who's 'year' value is 2012
-				currentYear = (ref for ref in data.refs when ref.year == 2011)
+		# Create the multiYear data
+		$.each(data.sums, (index, value) ->
+			if value.net_allocated?
+				multiYearData.push [(parseInt value.net_allocated), index]
+			return)
 
-				# Take the net allocated value and display in the table
-				$.each(currentYear, (index, value) ->
-					if value.net_allocated?
-						that.singleYearTable.push [(parseInt value.net_allocated), value.title]
-					return)
-
-				that.view.setData that.singleYearTable
-
-				# Create the multiYear data
-				that.mutliYearData = []
-				$.each(data.sums, (index, value) ->
-					if value.net_allocated?
-						that.mutliYearData.push [(parseInt value.net_allocated), index]
-					return)
-
-				return)
-
-		model.addListener mlist
+		@getMultiYearView().setData multiYearData
 
 		return
-	setMultiYear : (multiYear = true) ->
-		if multiYear
-			@view.setData @mutliYearData
-		else
-			@view.setData @singleYearTable
-		return
-	visible : (visible=true) ->
-		$("#" + @id).toggleClass "active",visible
 

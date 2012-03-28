@@ -40,7 +40,6 @@ $.extend
 			###
 			$("#multiYearForm").change (event)->
 				val = ($ ':checked',event.currentTarget).val()
-				console.log val
 				$.Visualization.visibleCont().setMultiYear (val == "true")
 				return
 

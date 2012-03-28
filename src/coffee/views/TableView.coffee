@@ -1,13 +1,16 @@
 $.extend
 	TableView : ($container)->
 
-		this.setData = (data) ->
-			$('#example').dataTable().fnClearTable false
-			$('#example').dataTable().fnAddData data
+		@container = $container
+		that = this
+
+		@setData = (data) ->
+			$('table', @container).dataTable().fnClearTable false
+			$('table', @container).dataTable().fnAddData data
 
 
-		$container.html '
-		<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+		@container.html '
+		<table cellpadding="0" cellspacing="0" border="0" class="display">
 			<thead>
 				<tr>
 					<th>תקציב</th>
@@ -23,6 +26,6 @@ $.extend
 		</table>
 		'
 
-		$('#example').dataTable()
+		$('table', @container).dataTable()
 		return
 

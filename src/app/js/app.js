@@ -1,7 +1,9 @@
 (function() {
   var _Singleton,
-    _this = this,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = Object.prototype.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
+    _this = this;
 
   $.extend({
     OB: {
@@ -22,172 +24,191 @@
     }
   });
 
-  $.ChartController = (function() {
+  $.Controller = (function() {
 
-    function ChartController($viz) {
-      var chartsViz, lineChartViz, mlist, model, pieChartViz, that;
-      if ($viz == null) $viz = 'visualization';
-      this.id = 'chartViz';
+    function Controller($vizdiv) {
+      var mlist, model, that;
+      console.log("Controller constructor");
       this.displayMultiYear = false;
-      this.multiYearChartId = 'line';
-      this.singleYearChartId = 'pie';
-      chartsViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
-      lineChartViz = ($("<div id='" + this.multiYearChartId + "' class='viz'></div>")).appendTo(chartsViz);
-      pieChartViz = ($("<div id='" + this.singleYearChartId + "' class='viz'></div>")).appendTo(chartsViz);
+      this.multiYearChartClass = 'multiYear';
+      this.singleYearChartClass = 'singleYear';
+      this.vizDiv = ($("<div id='" + this.id + "'></div>")).appendTo($vizdiv);
       model = $.Model.get();
-      this.lineview = new $.LineChartView(lineChartViz);
-      this.pieview = new $.PieChartView(pieChartViz);
-      this.singleYearData = [];
-      this.mutliYearData = null;
       that = this;
-      /*
-      		listen to the model
-      */
       mlist = $.ModelListener({
         loadItem: function(data) {
-          var categories, currentYear, net_allocated, ref, sums;
-          sums = [];
-          $.each(data.sums, function(index, value) {
-            sums.push({
-              year: index,
-              sums: value
-            });
-          });
-          sums.sort(function(o1, o2) {
-            if (parseInt(o1.year) > parseInt(o2.year)) {
-              return 1;
-            } else {
-              return -1;
-            }
-          });
-          net_allocated = [];
-          categories = [];
-          $.each(sums, function(index, value) {
-            if (value.sums.net_allocated != null) {
-              net_allocated.push(parseInt(value.sums.net_allocated));
-              categories.push(value.year);
-            }
-          });
-          that.mutliYearData = {
-            title: data.title,
-            source: data.source,
-            categories: categories,
-            sums: net_allocated
-          };
-          that.lineview.setData(that.mutliYearData);
-          currentYear = (function() {
-            var _i, _len, _ref, _results;
-            _ref = data.refs;
-            _results = [];
-            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-              ref = _ref[_i];
-              if (ref.year === 2011) _results.push(ref);
-            }
-            return _results;
-          })();
-          $.each(currentYear, function(index, value) {
-            if (value.net_allocated != null) {
-              that.singleYearData.push([value.title, parseInt(value.net_allocated)]);
-            }
-          });
-          that.pieview.setData(that.singleYearData);
+          that.dataLoaded.call(that, data);
         }
       });
       model.addListener(mlist);
       return;
     }
 
-    ChartController.prototype.setMultiYear = function(multiYear) {
+    Controller.prototype.setMultiYear = function(multiYear) {
       if (multiYear == null) multiYear = true;
       if (this.displayMultiYear === multiYear) {} else {
-        $("#" + this.id + " #" + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", false);
+        $("#" + this.id + " ." + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", false);
         this.displayMultiYear = multiYear;
-        $("#" + this.id + " #" + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", true);
+        $("#" + this.id + " ." + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", true);
       }
     };
 
-    ChartController.prototype.chartIdByMultiYear = function(multiYear) {
+    Controller.prototype.chartIdByMultiYear = function(multiYear) {
       if (multiYear) {
-        return this.multiYearChartId;
+        return this.multiYearChartClass;
       } else {
-        return this.singleYearChartId;
+        return this.singleYearChartClass;
       }
     };
 
-    ChartController.prototype.visible = function(visible) {
+    Controller.prototype.visible = function(visible) {
       if (visible == null) visible = true;
-      return $("#" + this.id + " #" + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", visible);
+      return $("#" + this.id + " ." + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", visible);
+    };
+
+    Controller.prototype.getMultiYearView = function() {
+      var multiYearViewDiv;
+      if (!(this.multiYearView != null)) {
+        multiYearViewDiv = ($("<div id='" + this.id + "_" + this.multiYearChartClass + "' class='viz " + this.multiYearChartClass + "'></div>")).appendTo(this.vizDiv);
+        this.multiYearView = this.createMultiYearView(multiYearViewDiv);
+      }
+      return this.multiYearView;
+    };
+
+    Controller.prototype.getSingleYearView = function() {
+      var singleYearViewDiv;
+      if (!(this.singleYearView != null)) {
+        singleYearViewDiv = ($("<div id='" + this.id + "_" + this.singleYearChartClass + "' class='viz " + this.singleYearChartClass + "'></div>")).appendTo(this.vizDiv);
+        this.singleYearView = this.createSingleYearView(singleYearViewDiv);
+      }
+      return this.singleYearView;
+    };
+
+    return Controller;
+
+  })();
+
+  $.ChartController = (function(_super) {
+
+    __extends(ChartController, _super);
+
+    function ChartController($viz) {
+      if ($viz == null) $viz = 'visualization';
+      this.dataLoaded = __bind(this.dataLoaded, this);
+      this.id = 'chartViz';
+      ChartController.__super__.constructor.call(this, $viz);
+      return;
+    }
+
+    ChartController.prototype.createSingleYearView = function(div) {
+      return new $.PieChartView(div);
+    };
+
+    ChartController.prototype.createMultiYearView = function(div) {
+      return new $.LineChartView(div);
+    };
+
+    ChartController.prototype.dataLoaded = function(data) {
+      var categories, currentYear, mutliYearData, net_allocated, ref, singleYearData, sums;
+      singleYearData = [];
+      sums = [];
+      $.each(data.sums, function(index, value) {
+        sums.push({
+          year: index,
+          sums: value
+        });
+      });
+      sums.sort(function(o1, o2) {
+        if (parseInt(o1.year) > parseInt(o2.year)) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      net_allocated = [];
+      categories = [];
+      $.each(sums, function(index, value) {
+        if (value.sums.net_allocated != null) {
+          net_allocated.push(parseInt(value.sums.net_allocated));
+          categories.push(value.year);
+        }
+      });
+      mutliYearData = {
+        title: data.title,
+        source: data.source,
+        categories: categories,
+        sums: net_allocated
+      };
+      this.getMultiYearView().setData(mutliYearData);
+      currentYear = (function() {
+        var _i, _len, _ref, _results;
+        _ref = data.refs;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          ref = _ref[_i];
+          if (ref.year === 2011) _results.push(ref);
+        }
+        return _results;
+      })();
+      $.each(currentYear, function(index, value) {
+        if (value.net_allocated != null) {
+          singleYearData.push([value.title, parseInt(value.net_allocated)]);
+        }
+      });
+      this.getSingleYearView().setData(singleYearData);
     };
 
     return ChartController;
 
-  })();
+  })($.Controller);
 
-  $.TableController = (function() {
+  $.TableController = (function(_super) {
+
+    __extends(TableController, _super);
 
     function TableController($viz) {
-      var mlist, model, tableViz, that;
       if ($viz == null) $viz = 'visualization';
+      this.dataLoaded = __bind(this.dataLoaded, this);
       this.id = 'tableViz';
-      tableViz = ($("<div id='" + this.id + "' class='viz'></div>")).appendTo($viz);
-      model = $.Model.get();
-      this.view = new $.TableView(tableViz);
-      this.singleYearTable = [];
-      this.mutliYearData = [];
-      that = this;
-      /*
-      		listen to the model
-      */
-      mlist = $.ModelListener({
-        loadItem: function(data) {
-          var currentYear, ref;
-          that.singleYearTable = [];
-          that.mutliYearData = [];
-          currentYear = (function() {
-            var _i, _len, _ref, _results;
-            _ref = data.refs;
-            _results = [];
-            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-              ref = _ref[_i];
-              if (ref.year === 2011) _results.push(ref);
-            }
-            return _results;
-          })();
-          $.each(currentYear, function(index, value) {
-            if (value.net_allocated != null) {
-              that.singleYearTable.push([parseInt(value.net_allocated), value.title]);
-            }
-          });
-          that.view.setData(that.singleYearTable);
-          that.mutliYearData = [];
-          $.each(data.sums, function(index, value) {
-            if (value.net_allocated != null) {
-              that.mutliYearData.push([parseInt(value.net_allocated), index]);
-            }
-          });
-        }
-      });
-      model.addListener(mlist);
+      this.createSingleYearView = function(div) {
+        return new $.TableView(div);
+      };
+      this.createMultiYearView = this.createSingleYearView;
+      TableController.__super__.constructor.call(this, $viz);
       return;
     }
 
-    TableController.prototype.setMultiYear = function(multiYear) {
-      if (multiYear == null) multiYear = true;
-      if (multiYear) {
-        this.view.setData(this.mutliYearData);
-      } else {
-        this.view.setData(this.singleYearTable);
-      }
-    };
-
-    TableController.prototype.visible = function(visible) {
-      if (visible == null) visible = true;
-      return $("#" + this.id).toggleClass("active", visible);
+    TableController.prototype.dataLoaded = function(data) {
+      var currentYear, multiYearData, ref, singleYearData;
+      singleYearData = [];
+      multiYearData = [];
+      currentYear = (function() {
+        var _i, _len, _ref, _results;
+        _ref = data.refs;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          ref = _ref[_i];
+          if (ref.year === 2011) _results.push(ref);
+        }
+        return _results;
+      })();
+      $.each(currentYear, function(index, value) {
+        if (value.net_allocated != null) {
+          singleYearData.push([parseInt(value.net_allocated), value.title]);
+        }
+      });
+      this.getSingleYearView().setData(singleYearData);
+      $.each(data.sums, function(index, value) {
+        if (value.net_allocated != null) {
+          multiYearData.push([parseInt(value.net_allocated), index]);
+        }
+      });
+      this.getMultiYearView().setData(multiYearData);
     };
 
     return TableController;
 
-  })();
+  })($.Controller);
 
   $.extend({
     Visualization: {
@@ -233,7 +254,6 @@
         $("#multiYearForm").change(function(event) {
           var val;
           val = ($(':checked', event.currentTarget)).val();
-          console.log(val);
           $.Visualization.visibleCont().setMultiYear(val === "true");
         });
       },
@@ -443,12 +463,15 @@
 
   $.extend({
     TableView: function($container) {
+      var that;
+      this.container = $container;
+      that = this;
       this.setData = function(data) {
-        $('#example').dataTable().fnClearTable(false);
-        return $('#example').dataTable().fnAddData(data);
+        $('table', this.container).dataTable().fnClearTable(false);
+        return $('table', this.container).dataTable().fnAddData(data);
       };
-      $container.html('\
-		<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">\
+      this.container.html('\
+		<table cellpadding="0" cellspacing="0" border="0" class="display">\
 			<thead>\
 				<tr>\
 					<th>תקציב</th>\
@@ -463,7 +486,7 @@
 			</tbody>\
 		</table>\
 		');
-      $('#example').dataTable();
+      $('table', this.container).dataTable();
     }
   });
 
