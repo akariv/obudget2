@@ -1,11 +1,23 @@
 class $.ChartController
 	constructor : ($viz = 'visualization')->
 		@id = 'chartViz'
+		@displayMultiYear = false
 
-		chartViz = ($ "<div id='#{@id}'></div>").appendTo $viz
+		@multiYearChartId = 'line'
+		@singleYearChartId = 'pie'
+
+		chartsViz = ($ "<div id='#{@id}'></div>").appendTo $viz
+		lineChartViz = ($ "<div id='" + @multiYearChartId + "' class='viz'></div>").appendTo chartsViz
+		pieChartViz = ($ "<div id='"+ @singleYearChartId + "' class='viz'></div>").appendTo chartsViz
 
 		model = $.Model.get()
-		view = new $.ChartView chartViz
+		@lineview = new $.LineChartView lineChartViz
+		@pieview = new $.PieChartView pieChartViz
+
+		@singleYearData = []
+		@mutliYearData = null
+
+		that = this
 
 		###
 		listen to the model
@@ -30,19 +42,46 @@ class $.ChartController
 						categories.push value.year
 					return)
 
-				chartData =
+				that.mutliYearData =
 					title : data.title
 					source: data.source
 					categories : categories
 					sums : net_allocated
 
-				view.setData chartData
+				that.lineview.setData that.mutliYearData
+
+
+				# Fetch from data.refs only the objects who's 'year' value is 2012
+				currentYear = (ref for ref in data.refs when ref.year == 2011)
+
+				# Take the net allocated value and display in the table
+				$.each(currentYear, (index, value) ->
+					if value.net_allocated?
+						that.singleYearData.push [value.title, (parseInt value.net_allocated)]
+					return)
+
+				that.pieview.setData that.singleYearData
+
 				return)
+
 
 		model.addListener mlist
 
 		return
+	setMultiYear : (multiYear = true) ->
+		if @displayMultiYear == multiYear
+			# do nothing
+		else
+			$("#" + @id + " #" + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",false
+			@displayMultiYear = multiYear
 
+			$("#" + @id + " #" + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",true
+		return
+	chartIdByMultiYear : (multiYear) ->
+		if multiYear
+			return @multiYearChartId
+		else
+			return @singleYearChartId
 	visible : (visible=true) ->
-		$("#" + @id).toggleClass "active",visible
+		$("#" + @id + " #" + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",visible
 

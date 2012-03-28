@@ -2,12 +2,12 @@
 	position:absolute;
 }
 
-#vis-contents > div.active {
+#vis-contents div.viz.active {
 	opacity:1;
 	z-index: 10;
 }
 
-#vis-contents > div{
+#vis-contents  div.viz{
 	width:70%;
 	height:80%;
 	top:50px;

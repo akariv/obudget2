@@ -19,7 +19,6 @@ $.extend
 
 			for cont in $.Visualization.controllers()
 				do (cont) ->
-					#new cont $vizContents
 					###
 					add button to select the visualization represented bythe controller
 					###
@@ -40,9 +39,10 @@ $.extend
 			Year Span radio button selector
 			###
 			$("#multiYearForm").change (event)->
-  				console.log ($ ':checked',event.currentTarget).val()
-  				$.Visualization.visibleCont().setYearSpan true
-  				return
+				val = ($ ':checked',event.currentTarget).val()
+				console.log val
+				$.Visualization.visibleCont().setMultiYear (val == "true")
+				return
 
 
 			return

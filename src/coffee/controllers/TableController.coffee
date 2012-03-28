@@ -2,25 +2,23 @@ class $.TableController
 	constructor : ($viz = 'visualization')->
 		@id = 'tableViz'
 
-		tableViz = ($ "<div id='#{@id}'></div>").appendTo $viz
+		tableViz = ($ "<div id='#{@id}' class='viz'></div>").appendTo $viz
 
 		model = $.Model.get()
 		@view = new $.TableView tableViz
-		view = @view
 
-		singleYearTable = []
-		@singleYearTable = singleYearTable
-		mutliYearData = []
-		@mutliYearData = mutliYearData
+		@singleYearTable = []
+		@mutliYearData = []
 
+		that = this
 		###
 		listen to the model
 		###
 		mlist = $.ModelListener(
 			loadItem : (data) ->
 				# initialization
-				singleYearTable = []
-				mutliYearData = []
+				that.singleYearTable = []
+				that.mutliYearData = []
 
 				# Fetch from data.refs only the objects who's 'year' value is 2012
 				currentYear = (ref for ref in data.refs when ref.year == 2011)
@@ -28,15 +26,16 @@ class $.TableController
 				# Take the net allocated value and display in the table
 				$.each(currentYear, (index, value) ->
 					if value.net_allocated?
-						singleYearTable.push [(parseInt value.net_allocated), value.title]
+						that.singleYearTable.push [(parseInt value.net_allocated), value.title]
 					return)
-				view.setData singleYearTable
+
+				that.view.setData that.singleYearTable
 
 				# Create the multiYear data
-				mutliYearData = []
+				that.mutliYearData = []
 				$.each(data.sums, (index, value) ->
 					if value.net_allocated?
-						mutliYearData.push [(parseInt value.net_allocated), index]
+						that.mutliYearData.push [(parseInt value.net_allocated), index]
 					return)
 
 				return)
@@ -44,7 +43,7 @@ class $.TableController
 		model.addListener mlist
 
 		return
-	setYearSpan : (multiYear = true) ->
+	setMultiYear : (multiYear = true) ->
 		if multiYear
 			@view.setData @mutliYearData
 		else

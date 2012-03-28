@@ -25,18 +25,27 @@
   $.ChartController = (function() {
 
     function ChartController($viz) {
-      var chartViz, mlist, model, view;
+      var chartsViz, lineChartViz, mlist, model, pieChartViz, that;
       if ($viz == null) $viz = 'visualization';
       this.id = 'chartViz';
-      chartViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
+      this.displayMultiYear = false;
+      this.multiYearChartId = 'line';
+      this.singleYearChartId = 'pie';
+      chartsViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
+      lineChartViz = ($("<div id='" + this.multiYearChartId + "' class='viz'></div>")).appendTo(chartsViz);
+      pieChartViz = ($("<div id='" + this.singleYearChartId + "' class='viz'></div>")).appendTo(chartsViz);
       model = $.Model.get();
-      view = new $.ChartView(chartViz);
+      this.lineview = new $.LineChartView(lineChartViz);
+      this.pieview = new $.PieChartView(pieChartViz);
+      this.singleYearData = [];
+      this.mutliYearData = null;
+      that = this;
       /*
       		listen to the model
       */
       mlist = $.ModelListener({
         loadItem: function(data) {
-          var categories, chartData, net_allocated, sums;
+          var categories, currentYear, net_allocated, ref, sums;
           sums = [];
           $.each(data.sums, function(index, value) {
             sums.push({
@@ -59,50 +68,13 @@
               categories.push(value.year);
             }
           });
-          chartData = {
+          that.mutliYearData = {
             title: data.title,
             source: data.source,
             categories: categories,
             sums: net_allocated
           };
-          view.setData(chartData);
-        }
-      });
-      model.addListener(mlist);
-      return;
-    }
-
-    ChartController.prototype.visible = function(visible) {
-      if (visible == null) visible = true;
-      return $("#" + this.id).toggleClass("active", visible);
-    };
-
-    return ChartController;
-
-  })();
-
-  $.TableController = (function() {
-
-    function TableController($viz) {
-      var mlist, model, mutliYearData, singleYearTable, tableViz, view;
-      if ($viz == null) $viz = 'visualization';
-      this.id = 'tableViz';
-      tableViz = ($("<div id='" + this.id + "'></div>")).appendTo($viz);
-      model = $.Model.get();
-      this.view = new $.TableView(tableViz);
-      view = this.view;
-      singleYearTable = [];
-      this.singleYearTable = singleYearTable;
-      mutliYearData = [];
-      this.mutliYearData = mutliYearData;
-      /*
-      		listen to the model
-      */
-      mlist = $.ModelListener({
-        loadItem: function(data) {
-          var currentYear, ref;
-          singleYearTable = [];
-          mutliYearData = [];
+          that.lineview.setData(that.mutliYearData);
           currentYear = (function() {
             var _i, _len, _ref, _results;
             _ref = data.refs;
@@ -115,14 +87,82 @@
           })();
           $.each(currentYear, function(index, value) {
             if (value.net_allocated != null) {
-              singleYearTable.push([parseInt(value.net_allocated), value.title]);
+              that.singleYearData.push([value.title, parseInt(value.net_allocated)]);
             }
           });
-          view.setData(singleYearTable);
-          mutliYearData = [];
+          that.pieview.setData(that.singleYearData);
+        }
+      });
+      model.addListener(mlist);
+      return;
+    }
+
+    ChartController.prototype.setMultiYear = function(multiYear) {
+      if (multiYear == null) multiYear = true;
+      if (this.displayMultiYear === multiYear) {} else {
+        $("#" + this.id + " #" + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", false);
+        this.displayMultiYear = multiYear;
+        $("#" + this.id + " #" + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", true);
+      }
+    };
+
+    ChartController.prototype.chartIdByMultiYear = function(multiYear) {
+      if (multiYear) {
+        return this.multiYearChartId;
+      } else {
+        return this.singleYearChartId;
+      }
+    };
+
+    ChartController.prototype.visible = function(visible) {
+      if (visible == null) visible = true;
+      return $("#" + this.id + " #" + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", visible);
+    };
+
+    return ChartController;
+
+  })();
+
+  $.TableController = (function() {
+
+    function TableController($viz) {
+      var mlist, model, tableViz, that;
+      if ($viz == null) $viz = 'visualization';
+      this.id = 'tableViz';
+      tableViz = ($("<div id='" + this.id + "' class='viz'></div>")).appendTo($viz);
+      model = $.Model.get();
+      this.view = new $.TableView(tableViz);
+      this.singleYearTable = [];
+      this.mutliYearData = [];
+      that = this;
+      /*
+      		listen to the model
+      */
+      mlist = $.ModelListener({
+        loadItem: function(data) {
+          var currentYear, ref;
+          that.singleYearTable = [];
+          that.mutliYearData = [];
+          currentYear = (function() {
+            var _i, _len, _ref, _results;
+            _ref = data.refs;
+            _results = [];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              ref = _ref[_i];
+              if (ref.year === 2011) _results.push(ref);
+            }
+            return _results;
+          })();
+          $.each(currentYear, function(index, value) {
+            if (value.net_allocated != null) {
+              that.singleYearTable.push([parseInt(value.net_allocated), value.title]);
+            }
+          });
+          that.view.setData(that.singleYearTable);
+          that.mutliYearData = [];
           $.each(data.sums, function(index, value) {
             if (value.net_allocated != null) {
-              mutliYearData.push([parseInt(value.net_allocated), index]);
+              that.mutliYearData.push([parseInt(value.net_allocated), index]);
             }
           });
         }
@@ -131,7 +171,7 @@
       return;
     }
 
-    TableController.prototype.setYearSpan = function(multiYear) {
+    TableController.prototype.setMultiYear = function(multiYear) {
       if (multiYear == null) multiYear = true;
       if (multiYear) {
         this.view.setData(this.mutliYearData);
@@ -191,8 +231,10 @@
         			Year Span radio button selector
         */
         $("#multiYearForm").change(function(event) {
-          console.log(($(':checked', event.currentTarget)).val());
-          $.Visualization.visibleCont().setYearSpan(true);
+          var val;
+          val = ($(':checked', event.currentTarget)).val();
+          console.log(val);
+          $.Visualization.visibleCont().setMultiYear(val === "true");
         });
       },
       showController: function(cont) {
@@ -312,7 +354,7 @@
   });
 
   $.extend({
-    ChartView: function($container) {
+    LineChartView: function($container) {
       var that;
       that = this;
       this.setData = function(data) {
@@ -354,6 +396,45 @@
           {
             name: 'הקצאת תקציב - נטו',
             data: [0, 0]
+          }
+        ]
+      });
+    }
+  });
+
+  $.extend({
+    PieChartView: function($container) {
+      var that;
+      that = this;
+      this.setData = function(data) {
+        /*
+        			refresh the data in the chart
+        */        that.pie.series[0].setData(data, false);
+        return that.pie.redraw();
+      };
+      this.pie = new Highcharts.Chart({
+        chart: {
+          renderTo: $container[0].id
+        },
+        title: {
+          text: 'תקציב המדינה'
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000'
+            }
+          }
+        },
+        series: [
+          {
+            type: 'pie',
+            name: 'הקצאת תקציב - נטו',
+            data: [['ma?', 33.0], ['mo?', 33.0], ['mi?', 90.9]]
           }
         ]
       });

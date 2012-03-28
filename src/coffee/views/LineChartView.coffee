@@ -1,5 +1,5 @@
 $.extend
-	ChartView : ($container)->
+	LineChartView : ($container)->
 		that = this
 		this.setData = (data) ->
 			###
