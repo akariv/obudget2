@@ -20,14 +20,18 @@
 <body>
 	<script>
 		var embed = function(){
-			var type  = $.OB.getURLParameter('type');
-			var cont = $.Visualization.controllerByType(type);
-			cont.init($("#visualization"));
-			cont.visible();
+			var type = $.OB.getURLParameter('type');
+			cont = new $.TableController($("#vis-contents"));
+			model = $.Model.get();
+			model.getData("00_e4eee3e9f0e4");
+			//cont = $.Visualization.controllerByType(type);
+			//new cont($("#visualization"));
+			cont.visible(true);
 		}
-		$($.OB.initControllers);
 		$(embed);
 	</script>
 	<div id="visualization">
+		<div id="vis-contents">
+		</div>
 	</div>
 </body>
