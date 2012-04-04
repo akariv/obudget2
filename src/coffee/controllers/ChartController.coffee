@@ -1,13 +1,15 @@
 class $.ChartController extends $.Controller
 	constructor : ($viz = 'visualization')->
 		@id = 'chartViz'
+		@createSingleYearView = (div)->
+			new $.PieChartView div
+		@createMultiYearView = (div)->
+			new $.LineChartView div
+		@onSubSection = (subsection) ->
+			return
 
 		super $viz
 		return
-	createSingleYearView : (div)->
-		new $.PieChartView div
-	createMultiYearView : (div)->
-		new $.LineChartView div
 	dataLoaded : (data) =>
 		singleYearData = []
 		sums = []

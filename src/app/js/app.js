@@ -1,5 +1,5 @@
 (function() {
-  var _Singleton,
+  var tableDef, _Singleton,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
@@ -28,7 +28,6 @@
 
     function Controller($vizdiv) {
       var mlist, model, that;
-      console.log("Controller constructor");
       this.displayMultiYear = false;
       this.multiYearChartClass = 'multiYear';
       this.singleYearChartClass = 'singleYear';
@@ -96,17 +95,16 @@
       if ($viz == null) $viz = 'visualization';
       this.dataLoaded = __bind(this.dataLoaded, this);
       this.id = 'chartViz';
+      this.createSingleYearView = function(div) {
+        return new $.PieChartView(div);
+      };
+      this.createMultiYearView = function(div) {
+        return new $.LineChartView(div);
+      };
+      this.onSubSection = function(subsection) {};
       ChartController.__super__.constructor.call(this, $viz);
       return;
     }
-
-    ChartController.prototype.createSingleYearView = function(div) {
-      return new $.PieChartView(div);
-    };
-
-    ChartController.prototype.createMultiYearView = function(div) {
-      return new $.LineChartView(div);
-    };
 
     ChartController.prototype.dataLoaded = function(data) {
       var categories, currentYear, mutliYearData, net_allocated, ref, singleYearData, sums;
@@ -171,9 +169,14 @@
       this.dataLoaded = __bind(this.dataLoaded, this);
       this.id = 'tableViz';
       this.createSingleYearView = function(div) {
+        return new $.TableView(div, this.onSubSection);
+      };
+      this.createMultiYearView = function(div) {
         return new $.TableView(div);
       };
-      this.createMultiYearView = this.createSingleYearView;
+      this.onSubSection = function(subsection) {
+        console.log("SubSection called");
+      };
       TableController.__super__.constructor.call(this, $viz);
       return;
     }
@@ -194,7 +197,9 @@
       })();
       $.each(currentYear, function(index, value) {
         if (value.net_allocated != null) {
-          singleYearData.push([parseInt(value.net_allocated), value.title]);
+          singleYearData.push([parseInt(value.net_allocated), value.title, value.title]);
+        } else {
+          console.log("subsection " + value.title + " has no net_Allocated value.");
         }
       });
       this.getSingleYearView().setData(singleYearData);
@@ -462,13 +467,24 @@
   });
 
   $.extend({
-    TableView: function($container) {
+    TableView: function($container, onSubSection) {
       var that;
       this.container = $container;
       that = this;
+      that.onSubSection = onSubSection;
       this.setData = function(data) {
+        var table;
         $('table', this.container).dataTable().fnClearTable(false);
-        return $('table', this.container).dataTable().fnAddData(data);
+        table = $('table', this.container).dataTable();
+        table.fnAddData(data);
+        if (that.onSubSection != null) {
+          table.$('td').on("click", {
+            name: "benny"
+          }, function(a) {
+            console.log(a);
+            that.onSubSection();
+          });
+        }
       };
       this.container.html('\
 		<table cellpadding="0" cellspacing="0" border="0" class="display">\
@@ -486,8 +502,28 @@
 			</tbody>\
 		</table>\
 		');
-      $('table', this.container).dataTable();
+      $('table', this.container).dataTable(tableDef);
     }
   });
+
+  tableDef = {};
+
+  tableDef.oLanguage = {
+    "sProcessing": "מעבד...",
+    "sLengthMenu": "הצג _MENU_ פריטים",
+    "sZeroRecords": "לא נמצאו רשומות מתאימות",
+    "sInfo": "_START_ עד _END_ מתוך _TOTAL_ רשומות",
+    "sInfoEmpty": "0 עד 0 מתוך 0 רשומות",
+    "sInfoFiltered": "(מסונן מסך _MAX_  רשומות)",
+    "sInfoPostFix": "",
+    "sSearch": "חפש:",
+    "sUrl": "",
+    "oPaginate": {
+      "sFirst": "ראשון",
+      "sPrevious": "קודם",
+      "sNext": "הבא",
+      "sLast": "אחרון"
+    }
+  };
 
 }).call(this);

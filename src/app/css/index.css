@@ -1,3 +1,6 @@
+body {
+	direction : rtl;
+}
 #yearspan {
 	position:absolute;
 }

@@ -21,7 +21,7 @@ Open in a browser:
 
 Build
 ===
-Make sure you have [CoffeeScript](http://coffeescript.org/) installe. If you are using **Windows**, install using [these](http://www.colourcoding.net/blog/archive/2011/09/20/using-coffeescript-on-windows.aspx) instructions
+Make sure you have [CoffeeScript](http://coffeescript.org/) installed. If you are using **Windows**, install using [these](http://www.colourcoding.net/blog/archive/2011/09/20/using-coffeescript-on-windows.aspx) instructions
 
 Run the make file
 (On windows Install [make for windows](http://www.equation.com/servlet/equation.cmd?fa=make))
