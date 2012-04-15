@@ -11,29 +11,34 @@ class $.TableController extends $.Controller
 
 		super $viz
 		return
-	dataLoaded : (data) =>
+	dataLoaded : (budget) =>
 		# initialization
 		singleYearData = []
 		multiYearData = []
 
-		# Fetch from data.refs only the objects who's 'year' value is 2012
-		currentYear = (ref for ref in data.refs when ref.year == 2011)
+		# Latest year
+		latestYearData = budget.data[budget.data.length - 2]
 
 		# Take the net allocated value and display in the table
-		$.each(currentYear, (index, value) ->
-			if value.net_allocated?
-				singleYearData.push [(parseInt value.net_allocated), value.title, value.title]
+		$.each latestYearData.items, (index, item) ->
+			if item.values.net_allocated?
+				singleYearData.push [(parseInt item.values.net_allocated), item.title, item.virtual_id]
 			else
-				console.log "subsection " + value.title + " has no net_Allocated value."
-			return)
+				console.log "subsection " + item.title + " has no net_Allocated value."
+			return
 
 		@getSingleYearView().setData singleYearData
 
 		# Create the multiYear data
-		$.each(data.sums, (index, value) ->
-			if value.net_allocated?
-				multiYearData.push [(parseInt value.net_allocated), index]
-			return)
+		$.each budget.data, (index, yearData) ->
+			currentYear = yearData.year
+			yearSum = 0
+			$.each yearData.items, (index, item) ->
+				if item.values.net_allocated?
+					yearSum += item.values.net_allocated
+				return
+			multiYearData.push [yearSum, currentYear]
+			return
 
 		@getMultiYearView().setData multiYearData
 

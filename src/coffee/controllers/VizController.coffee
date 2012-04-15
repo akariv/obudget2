@@ -15,7 +15,7 @@ $.extend
 		initControllers : ($vizContents, $visButtons)->
 			# TODO create a "default slug" and make it accessible to all controllers
 			model = $.Model.get()
-			model.getData "00_e4eee3e9f0e4"
+			model.getData "/data/00"
 
 			for cont in $.Visualization.controllers()
 				do (cont) ->

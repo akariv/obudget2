@@ -20,13 +20,17 @@ class _Singleton
 		###
 		load a json response from an ajax call
 		###
-		@loadResponse = (data) ->
+		@loadResponse = (budget) ->
+			localStorage.setItem budget.virtual_id, JSON.stringify budget
+
 			that.loading = false
-			console.log data
-			that.cache[data._src] = data
-			that.notifyItemLoaded data
-			slug = data._src.substring (data._src.lastIndexOf '/') + 1
-			localStorage.setItem "ob_data" + slug, JSON.stringify data
+			console.log "budget"
+			console.log "******"
+			console.log budget
+			that.cache[budget.virtual_id] = budget
+			that.notifyItemLoaded budget
+#			slug = data._src.substring (data._src.lastIndexOf '/') + 1
+#			localStorage.setItem "ob_data" + slug, JSON.stringify data
 
 			return
 
@@ -43,12 +47,14 @@ class _Singleton
 		if @loading
 			return
 		else
-			data = JSON.parse localStorage.getItem "ob_data" + slug
-			if data?
-				@loadResponse data
-			else
-				H.getRecord("/data/hasadna/budget-ninja/" + slug, @loadResponse)
-				@loading = true
+#			data = JSON.parse localStorage.getItem "ob_data" + slug
+#			if data?
+#				@loadResponse data
+#			else
+
+#			H.getRecord("/data/hasadna/budget-ninja/" + slug, @loadResponse)
+			H.getRecord(slug, @loadResponse)
+			@loading = true
 		return
 
 	###

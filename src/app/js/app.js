@@ -1,5 +1,5 @@
 (function() {
-  var tableDef, _Singleton,
+  var createVirtualItem, tableDef, _Singleton,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
@@ -106,54 +106,39 @@
       return;
     }
 
-    ChartController.prototype.dataLoaded = function(data) {
-      var categories, currentYear, mutliYearData, net_allocated, ref, singleYearData, sums;
+    ChartController.prototype.dataLoaded = function(budget) {
+      var categories, latestYearData, mutliYearData, singleYearData, sums;
       singleYearData = [];
-      sums = [];
-      $.each(data.sums, function(index, value) {
-        sums.push({
-          year: index,
-          sums: value
-        });
-      });
-      sums.sort(function(o1, o2) {
-        if (parseInt(o1.year) > parseInt(o2.year)) {
-          return 1;
+      latestYearData = budget.data[budget.data.length - 2];
+      $.each(latestYearData.items, function(index, item) {
+        if (item.values.net_allocated != null) {
+          singleYearData.push([item.title, item.values.net_allocated]);
         } else {
-          return -1;
-        }
-      });
-      net_allocated = [];
-      categories = [];
-      $.each(sums, function(index, value) {
-        if (value.sums.net_allocated != null) {
-          net_allocated.push(parseInt(value.sums.net_allocated));
-          categories.push(value.year);
-        }
-      });
-      mutliYearData = {
-        title: data.title,
-        source: data.source,
-        categories: categories,
-        sums: net_allocated
-      };
-      this.getMultiYearView().setData(mutliYearData);
-      currentYear = (function() {
-        var _i, _len, _ref, _results;
-        _ref = data.refs;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          ref = _ref[_i];
-          if (ref.year === 2011) _results.push(ref);
-        }
-        return _results;
-      })();
-      $.each(currentYear, function(index, value) {
-        if (value.net_allocated != null) {
-          singleYearData.push([value.title, parseInt(value.net_allocated)]);
+          console.log("subsection " + item.title + " has no net_Allocated value.");
         }
       });
       this.getSingleYearView().setData(singleYearData);
+      sums = [];
+      categories = [];
+      $.each(budget.data, function(index, yearData) {
+        var currentYear, yearSum;
+        currentYear = yearData.year;
+        yearSum = 0;
+        $.each(yearData.items, function(index, item) {
+          if (item.values.net_allocated != null) {
+            yearSum += item.values.net_allocated;
+          }
+        });
+        sums.push(yearSum);
+        categories.push(currentYear);
+      });
+      mutliYearData = {
+        title: budget.title,
+        source: budget.author,
+        categories: categories,
+        sums: sums
+      };
+      this.getMultiYearView().setData(mutliYearData);
     };
 
     return ChartController;
@@ -181,32 +166,29 @@
       return;
     }
 
-    TableController.prototype.dataLoaded = function(data) {
-      var currentYear, multiYearData, ref, singleYearData;
+    TableController.prototype.dataLoaded = function(budget) {
+      var latestYearData, multiYearData, singleYearData;
       singleYearData = [];
       multiYearData = [];
-      currentYear = (function() {
-        var _i, _len, _ref, _results;
-        _ref = data.refs;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          ref = _ref[_i];
-          if (ref.year === 2011) _results.push(ref);
-        }
-        return _results;
-      })();
-      $.each(currentYear, function(index, value) {
-        if (value.net_allocated != null) {
-          singleYearData.push([parseInt(value.net_allocated), value.title, value.title]);
+      latestYearData = budget.data[budget.data.length - 2];
+      $.each(latestYearData.items, function(index, item) {
+        if (item.values.net_allocated != null) {
+          singleYearData.push([parseInt(item.values.net_allocated), item.title, item.virtual_id]);
         } else {
-          console.log("subsection " + value.title + " has no net_Allocated value.");
+          console.log("subsection " + item.title + " has no net_Allocated value.");
         }
       });
       this.getSingleYearView().setData(singleYearData);
-      $.each(data.sums, function(index, value) {
-        if (value.net_allocated != null) {
-          multiYearData.push([parseInt(value.net_allocated), index]);
-        }
+      $.each(budget.data, function(index, yearData) {
+        var currentYear, yearSum;
+        currentYear = yearData.year;
+        yearSum = 0;
+        $.each(yearData.items, function(index, item) {
+          if (item.values.net_allocated != null) {
+            yearSum += item.values.net_allocated;
+          }
+        });
+        multiYearData.push([yearSum, currentYear]);
       });
       this.getMultiYearView().setData(multiYearData);
     };
@@ -232,7 +214,7 @@
       initControllers: function($vizContents, $visButtons) {
         var cont, model, _fn, _i, _len, _ref;
         model = $.Model.get();
-        model.getData("00_e4eee3e9f0e4");
+        model.getData("/data/00");
         _ref = $.Visualization.controllers();
         _fn = function(cont) {
           /*
@@ -317,14 +299,14 @@
       /*
       		load a json response from an ajax call
       */
-      this.loadResponse = function(data) {
-        var slug;
+      this.loadResponse = function(budget) {
+        localStorage.setItem(budget.virtual_id, JSON.stringify(budget));
         that.loading = false;
-        console.log(data);
-        that.cache[data._src] = data;
-        that.notifyItemLoaded(data);
-        slug = data._src.substring((data._src.lastIndexOf('/')) + 1);
-        localStorage.setItem("ob_data" + slug, JSON.stringify(data));
+        console.log("budget");
+        console.log("******");
+        console.log(budget);
+        that.cache[budget.virtual_id] = budget;
+        that.notifyItemLoaded(budget);
       };
       /*
       		tell everyone the item we've loaded
@@ -337,17 +319,11 @@
     }
 
     _Singleton.prototype.getData = function(slug) {
-      var data;
       if (this.loading) {
         return;
       } else {
-        data = JSON.parse(localStorage.getItem("ob_data" + slug));
-        if (data != null) {
-          this.loadResponse(data);
-        } else {
-          H.getRecord("/data/hasadna/budget-ninja/" + slug, this.loadResponse);
-          this.loading = true;
-        }
+        H.getRecord(slug, this.loadResponse);
+        this.loading = true;
       }
     };
 
@@ -377,6 +353,74 @@
       }, list);
     }
   });
+
+  createVirtualItem = function(data) {
+    var budget, dataByYear, dataByYearSorted, vid;
+    vid = data._src.substring(1 + data._src.lastIndexOf("/"));
+    vid = vid.substring(0, vid.indexOf("_"));
+    dataByYear = {};
+    $.each(data.refs, function(index, value) {
+      var current_year;
+      if (!(dataByYear[value.year] != null)) {
+        current_year = {
+          year: value.year,
+          items: []
+        };
+        current_year.items.push(value);
+        dataByYear[value.year] = current_year;
+      } else {
+        dataByYear[value.year].items.push(value);
+      }
+    });
+    dataByYearSorted = [];
+    $.each(dataByYear, function(index, value) {
+      return dataByYearSorted.push(value);
+    });
+    dataByYearSorted.sort(function(a, b) {
+      if (a.year > b.year) {
+        return 1;
+      } else if (b.year > a.year) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    console.log(dataByYearSorted);
+    budget = {};
+    budget.title = data.title;
+    budget.description = "תקציב " + data.title;
+    budget.author = "התקציב הפתוח";
+    budget.virtual_id = vid;
+    budget.data = [];
+    $.each(dataByYearSorted, function(index, value) {
+      var budgetData;
+      budgetData = {
+        year: value.year
+      };
+      budgetData.items = [];
+      $.each(value.items, function(index, value) {
+        var dataValues, item;
+        dataValues = {
+          net_allocated: value.net_allocated,
+          net_revised: value.net_revised,
+          net_used: value.net_used,
+          gross_revised: value.gross_revised,
+          gross_used: value.gross_used
+        };
+        item = {
+          virtual_id: value.code + "_" + value.title,
+          budget_id: value.code,
+          title: value.title,
+          weight: 1.0,
+          values: dataValues
+        };
+        budgetData.items.push(item);
+      });
+      budget.data.push(budgetData);
+    });
+    localStorage.setItem(budget.virtual_id, JSON.stringify(budget));
+    return budget;
+  };
 
   $.extend({
     LineChartView: function($container) {
