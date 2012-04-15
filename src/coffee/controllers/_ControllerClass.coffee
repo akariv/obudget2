@@ -18,6 +18,9 @@ class $.Controller
 
 		model.addListener mlist
 
+		@getSingleYearView()
+		@getMultiYearView()
+
 		return
 	setMultiYear : (multiYear = true) ->
 		if @displayMultiYear == multiYear
