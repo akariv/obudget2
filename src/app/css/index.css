@@ -1,8 +1,10 @@
 body {
 	direction : rtl;
 }
-#yearspan {
-	position:absolute;
+
+#vis-contents {
+	position : relative;
+	height : 26em;
 }
 
 #vis-contents div.viz.active {
@@ -26,7 +28,6 @@ body {
 }
 
 #vis-buttons {
-	position:absolute;
 	z-index: 50;
 	top:80%;
 	height:38px;
@@ -35,7 +36,6 @@ body {
 }
 
 #embed-widget{
-	position:absolute;
 	top:89%;
 	height:38px;
 	width:80%;

@@ -6,7 +6,10 @@ class $.TableController extends $.Controller
 		@createMultiYearView = (div)->
 				new $.TableView div
 		@onSubSection = (subsection) ->
-			console.log "SubSection called"
+			console.log "SubSection called " + subsection
+			model = $.Model.get()
+			model.getData "/data/" + subsection
+
 			return
 
 		super $viz
@@ -23,8 +26,6 @@ class $.TableController extends $.Controller
 		$.each latestYearData.items, (index, item) ->
 			if item.values.net_allocated?
 				singleYearData.push [(parseInt item.values.net_allocated), item.title, item.virtual_id]
-			else
-				console.log "subsection " + item.title + " has no net_Allocated value."
 			return
 
 		@getSingleYearView().setData singleYearData
@@ -37,7 +38,9 @@ class $.TableController extends $.Controller
 				if item.values.net_allocated?
 					yearSum += item.values.net_allocated
 				return
-			multiYearData.push [yearSum, currentYear]
+			# setData expects an array of 3 object items
+			if yearSum > 0
+				multiYearData.push [yearSum, currentYear, currentYear]
 			return
 
 		@getMultiYearView().setData multiYearData

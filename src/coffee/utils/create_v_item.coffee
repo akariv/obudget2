@@ -1,4 +1,4 @@
-createVirtualItem = (data) ->
+window.createVirtualItem = (data) ->
 	vid = data._src.substring 1 + data._src.lastIndexOf "/"
 	vid = vid.substring 0,vid.indexOf "_"
 
@@ -27,8 +27,6 @@ createVirtualItem = (data) ->
 		else return 0
 		return
 
-	console.log dataByYearSorted
-
 	budget = {}
 	budget.title = data.title
 	budget.description = "תקציב " + data.title
@@ -51,7 +49,7 @@ createVirtualItem = (data) ->
 				gross_used : value.gross_used
 
 			item =
-				virtual_id : value.code + "_"+value.title
+				virtual_id : value.code
 				budget_id : value.code
 				title : value.title
 				weight : 1.0

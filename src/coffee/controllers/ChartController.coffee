@@ -16,12 +16,17 @@ class $.ChartController extends $.Controller
 		latestYearData = budget.data[budget.data.length - 2]
 
 		# Take the net allocated value and display in the table
+		emptyItems = []
 		$.each latestYearData.items, (index, item) ->
 			if item.values.net_allocated?
 				singleYearData.push [item.title, item.values.net_allocated]
 			else
-				console.log "subsection " + item.title + " has no net_Allocated value."
+				emptyItems.push item.title
 			return
+
+		console.log "subsections with no net_allocated value:"
+		console.log "****************"
+		console.log emptyItems
 
 		@getSingleYearView().setData singleYearData
 
@@ -35,8 +40,9 @@ class $.ChartController extends $.Controller
 				if item.values.net_allocated?
 					yearSum += item.values.net_allocated
 				return
-			sums.push yearSum
-			categories.push currentYear
+			if yearSum > 0
+				sums.push yearSum
+				categories.push currentYear
 			return
 
 		mutliYearData =

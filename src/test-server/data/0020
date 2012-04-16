@@ -1,13 +1,13 @@
 exports.data =
 {
     "title": "משרד החינוך",
-    "description": "תקציבמשרד החינוך",
+    "description": "תקציב משרד החינוך",
     "author": "התקציב הפתוח",
     "virtual_id": "0020",
     "data": [{
         "year": 2007,
         "items": [{
-            "virtual_id": "002026_חינוך יסודי",
+            "virtual_id": "002026",
             "budget_id": "002026",
             "title": "חינוך יסודי",
             "weight": 1,
@@ -19,7 +19,7 @@ exports.data =
                 "gross_used": 9100876
             }
         }, {
-            "virtual_id": "002021_יחידות מטה",
+            "virtual_id": "002021",
             "budget_id": "002021",
             "title": "יחידות מטה",
             "weight": 1,
@@ -31,7 +31,7 @@ exports.data =
                 "gross_used": 214002
             }
         }, {
-            "virtual_id": "002031_תרבות",
+            "virtual_id": "002031",
             "budget_id": "002031",
             "title": "תרבות",
             "weight": 1,
@@ -43,7 +43,7 @@ exports.data =
                 "gross_used": 85701
             }
         }, {
-            "virtual_id": "002099_חשבון מעבר",
+            "virtual_id": "002099",
             "budget_id": "002099",
             "title": "חשבון מעבר",
             "weight": 1,
@@ -52,7 +52,7 @@ exports.data =
                 "gross_revised": 0
             }
         }, {
-            "virtual_id": "002025_חינוך קדם יסודי",
+            "virtual_id": "002025",
             "budget_id": "002025",
             "title": "חינוך קדם יסודי",
             "weight": 1,
@@ -64,7 +64,7 @@ exports.data =
                 "gross_used": 3047812
             }
         }, {
-            "virtual_id": "002038_העברות למוסדות תורניים",
+            "virtual_id": "002038",
             "budget_id": "002038",
             "title": "העברות למוסדות תורניים",
             "weight": 1,
@@ -76,7 +76,7 @@ exports.data =
                 "gross_used": 808029
             }
         }, {
-            "virtual_id": "002032_רשות הספורט",
+            "virtual_id": "002032",
             "budget_id": "002032",
             "title": "רשות הספורט",
             "weight": 1,
@@ -88,7 +88,7 @@ exports.data =
                 "gross_used": 2378
             }
         }, {
-            "virtual_id": "002023_מינהל מורים",
+            "virtual_id": "002023",
             "budget_id": "002023",
             "title": "מינהל מורים",
             "weight": 1,
@@ -100,7 +100,7 @@ exports.data =
                 "gross_used": 1876342
             }
         }, {
-            "virtual_id": "002024_מינהל פדגוגי-כללי",
+            "virtual_id": "002024",
             "budget_id": "002024",
             "title": "מינהל פדגוגי-כללי",
             "weight": 1,
@@ -112,7 +112,7 @@ exports.data =
                 "gross_used": 1118658
             }
         }, {
-            "virtual_id": "002029_חינוך עצמאי ומוכר",
+            "virtual_id": "002029",
             "budget_id": "002029",
             "title": "חינוך עצמאי ומוכר",
             "weight": 1,
@@ -124,7 +124,7 @@ exports.data =
                 "gross_used": 1469021
             }
         }, {
-            "virtual_id": "002027_חינוך על יסודי",
+            "virtual_id": "002027",
             "budget_id": "002027",
             "title": "חינוך על יסודי",
             "weight": 1,
@@ -136,7 +136,7 @@ exports.data =
                 "gross_used": 7258050
             }
         }, {
-            "virtual_id": "002033_טלויזיה חינוכית",
+            "virtual_id": "002033",
             "budget_id": "002033",
             "title": "טלויזיה חינוכית",
             "weight": 1,
@@ -148,7 +148,7 @@ exports.data =
                 "gross_used": 192640
             }
         }, {
-            "virtual_id": "002022_אמרכלות ועובדי משרד",
+            "virtual_id": "002022",
             "budget_id": "002022",
             "title": "אמרכלות ועובדי משרד",
             "weight": 1,
@@ -160,7 +160,7 @@ exports.data =
                 "gross_used": 609207
             }
         }, {
-            "virtual_id": "002030_הסעות הצטיידות ופיתוח",
+            "virtual_id": "002030",
             "budget_id": "002030",
             "title": "הסעות הצטיידות ופיתוח",
             "weight": 1,
@@ -172,7 +172,7 @@ exports.data =
                 "gross_used": 602379
             }
         }, {
-            "virtual_id": "002028_חינוך התישבותי",
+            "virtual_id": "002028",
             "budget_id": "002028",
             "title": "חינוך התישבותי",
             "weight": 1,
@@ -184,7 +184,7 @@ exports.data =
                 "gross_used": 2076093
             }
         }, {
-            "virtual_id": "002037_מנהל הספורט",
+            "virtual_id": "002037",
             "budget_id": "002037",
             "title": "מנהל הספורט",
             "weight": 1,
@@ -197,7 +197,7 @@ exports.data =
     }, {
         "year": 2008,
         "items": [{
-            "virtual_id": "002033_טלויזיה חינוכית",
+            "virtual_id": "002033",
             "budget_id": "002033",
             "title": "טלויזיה חינוכית",
             "weight": 1,
@@ -209,7 +209,7 @@ exports.data =
                 "gross_used": 109263
             }
         }, {
-            "virtual_id": "002022_אמרכלות ועובדי משרד",
+            "virtual_id": "002022",
             "budget_id": "002022",
             "title": "אמרכלות ועובדי משרד",
             "weight": 1,
@@ -221,7 +221,7 @@ exports.data =
                 "gross_used": 614823
             }
         }, {
-            "virtual_id": "002028_חינוך התישבותי",
+            "virtual_id": "002028",
             "budget_id": "002028",
             "title": "חינוך התישבותי",
             "weight": 1,
@@ -233,7 +233,7 @@ exports.data =
                 "gross_used": 2202263
             }
         }, {
-            "virtual_id": "002027_חינוך על יסודי",
+            "virtual_id": "002027",
             "budget_id": "002027",
             "title": "חינוך על יסודי",
             "weight": 1,
@@ -245,7 +245,7 @@ exports.data =
                 "gross_used": 7762389
             }
         }, {
-            "virtual_id": "002038_העברות למוסדות תורניים",
+            "virtual_id": "002038",
             "budget_id": "002038",
             "title": "העברות למוסדות תורניים",
             "weight": 1,
@@ -257,7 +257,7 @@ exports.data =
                 "gross_used": 844616
             }
         }, {
-            "virtual_id": "002032_רשות הספורט",
+            "virtual_id": "002032",
             "budget_id": "002032",
             "title": "רשות הספורט",
             "weight": 1,
@@ -269,7 +269,7 @@ exports.data =
                 "gross_used": 2194
             }
         }, {
-            "virtual_id": "002023_מינהל מורים",
+            "virtual_id": "002023",
             "budget_id": "002023",
             "title": "מינהל מורים",
             "weight": 1,
@@ -281,7 +281,7 @@ exports.data =
                 "gross_used": 1959396
             }
         }, {
-            "virtual_id": "002029_חינוך עצמאי ומוכר",
+            "virtual_id": "002029",
             "budget_id": "002029",
             "title": "חינוך עצמאי ומוכר",
             "weight": 1,
@@ -293,7 +293,7 @@ exports.data =
                 "gross_used": 1513259
             }
         }, {
-            "virtual_id": "002031_תרבות",
+            "virtual_id": "002031",
             "budget_id": "002031",
             "title": "תרבות",
             "weight": 1,
@@ -305,7 +305,7 @@ exports.data =
                 "gross_used": 90437
             }
         }, {
-            "virtual_id": "002024_מינהל פדגוגי-כללי",
+            "virtual_id": "002024",
             "budget_id": "002024",
             "title": "מינהל פדגוגי-כללי",
             "weight": 1,
@@ -317,7 +317,7 @@ exports.data =
                 "gross_used": 1022574
             }
         }, {
-            "virtual_id": "002030_הסעות הצטיידות ופיתוח",
+            "virtual_id": "002030",
             "budget_id": "002030",
             "title": "הסעות הצטיידות ופיתוח",
             "weight": 1,
@@ -329,7 +329,7 @@ exports.data =
                 "gross_used": 580932
             }
         }, {
-            "virtual_id": "002025_חינוך קדם יסודי",
+            "virtual_id": "002025",
             "budget_id": "002025",
             "title": "חינוך קדם יסודי",
             "weight": 1,
@@ -341,7 +341,7 @@ exports.data =
                 "gross_used": 3378810
             }
         }, {
-            "virtual_id": "002099_חשבון מעבר",
+            "virtual_id": "002099",
             "budget_id": "002099",
             "title": "חשבון מעבר",
             "weight": 1,
@@ -350,7 +350,7 @@ exports.data =
                 "gross_revised": -4528
             }
         }, {
-            "virtual_id": "002037_מנהל הספורט",
+            "virtual_id": "002037",
             "budget_id": "002037",
             "title": "מנהל הספורט",
             "weight": 1,
@@ -360,7 +360,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002026_חינוך יסודי",
+            "virtual_id": "002026",
             "budget_id": "002026",
             "title": "חינוך יסודי",
             "weight": 1,
@@ -372,7 +372,7 @@ exports.data =
                 "gross_used": 9763099
             }
         }, {
-            "virtual_id": "002021_יחידות מטה",
+            "virtual_id": "002021",
             "budget_id": "002021",
             "title": "יחידות מטה",
             "weight": 1,
@@ -387,7 +387,7 @@ exports.data =
     }, {
         "year": 2009,
         "items": [{
-            "virtual_id": "002022_אמרכלות ועובדי משרד",
+            "virtual_id": "002022",
             "budget_id": "002022",
             "title": "אמרכלות ועובדי משרד",
             "weight": 1,
@@ -399,7 +399,7 @@ exports.data =
                 "gross_used": 672126
             }
         }, {
-            "virtual_id": "002021_יחידות מטה",
+            "virtual_id": "002021",
             "budget_id": "002021",
             "title": "יחידות מטה",
             "weight": 1,
@@ -411,7 +411,7 @@ exports.data =
                 "gross_used": 227768
             }
         }, {
-            "virtual_id": "0020999999_חשבון מעבר",
+            "virtual_id": "0020999999",
             "budget_id": "0020999999",
             "title": "חשבון מעבר",
             "weight": 1,
@@ -420,7 +420,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "00209999_undefined",
+            "virtual_id": "00209999",
             "budget_id": "00209999",
             "weight": 1,
             "values": {
@@ -428,7 +428,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002030_הסעות הצטיידות ופיתוח",
+            "virtual_id": "002030",
             "budget_id": "002030",
             "title": "הסעות הצטיידות ופיתוח",
             "weight": 1,
@@ -440,7 +440,7 @@ exports.data =
                 "gross_used": 684882
             }
         }, {
-            "virtual_id": "002024_מינהל פדגוגי-כללי",
+            "virtual_id": "002024",
             "budget_id": "002024",
             "title": "מינהל פדגוגי-כללי",
             "weight": 1,
@@ -452,7 +452,7 @@ exports.data =
                 "gross_used": 1048617
             }
         }, {
-            "virtual_id": "002099_undefined",
+            "virtual_id": "002099",
             "budget_id": "002099",
             "weight": 1,
             "values": {
@@ -460,7 +460,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002027_חינוך על יסודי",
+            "virtual_id": "002027",
             "budget_id": "002027",
             "title": "חינוך על יסודי",
             "weight": 1,
@@ -472,7 +472,7 @@ exports.data =
                 "gross_used": 8017213
             }
         }, {
-            "virtual_id": "002029_חינוך עצמאי ומוכר",
+            "virtual_id": "002029",
             "budget_id": "002029",
             "title": "חינוך עצמאי ומוכר",
             "weight": 1,
@@ -484,7 +484,7 @@ exports.data =
                 "gross_used": 1602536
             }
         }, {
-            "virtual_id": "002033_טלויזיה חינוכית",
+            "virtual_id": "002033",
             "budget_id": "002033",
             "title": "טלויזיה חינוכית",
             "weight": 1,
@@ -496,7 +496,7 @@ exports.data =
                 "gross_used": 111366
             }
         }, {
-            "virtual_id": "002031_תרבות",
+            "virtual_id": "002031",
             "budget_id": "002031",
             "title": "תרבות",
             "weight": 1,
@@ -508,7 +508,7 @@ exports.data =
                 "gross_used": 54387
             }
         }, {
-            "virtual_id": "002025_חינוך קדם יסודי",
+            "virtual_id": "002025",
             "budget_id": "002025",
             "title": "חינוך קדם יסודי",
             "weight": 1,
@@ -520,7 +520,7 @@ exports.data =
                 "gross_used": 3629120
             }
         }, {
-            "virtual_id": "002023_מינהל מורים",
+            "virtual_id": "002023",
             "budget_id": "002023",
             "title": "מינהל מורים",
             "weight": 1,
@@ -532,7 +532,7 @@ exports.data =
                 "gross_used": 2057266
             }
         }, {
-            "virtual_id": "002032_רשות הספורט",
+            "virtual_id": "002032",
             "budget_id": "002032",
             "title": "רשות הספורט",
             "weight": 1,
@@ -544,7 +544,7 @@ exports.data =
                 "gross_used": 1965
             }
         }, {
-            "virtual_id": "002038_העברות למוסדות תורניים",
+            "virtual_id": "002038",
             "budget_id": "002038",
             "title": "העברות למוסדות תורניים",
             "weight": 1,
@@ -556,7 +556,7 @@ exports.data =
                 "gross_used": 1109721
             }
         }, {
-            "virtual_id": "002026_חינוך יסודי",
+            "virtual_id": "002026",
             "budget_id": "002026",
             "title": "חינוך יסודי",
             "weight": 1,
@@ -568,7 +568,7 @@ exports.data =
                 "gross_used": 10008841
             }
         }, {
-            "virtual_id": "002028_חינוך התישבותי",
+            "virtual_id": "002028",
             "budget_id": "002028",
             "title": "חינוך התישבותי",
             "weight": 1,
@@ -583,7 +583,7 @@ exports.data =
     }, {
         "year": 2010,
         "items": [{
-            "virtual_id": "002028_חינוך התישבותי",
+            "virtual_id": "002028",
             "budget_id": "002028",
             "title": "חינוך התישבותי",
             "weight": 1,
@@ -594,7 +594,7 @@ exports.data =
                 "gross_used": 2344250
             }
         }, {
-            "virtual_id": "002025_חינוך קדם יסודי",
+            "virtual_id": "002025",
             "budget_id": "002025",
             "title": "חינוך קדם יסודי",
             "weight": 1,
@@ -605,7 +605,7 @@ exports.data =
                 "gross_used": 3406623
             }
         }, {
-            "virtual_id": "002022_אמרכלות ועובדי משרד",
+            "virtual_id": "002022",
             "budget_id": "002022",
             "title": "אמרכלות ועובדי משרד",
             "weight": 1,
@@ -616,7 +616,7 @@ exports.data =
                 "gross_used": 717509
             }
         }, {
-            "virtual_id": "002032_רשות הספורט",
+            "virtual_id": "002032",
             "budget_id": "002032",
             "title": "רשות הספורט",
             "weight": 1,
@@ -627,7 +627,7 @@ exports.data =
                 "gross_used": 1731
             }
         }, {
-            "virtual_id": "002030_הסעות הצטיידות ופיתוח",
+            "virtual_id": "002030",
             "budget_id": "002030",
             "title": "הסעות הצטיידות ופיתוח",
             "weight": 1,
@@ -638,7 +638,7 @@ exports.data =
                 "gross_used": 1225202
             }
         }, {
-            "virtual_id": "002038_העברות למוסדות תורניים",
+            "virtual_id": "002038",
             "budget_id": "002038",
             "title": "העברות למוסדות תורניים",
             "weight": 1,
@@ -649,7 +649,7 @@ exports.data =
                 "gross_used": 1159517
             }
         }, {
-            "virtual_id": "002029_חינוך עצמאי ומוכר",
+            "virtual_id": "002029",
             "budget_id": "002029",
             "title": "חינוך עצמאי ומוכר",
             "weight": 1,
@@ -660,7 +660,7 @@ exports.data =
                 "gross_used": 1856208
             }
         }, {
-            "virtual_id": "002027_חינוך על יסודי",
+            "virtual_id": "002027",
             "budget_id": "002027",
             "title": "חינוך על יסודי",
             "weight": 1,
@@ -671,7 +671,7 @@ exports.data =
                 "gross_used": 8410275
             }
         }, {
-            "virtual_id": "002023_מינהל מורים",
+            "virtual_id": "002023",
             "budget_id": "002023",
             "title": "מינהל מורים",
             "weight": 1,
@@ -682,7 +682,7 @@ exports.data =
                 "gross_used": 2005780
             }
         }, {
-            "virtual_id": "002026_חינוך יסודי",
+            "virtual_id": "002026",
             "budget_id": "002026",
             "title": "חינוך יסודי",
             "weight": 1,
@@ -693,7 +693,7 @@ exports.data =
                 "gross_used": 11894020
             }
         }, {
-            "virtual_id": "002031_תרבות",
+            "virtual_id": "002031",
             "budget_id": "002031",
             "title": "תרבות",
             "weight": 1,
@@ -704,7 +704,7 @@ exports.data =
                 "gross_used": 93365
             }
         }, {
-            "virtual_id": "002099_חשבון מעבר",
+            "virtual_id": "002099",
             "budget_id": "002099",
             "title": "חשבון מעבר",
             "weight": 1,
@@ -712,7 +712,7 @@ exports.data =
                 "net_allocated": 0
             }
         }, {
-            "virtual_id": "002024_מינהל פדגוגי-כללי",
+            "virtual_id": "002024",
             "budget_id": "002024",
             "title": "מינהל פדגוגי-כללי",
             "weight": 1,
@@ -723,7 +723,7 @@ exports.data =
                 "gross_used": 1188275
             }
         }, {
-            "virtual_id": "002021_יחידות מטה",
+            "virtual_id": "002021",
             "budget_id": "002021",
             "title": "יחידות מטה",
             "weight": 1,
@@ -734,7 +734,7 @@ exports.data =
                 "gross_used": 279064
             }
         }, {
-            "virtual_id": "002033_טלויזיה חינוכית",
+            "virtual_id": "002033",
             "budget_id": "002033",
             "title": "טלויזיה חינוכית",
             "weight": 1,
@@ -748,7 +748,7 @@ exports.data =
     }, {
         "year": 2011,
         "items": [{
-            "virtual_id": "002021_יחידות מטה",
+            "virtual_id": "002021",
             "budget_id": "002021",
             "title": "יחידות מטה",
             "weight": 1,
@@ -759,7 +759,7 @@ exports.data =
                 "gross_used": 138607
             }
         }, {
-            "virtual_id": "002024_מינהל פדגוגי-כללי",
+            "virtual_id": "002024",
             "budget_id": "002024",
             "title": "מינהל פדגוגי-כללי",
             "weight": 1,
@@ -770,7 +770,7 @@ exports.data =
                 "gross_used": 631111
             }
         }, {
-            "virtual_id": "002030_הסעות הצטיידות ופיתוח",
+            "virtual_id": "002030",
             "budget_id": "002030",
             "title": "הסעות הצטיידות ופיתוח",
             "weight": 1,
@@ -781,7 +781,7 @@ exports.data =
                 "gross_used": 621574
             }
         }, {
-            "virtual_id": "002026_חינוך יסודי",
+            "virtual_id": "002026",
             "budget_id": "002026",
             "title": "חינוך יסודי",
             "weight": 1,
@@ -792,7 +792,7 @@ exports.data =
                 "gross_used": 7518277
             }
         }, {
-            "virtual_id": "002023_מינהל מורים",
+            "virtual_id": "002023",
             "budget_id": "002023",
             "title": "מינהל מורים",
             "weight": 1,
@@ -803,7 +803,7 @@ exports.data =
                 "gross_used": 952347
             }
         }, {
-            "virtual_id": "002099_חשבון מעבר",
+            "virtual_id": "002099",
             "budget_id": "002099",
             "title": "חשבון מעבר",
             "weight": 1,
@@ -811,7 +811,7 @@ exports.data =
                 "net_allocated": 0
             }
         }, {
-            "virtual_id": "002029_חינוך עצמאי ומוכר",
+            "virtual_id": "002029",
             "budget_id": "002029",
             "title": "חינוך עצמאי ומוכר",
             "weight": 1,
@@ -822,7 +822,7 @@ exports.data =
                 "gross_used": 1079453
             }
         }, {
-            "virtual_id": "002038_העברות למוסדות תורניים",
+            "virtual_id": "002038",
             "budget_id": "002038",
             "title": "העברות למוסדות תורניים",
             "weight": 1,
@@ -833,7 +833,7 @@ exports.data =
                 "gross_used": 630024
             }
         }, {
-            "virtual_id": "002033_טלויזיה חינוכית",
+            "virtual_id": "002033",
             "budget_id": "002033",
             "title": "טלויזיה חינוכית",
             "weight": 1,
@@ -844,7 +844,7 @@ exports.data =
                 "gross_used": 71633
             }
         }, {
-            "virtual_id": "002032_רשות הספורט",
+            "virtual_id": "002032",
             "budget_id": "002032",
             "title": "רשות הספורט",
             "weight": 1,
@@ -855,7 +855,7 @@ exports.data =
                 "gross_used": 131
             }
         }, {
-            "virtual_id": "002022_אמרכלות ועובדי משרד",
+            "virtual_id": "002022",
             "budget_id": "002022",
             "title": "אמרכלות ועובדי משרד",
             "weight": 1,
@@ -866,7 +866,7 @@ exports.data =
                 "gross_used": 368637
             }
         }, {
-            "virtual_id": "002025_חינוך קדם יסודי",
+            "virtual_id": "002025",
             "budget_id": "002025",
             "title": "חינוך קדם יסודי",
             "weight": 1,
@@ -877,7 +877,7 @@ exports.data =
                 "gross_used": 2366900
             }
         }, {
-            "virtual_id": "002028_חינוך התישבותי",
+            "virtual_id": "002028",
             "budget_id": "002028",
             "title": "חינוך התישבותי",
             "weight": 1,
@@ -888,7 +888,7 @@ exports.data =
                 "gross_used": 1460282
             }
         }, {
-            "virtual_id": "002031_תרבות",
+            "virtual_id": "002031",
             "budget_id": "002031",
             "title": "תרבות",
             "weight": 1,
@@ -899,7 +899,7 @@ exports.data =
                 "gross_used": 24183
             }
         }, {
-            "virtual_id": "002027_חינוך על יסודי",
+            "virtual_id": "002027",
             "budget_id": "002027",
             "title": "חינוך על יסודי",
             "weight": 1,
@@ -913,7 +913,7 @@ exports.data =
     }, {
         "year": 2012,
         "items": [{
-            "virtual_id": "002026_חינוך יסודי",
+            "virtual_id": "002026",
             "budget_id": "002026",
             "title": "חינוך יסודי",
             "weight": 1,
@@ -923,7 +923,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002038_העברות למוסדות תורניים",
+            "virtual_id": "002038",
             "budget_id": "002038",
             "title": "העברות למוסדות תורניים",
             "weight": 1,
@@ -933,7 +933,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002023_מינהל מורים",
+            "virtual_id": "002023",
             "budget_id": "002023",
             "title": "מינהל מורים",
             "weight": 1,
@@ -943,7 +943,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002031_תרבות",
+            "virtual_id": "002031",
             "budget_id": "002031",
             "title": "תרבות",
             "weight": 1,
@@ -953,7 +953,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002027_חינוך על יסודי",
+            "virtual_id": "002027",
             "budget_id": "002027",
             "title": "חינוך על יסודי",
             "weight": 1,
@@ -963,7 +963,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002030_הסעות הצטיידות ופיתוח",
+            "virtual_id": "002030",
             "budget_id": "002030",
             "title": "הסעות הצטיידות ופיתוח",
             "weight": 1,
@@ -973,7 +973,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002032_רשות הספורט",
+            "virtual_id": "002032",
             "budget_id": "002032",
             "title": "רשות הספורט",
             "weight": 1,
@@ -983,7 +983,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002029_חינוך עצמאי ומוכר",
+            "virtual_id": "002029",
             "budget_id": "002029",
             "title": "חינוך עצמאי ומוכר",
             "weight": 1,
@@ -993,7 +993,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002033_טלויזיה חינוכית",
+            "virtual_id": "002033",
             "budget_id": "002033",
             "title": "טלויזיה חינוכית",
             "weight": 1,
@@ -1003,7 +1003,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002021_יחידות מטה",
+            "virtual_id": "002021",
             "budget_id": "002021",
             "title": "יחידות מטה",
             "weight": 1,
@@ -1013,7 +1013,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002024_מינהל פדגוגי-כללי",
+            "virtual_id": "002024",
             "budget_id": "002024",
             "title": "מינהל פדגוגי-כללי",
             "weight": 1,
@@ -1023,7 +1023,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002022_אמרכלות ועובדי משרד",
+            "virtual_id": "002022",
             "budget_id": "002022",
             "title": "אמרכלות ועובדי משרד",
             "weight": 1,
@@ -1033,7 +1033,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002025_חינוך קדם יסודי",
+            "virtual_id": "002025",
             "budget_id": "002025",
             "title": "חינוך קדם יסודי",
             "weight": 1,
@@ -1043,7 +1043,7 @@ exports.data =
                 "gross_used": 0
             }
         }, {
-            "virtual_id": "002028_חינוך התישבותי",
+            "virtual_id": "002028",
             "budget_id": "002028",
             "title": "חינוך התישבותי",
             "weight": 1,

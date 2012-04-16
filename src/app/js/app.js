@@ -1,5 +1,5 @@
 (function() {
-  var createVirtualItem, tableDef, _Singleton,
+  var tableDef, _Singleton,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
@@ -40,6 +40,8 @@
         }
       });
       model.addListener(mlist);
+      this.getSingleYearView();
+      this.getMultiYearView();
       return;
     }
 
@@ -107,16 +109,20 @@
     }
 
     ChartController.prototype.dataLoaded = function(budget) {
-      var categories, latestYearData, mutliYearData, singleYearData, sums;
+      var categories, emptyItems, latestYearData, mutliYearData, singleYearData, sums;
       singleYearData = [];
       latestYearData = budget.data[budget.data.length - 2];
+      emptyItems = [];
       $.each(latestYearData.items, function(index, item) {
         if (item.values.net_allocated != null) {
           singleYearData.push([item.title, item.values.net_allocated]);
         } else {
-          console.log("subsection " + item.title + " has no net_Allocated value.");
+          emptyItems.push(item.title);
         }
       });
+      console.log("subsections with no net_allocated value:");
+      console.log("****************");
+      console.log(emptyItems);
       this.getSingleYearView().setData(singleYearData);
       sums = [];
       categories = [];
@@ -129,8 +135,10 @@
             yearSum += item.values.net_allocated;
           }
         });
-        sums.push(yearSum);
-        categories.push(currentYear);
+        if (yearSum > 0) {
+          sums.push(yearSum);
+          categories.push(currentYear);
+        }
       });
       mutliYearData = {
         title: budget.title,
@@ -160,7 +168,10 @@
         return new $.TableView(div);
       };
       this.onSubSection = function(subsection) {
-        console.log("SubSection called");
+        var model;
+        console.log("SubSection called " + subsection);
+        model = $.Model.get();
+        model.getData("/data/" + subsection);
       };
       TableController.__super__.constructor.call(this, $viz);
       return;
@@ -174,8 +185,6 @@
       $.each(latestYearData.items, function(index, item) {
         if (item.values.net_allocated != null) {
           singleYearData.push([parseInt(item.values.net_allocated), item.title, item.virtual_id]);
-        } else {
-          console.log("subsection " + item.title + " has no net_Allocated value.");
         }
       });
       this.getSingleYearView().setData(singleYearData);
@@ -188,7 +197,7 @@
             yearSum += item.values.net_allocated;
           }
         });
-        multiYearData.push([yearSum, currentYear]);
+        if (yearSum > 0) multiYearData.push([yearSum, currentYear, currentYear]);
       });
       this.getMultiYearView().setData(multiYearData);
     };
@@ -354,7 +363,7 @@
     }
   });
 
-  createVirtualItem = function(data) {
+  window.createVirtualItem = function(data) {
     var budget, dataByYear, dataByYearSorted, vid;
     vid = data._src.substring(1 + data._src.lastIndexOf("/"));
     vid = vid.substring(0, vid.indexOf("_"));
@@ -385,7 +394,6 @@
         return 0;
       }
     });
-    console.log(dataByYearSorted);
     budget = {};
     budget.title = data.title;
     budget.description = "תקציב " + data.title;
@@ -408,7 +416,7 @@
           gross_used: value.gross_used
         };
         item = {
-          virtual_id: value.code + "_" + value.title,
+          virtual_id: value.code,
           budget_id: value.code,
           title: value.title,
           weight: 1.0,
@@ -517,18 +525,41 @@
       that = this;
       that.onSubSection = onSubSection;
       this.setData = function(data) {
-        var table;
-        $('table', this.container).dataTable().fnClearTable(false);
-        table = $('table', this.container).dataTable();
-        table.fnAddData(data);
+        var table, tableOptions;
+        this.container.html('\
+			<table cellpadding="0" cellspacing="0" border="0" class="display">\
+				<thead>\
+					<tr>\
+						<th>תקציב</th>\
+						<th>שנה</th>\
+						<th>מזהה</th>\
+					</tr>\
+				</thead>\
+				<tbody>\
+					<tr class="odd gradeX">\
+						<td>1234.0</td>\
+						<td>1948</td>\
+						<td>0020</td>\
+					</tr>\
+				</tbody>\
+			</table>\
+			');
+        table = null;
+        tableOptions = $.extend({}, tableDef);
         if (that.onSubSection != null) {
-          table.$('td').on("click", {
-            name: "benny"
-          }, function(a) {
-            console.log(a);
-            that.onSubSection();
+          $.extend(tableOptions, {
+            fnCreatedRow: function(nRow, aData, iDataIndex) {
+              return $(nRow).click(function(event) {
+                that.onSubSection(aData[2]);
+              });
+            }
           });
+          table = $('table', this.container).dataTable(tableOptions);
+        } else {
+          table = $('table', this.container).dataTable(tableOptions);
         }
+        table.fnClearTable(false);
+        return table.fnAddData(data);
       };
       this.container.html('\
 		<table cellpadding="0" cellspacing="0" border="0" class="display">\
@@ -536,12 +567,14 @@
 				<tr>\
 					<th>תקציב</th>\
 					<th>שנה</th>\
+					<th>מזהה</th>\
 				</tr>\
 			</thead>\
 			<tbody>\
 				<tr class="odd gradeX">\
 					<td>1234.0</td>\
 					<td>1948</td>\
+					<td>0020</td>\
 				</tr>\
 			</tbody>\
 		</table>\
@@ -551,6 +584,14 @@
   });
 
   tableDef = {};
+
+  tableDef.bDestroy = true;
+
+  tableDef.aoColumns = [
+    null, null, {
+      "bVisible": false
+    }
+  ];
 
   tableDef.oLanguage = {
     "sProcessing": "מעבד...",

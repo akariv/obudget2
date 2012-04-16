@@ -6,19 +6,39 @@ $.extend
 		that.onSubSection = onSubSection;
 
 		@setData = (data) ->
-			$('table', @container).dataTable().fnClearTable false
-			table = $('table', @container).dataTable()
-			table.fnAddData data
-			# open sub section of the budget.
+
+			@container.html '
+			<table cellpadding="0" cellspacing="0" border="0" class="display">
+				<thead>
+					<tr>
+						<th>תקציב</th>
+						<th>שנה</th>
+						<th>מזהה</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="odd gradeX">
+						<td>1234.0</td>
+						<td>1948</td>
+						<td>0020</td>
+					</tr>
+				</tbody>
+			</table>
+			'
+
+			table = null
+			tableOptions = $.extend {}, tableDef
 			if that.onSubSection?
-				table.$('td').on( "click",
-					name : "benny",
-					(a)->
-						console.log a
-						that.onSubSection()
-						#table.fnFilter this.innerHTML
-						return)
-			return
+				$.extend tableOptions, fnCreatedRow : ( nRow, aData, iDataIndex ) ->
+					$(nRow).click (event)->
+						that.onSubSection(aData[2])
+						return
+				table = $('table', @container).dataTable tableOptions
+			else
+				table = $('table', @container).dataTable tableOptions
+
+			table.fnClearTable false
+			table.fnAddData data
 
 		@container.html '
 		<table cellpadding="0" cellspacing="0" border="0" class="display">
@@ -26,12 +46,14 @@ $.extend
 				<tr>
 					<th>תקציב</th>
 					<th>שנה</th>
+					<th>מזהה</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="odd gradeX">
 					<td>1234.0</td>
 					<td>1948</td>
+					<td>0020</td>
 				</tr>
 			</tbody>
 		</table>
@@ -42,6 +64,14 @@ $.extend
 
 
 tableDef = {}
+tableDef.bDestroy = true
+
+# make the virtual_id column invisible
+tableDef.aoColumns = [
+	null,
+	null,
+	"bVisible": false]
+
 #    tableDef.aoColumns = [
 #      .
 #      .

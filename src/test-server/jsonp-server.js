@@ -15,7 +15,7 @@ var server = http.createServer(function(req, res) {
 	} catch (err) {
 		dumpError(err);
 		res.writeHead(500);
-//		res.end(callback + "(" + JSON.stringify(data.data) + ")");
+	    res.end('Internal Server Error');
 	}
 
 });
