@@ -1,10 +1,10 @@
 class $.Model
 	_instance = undefined # Must be declared here to force the closure on the class
 	@get: (args) -> # Must be a static method
-		_instance ?= new _Singleton args
+		_instance ?= new _Singleton_Model args
 
 # The actual Singleton class
-class _Singleton
+class _Singleton_Model
 	constructor: (@args) ->
 		that = this
 		###
@@ -29,8 +29,7 @@ class _Singleton
 			console.log budget
 			that.cache[budget.virtual_id] = budget
 			that.notifyItemLoaded budget
-#			slug = data._src.substring (data._src.lastIndexOf '/') + 1
-#			localStorage.setItem "ob_data" + slug, JSON.stringify data
+			localStorage.setItem "ob_" + budget.virtual_id, JSON.stringify budget
 
 			return
 
@@ -47,10 +46,10 @@ class _Singleton
 		if @loading
 			return
 		else
-#			data = JSON.parse localStorage.getItem "ob_data" + slug
-#			if data?
-#				@loadResponse data
-#			else
+			data = JSON.parse localStorage.getItem "ob_data" + slug
+			if data?
+				@loadResponse data
+			else
 
 #			H.getRecord("/data/hasadna/budget-ninja/" + slug, @loadResponse)
 			H.getRecord(slug, @loadResponse)

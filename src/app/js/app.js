@@ -1,5 +1,5 @@
 (function() {
-  var tableDef, _Singleton,
+  var tableDef, _Singleton_Model,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
@@ -8,11 +8,11 @@
   $.extend({
     OB: {
       initControllers: function() {
-        $.Visualization.addController($.TableController, $("#vis-contents"), $("#vis-buttons"));
-        $.Visualization.addController($.ChartController, $("#vis-contents"), $("#vis-buttons"));
+        $.Visualization.addController($.TableController, $("#vis-contents"));
+        $.Visualization.addController($.ChartController, $("#vis-contents"));
       },
       main: function() {
-        $.Visualization.initControllers($("#vis-contents"), $("#vis-buttons"));
+        $.Visualization.initControllers($("#vis-buttons"));
         $.Visualization.showController($.Visualization.controllers()[0]);
       },
       /*
@@ -153,6 +153,16 @@
 
   })($.Controller);
 
+  $.NavigationController = (function() {
+
+    function NavigationController() {
+      this;      return;
+    }
+
+    return NavigationController;
+
+  })();
+
   $.TableController = (function(_super) {
 
     __extends(TableController, _super);
@@ -168,10 +178,8 @@
         return new $.TableView(div);
       };
       this.onSubSection = function(subsection) {
-        var model;
         console.log("SubSection called " + subsection);
-        model = $.Model.get();
-        model.getData("/data/" + subsection);
+        location.hash = subsection;
       };
       TableController.__super__.constructor.call(this, $viz);
       return;
@@ -215,15 +223,34 @@
         if (!_this._controllers) _this._controllers = [];
         return _this._controllers;
       },
-      addController: function(cont, $vizContents, $visButtons) {
+      addController: function(cont, $vizContents) {
         var controllers;
         controllers = $.Visualization.controllers();
         controllers.push(new cont($vizContents));
       },
-      initControllers: function($vizContents, $visButtons) {
-        var cont, model, _fn, _i, _len, _ref;
+      initControllers: function($visButtons) {
+        var cont, mlist, model, _fn, _i, _len, _ref;
         model = $.Model.get();
-        model.getData("/data/00");
+        mlist = $.ModelListener({
+          loadItem: function(data) {
+            console.log("** Visualization controller received data ");
+            console.log(data);
+            ($("#navigator #ancestors")).html(Mustache.to_html(($("#_navigator_ancestors")).html(), data));
+            ($("#navigator #current_section")).html(Mustache.to_html(($("#_navigator_current_section")).html(), data));
+          }
+        });
+        model.addListener(mlist);
+        $(window).bind('hashchange', function(e) {
+          var hash;
+          hash = $.param.fragment();
+          console.log("**hash changed to " + hash);
+          model.getData("/data/" + hash);
+        });
+        if (location.hash.length === 0) {
+          location.hash = "00";
+        } else {
+          $(window).trigger('hashchange');
+        }
         _ref = $.Visualization.controllers();
         _fn = function(cont) {
           /*
@@ -281,16 +308,16 @@
     _instance = void 0;
 
     Model.get = function(args) {
-      return _instance != null ? _instance : _instance = new _Singleton(args);
+      return _instance != null ? _instance : _instance = new _Singleton_Model(args);
     };
 
     return Model;
 
   })();
 
-  _Singleton = (function() {
+  _Singleton_Model = (function() {
 
-    function _Singleton(args) {
+    function _Singleton_Model(args) {
       var that;
       this.args = args;
       this.addListener = __bind(this.addListener, this);
@@ -316,6 +343,7 @@
         console.log(budget);
         that.cache[budget.virtual_id] = budget;
         that.notifyItemLoaded(budget);
+        localStorage.setItem("ob_" + budget.virtual_id, JSON.stringify(budget));
       };
       /*
       		tell everyone the item we've loaded
@@ -327,10 +355,17 @@
       };
     }
 
-    _Singleton.prototype.getData = function(slug) {
+    _Singleton_Model.prototype.getData = function(slug) {
+      var data;
       if (this.loading) {
         return;
       } else {
+        data = JSON.parse(localStorage.getItem("ob_data" + slug));
+        if (data != null) {
+          this.loadResponse(data);
+        } else {
+
+        }
         H.getRecord(slug, this.loadResponse);
         this.loading = true;
       }
@@ -340,11 +375,11 @@
     	add a listener to this model
     */
 
-    _Singleton.prototype.addListener = function(list) {
+    _Singleton_Model.prototype.addListener = function(list) {
       this.listeners.push(list);
     };
 
-    return _Singleton;
+    return _Singleton_Model;
 
   })();
 

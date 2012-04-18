@@ -7,7 +7,9 @@
 		@import "css/index.css";
 	</style>
 	<script type="text/javascript" src="lib/jquery/jquery-1.7.1.js"></script>
+	<script type="text/javascript" src="lib/jquery/jquery.ba-bbq.js"></script>
 	<script type="text/javascript" src="lib/highcharts/highcharts.js"></script>
+	<script type="text/javascript" src="lib/mustache.js"></script>
 
 	<script type="text/javascript" src="lib/DataTables-1.9.0/jquery.dataTables.js"></script>
 
@@ -24,7 +26,18 @@
 		$($.OB.main);
 	</script>
 	<h1>התקציב הפתוח</h1>
-	<div id="navigator"></div>
+	<script id="_navigator_ancestors" type="text/html">
+		{{#ancestry}}
+		<a href="#{{virtual_id}}">{{title}}</a> >
+		{{/ancestry}}
+	</script>
+	<script id="_navigator_current_section" type="text/html">
+		<a href="#{{virtual_id}}">{{title}}</a>
+	</script>
+	<div id="navigator">
+		<span id="ancestors"></span>
+		<span id="current_section"></span>
+	</div>
 	<div id="visualizations">
 		<div id="multiYear">
 			<form id="multiYearForm" action="">

@@ -4,6 +4,12 @@ exports.data =
     "description": "תקציב משרד החינוך",
     "author": "התקציב הפתוח",
     "virtual_id": "0020",
+	"ancestry" : [
+		{
+			virtual_id : "00",
+			title : "המדינה"
+		}
+	],
     "data": [{
         "year": 2007,
         "items": [{

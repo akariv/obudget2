@@ -7,8 +7,7 @@ class $.TableController extends $.Controller
 				new $.TableView div
 		@onSubSection = (subsection) ->
 			console.log "SubSection called " + subsection
-			model = $.Model.get()
-			model.getData "/data/" + subsection
+			location.hash = subsection
 
 			return
 

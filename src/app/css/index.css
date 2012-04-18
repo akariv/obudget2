@@ -15,7 +15,6 @@ body {
 #vis-contents  div.viz{
 	width:70%;
 	height:80%;
-	top:50px;
 	opacity:0;
 	z-index: -10;
 	position:absolute;
