@@ -9,6 +9,9 @@ $.extend
 		main : ->
 			$.Visualization.initControllers $("#vis-buttons")
 			$.Visualization.showController $.Visualization.controllers()[0]
+
+			search = new $.Search ($ "#searchbox input"), ($ "#searchresults")
+			search.init()
 			return
 
 		###

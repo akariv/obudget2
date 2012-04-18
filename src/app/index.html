@@ -38,6 +38,16 @@
 		<span id="ancestors"></span>
 		<span id="current_section"></span>
 	</div>
+	<div id="searchbox">
+		חיפוש<input type="text"></input>
+	</div>
+	<script id="_searchresults" type="text/html">
+		{{#searchresults}}
+		{{title}}<br>
+		{{/searchresults}}
+	</script>
+	<div id="searchresults"></div>
+	<hr>
 	<div id="visualizations">
 		<div id="multiYear">
 			<form id="multiYearForm" action="">

@@ -12,8 +12,11 @@
         $.Visualization.addController($.ChartController, $("#vis-contents"));
       },
       main: function() {
+        var search;
         $.Visualization.initControllers($("#vis-buttons"));
         $.Visualization.showController($.Visualization.controllers()[0]);
+        search = new $.Search($("#searchbox input"), $("#searchresults"));
+        search.init();
       },
       /*
       		For use by the embed html
@@ -163,6 +166,38 @@
 
   })();
 
+  $.Search = (function() {
+
+    function Search($searchbox, $searchresults) {
+      this.$searchbox = $searchbox;
+      this.$searchresults = $searchresults;
+      return;
+    }
+
+    Search.prototype.init = function() {
+      var searchbox, searchresults;
+      searchbox = this.$searchbox;
+      searchresults = this.$searchresults;
+      this.$searchbox.keypress(function(e) {
+        var url;
+        if (e.keyCode === 13) {
+          console.log(searchbox.val());
+          url = "http://budget.msh.gov.il/00?text=" + searchbox.val() + "&full=1&num=20&distinct=1";
+          $.get(url, function(data) {
+            data = {
+              searchresults: data
+            };
+            return searchresults.html(Mustache.to_html(($("#_" + searchresults[0].id)).html(), data));
+          }, "jsonp");
+          e.preventDefault();
+        }
+      });
+    };
+
+    return Search;
+
+  })();
+
   $.TableController = (function(_super) {
 
     __extends(TableController, _super);
@@ -234,7 +269,6 @@
         mlist = $.ModelListener({
           loadItem: function(data) {
             console.log("** Visualization controller received data ");
-            console.log(data);
             ($("#navigator #ancestors")).html(Mustache.to_html(($("#_navigator_ancestors")).html(), data));
             ($("#navigator #current_section")).html(Mustache.to_html(($("#_navigator_current_section")).html(), data));
           }

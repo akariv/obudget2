@@ -20,11 +20,9 @@ $.extend
 				loadItem : (data)->
 					console.log "** Visualization controller received data "
 					# set navigation title
-					console.log data
 					($ "#navigator #ancestors").html Mustache.to_html ($ "#_navigator_ancestors").html(), data
 					($ "#navigator #current_section").html Mustache.to_html ($ "#_navigator_current_section").html(), data
 					#($ "#navigator").html "<a href='#" + data.ancestry[0].virtual_id + "'>" + data.ancestry[0].title + "</a>"
-
 					return
 
 			model.addListener mlist
