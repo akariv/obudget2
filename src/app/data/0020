@@ -1,0 +1,1063 @@
+exports.data =
+{
+    "title": "משרד החינוך",
+    "description": "תקציב משרד החינוך",
+    "author": "התקציב הפתוח",
+    "virtual_id": "0020",
+	"ancestry" : [
+		{
+			virtual_id : "00",
+			title : "המדינה"
+		}
+	],
+    "data": [{
+        "year": 2007,
+        "items": [{
+            "virtual_id": "002026",
+            "budget_id": "002026",
+            "title": "חינוך יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 8159789,
+                "net_revised": 8159789,
+                "net_used": 8919847,
+                "gross_revised": 8388406,
+                "gross_used": 9100876
+            }
+        }, {
+            "virtual_id": "002021",
+            "budget_id": "002021",
+            "title": "יחידות מטה",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1160377,
+                "net_revised": 1160377,
+                "net_used": 197771,
+                "gross_revised": 1179208,
+                "gross_used": 214002
+            }
+        }, {
+            "virtual_id": "002031",
+            "budget_id": "002031",
+            "title": "תרבות",
+            "weight": 1,
+            "values": {
+                "net_allocated": 58271,
+                "net_revised": 58271,
+                "net_used": 85696,
+                "gross_revised": 58294,
+                "gross_used": 85701
+            }
+        }, {
+            "virtual_id": "002099",
+            "budget_id": "002099",
+            "title": "חשבון מעבר",
+            "weight": 1,
+            "values": {
+                "net_used": 1,
+                "gross_revised": 0
+            }
+        }, {
+            "virtual_id": "002025",
+            "budget_id": "002025",
+            "title": "חינוך קדם יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2381579,
+                "net_revised": 2381579,
+                "net_used": 2382685,
+                "gross_revised": 3008413,
+                "gross_used": 3047812
+            }
+        }, {
+            "virtual_id": "002038",
+            "budget_id": "002038",
+            "title": "העברות למוסדות תורניים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 427006,
+                "net_revised": 427006,
+                "net_used": 806232,
+                "gross_revised": 428506,
+                "gross_used": 808029
+            }
+        }, {
+            "virtual_id": "002032",
+            "budget_id": "002032",
+            "title": "רשות הספורט",
+            "weight": 1,
+            "values": {
+                "net_allocated": 3160,
+                "net_revised": 3160,
+                "net_used": 2378,
+                "gross_revised": 3160,
+                "gross_used": 2378
+            }
+        }, {
+            "virtual_id": "002023",
+            "budget_id": "002023",
+            "title": "מינהל מורים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1600526,
+                "net_revised": 1600526,
+                "net_used": 1876321,
+                "gross_revised": 1601933,
+                "gross_used": 1876342
+            }
+        }, {
+            "virtual_id": "002024",
+            "budget_id": "002024",
+            "title": "מינהל פדגוגי-כללי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1001181,
+                "net_revised": 1001181,
+                "net_used": 1107809,
+                "gross_revised": 1033741,
+                "gross_used": 1118658
+            }
+        }, {
+            "virtual_id": "002029",
+            "budget_id": "002029",
+            "title": "חינוך עצמאי ומוכר",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1237243,
+                "net_revised": 1237243,
+                "net_used": 1469982,
+                "gross_revised": 1239443,
+                "gross_used": 1469021
+            }
+        }, {
+            "virtual_id": "002027",
+            "budget_id": "002027",
+            "title": "חינוך על יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 6710316,
+                "net_revised": 6710316,
+                "net_used": 6942111,
+                "gross_revised": 7075325,
+                "gross_used": 7258050
+            }
+        }, {
+            "virtual_id": "002033",
+            "budget_id": "002033",
+            "title": "טלויזיה חינוכית",
+            "weight": 1,
+            "values": {
+                "net_allocated": 62057,
+                "net_revised": 62057,
+                "net_used": 179864,
+                "gross_revised": 93227,
+                "gross_used": 192640
+            }
+        }, {
+            "virtual_id": "002022",
+            "budget_id": "002022",
+            "title": "אמרכלות ועובדי משרד",
+            "weight": 1,
+            "values": {
+                "net_allocated": 568183,
+                "net_revised": 568183,
+                "net_used": 607528,
+                "gross_revised": 570562,
+                "gross_used": 609207
+            }
+        }, {
+            "virtual_id": "002030",
+            "budget_id": "002030",
+            "title": "הסעות הצטיידות ופיתוח",
+            "weight": 1,
+            "values": {
+                "net_allocated": 608849,
+                "net_revised": 608849,
+                "net_used": 601349,
+                "gross_revised": 611457,
+                "gross_used": 602379
+            }
+        }, {
+            "virtual_id": "002028",
+            "budget_id": "002028",
+            "title": "חינוך התישבותי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1899139,
+                "net_revised": 1899139,
+                "net_used": 1926801,
+                "gross_revised": 2103909,
+                "gross_used": 2076093
+            }
+        }, {
+            "virtual_id": "002037",
+            "budget_id": "002037",
+            "title": "מנהל הספורט",
+            "weight": 1,
+            "values": {
+                "net_revised": 0,
+                "gross_revised": 0,
+                "gross_used": 0
+            }
+        }]
+    }, {
+        "year": 2008,
+        "items": [{
+            "virtual_id": "002033",
+            "budget_id": "002033",
+            "title": "טלויזיה חינוכית",
+            "weight": 1,
+            "values": {
+                "net_allocated": 88365,
+                "net_revised": 88365,
+                "net_used": 96951,
+                "gross_revised": 119535,
+                "gross_used": 109263
+            }
+        }, {
+            "virtual_id": "002022",
+            "budget_id": "002022",
+            "title": "אמרכלות ועובדי משרד",
+            "weight": 1,
+            "values": {
+                "net_allocated": 583764,
+                "net_revised": 583764,
+                "net_used": 612729,
+                "gross_revised": 586143,
+                "gross_used": 614823
+            }
+        }, {
+            "virtual_id": "002028",
+            "budget_id": "002028",
+            "title": "חינוך התישבותי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2050772,
+                "net_revised": 2050772,
+                "net_used": 2048321,
+                "gross_revised": 2211711,
+                "gross_used": 2202263
+            }
+        }, {
+            "virtual_id": "002027",
+            "budget_id": "002027",
+            "title": "חינוך על יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 7177022,
+                "net_revised": 7177022,
+                "net_used": 7438470,
+                "gross_revised": 7500631,
+                "gross_used": 7762389
+            }
+        }, {
+            "virtual_id": "002038",
+            "budget_id": "002038",
+            "title": "העברות למוסדות תורניים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 306039,
+                "net_revised": 306039,
+                "net_used": 843446,
+                "gross_revised": 307539,
+                "gross_used": 844616
+            }
+        }, {
+            "virtual_id": "002032",
+            "budget_id": "002032",
+            "title": "רשות הספורט",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2589,
+                "net_revised": 2589,
+                "net_used": 2194,
+                "gross_revised": 2589,
+                "gross_used": 2194
+            }
+        }, {
+            "virtual_id": "002023",
+            "budget_id": "002023",
+            "title": "מינהל מורים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1706550,
+                "net_revised": 1706550,
+                "net_used": 1959379,
+                "gross_revised": 1707957,
+                "gross_used": 1959396
+            }
+        }, {
+            "virtual_id": "002029",
+            "budget_id": "002029",
+            "title": "חינוך עצמאי ומוכר",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1383641,
+                "net_revised": 1383641,
+                "net_used": 1512526,
+                "gross_revised": 1385841,
+                "gross_used": 1513259
+            }
+        }, {
+            "virtual_id": "002031",
+            "budget_id": "002031",
+            "title": "תרבות",
+            "weight": 1,
+            "values": {
+                "net_allocated": 46991,
+                "net_revised": 46991,
+                "net_used": 90434,
+                "gross_revised": 47014,
+                "gross_used": 90437
+            }
+        }, {
+            "virtual_id": "002024",
+            "budget_id": "002024",
+            "title": "מינהל פדגוגי-כללי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 917073,
+                "net_revised": 917073,
+                "net_used": 1016956,
+                "gross_revised": 949678,
+                "gross_used": 1022574
+            }
+        }, {
+            "virtual_id": "002030",
+            "budget_id": "002030",
+            "title": "הסעות הצטיידות ופיתוח",
+            "weight": 1,
+            "values": {
+                "net_allocated": 594334,
+                "net_revised": 594334,
+                "net_used": 578153,
+                "gross_revised": 596942,
+                "gross_used": 580932
+            }
+        }, {
+            "virtual_id": "002025",
+            "budget_id": "002025",
+            "title": "חינוך קדם יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2445665,
+                "net_revised": 2445665,
+                "net_used": 2678802,
+                "gross_revised": 3145722,
+                "gross_used": 3378810
+            }
+        }, {
+            "virtual_id": "002099",
+            "budget_id": "002099",
+            "title": "חשבון מעבר",
+            "weight": 1,
+            "values": {
+                "net_used": -4528,
+                "gross_revised": -4528
+            }
+        }, {
+            "virtual_id": "002037",
+            "budget_id": "002037",
+            "title": "מנהל הספורט",
+            "weight": 1,
+            "values": {
+                "net_revised": 0,
+                "gross_revised": 0,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002026",
+            "budget_id": "002026",
+            "title": "חינוך יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 9282012,
+                "net_revised": 9282012,
+                "net_used": 9531767,
+                "gross_revised": 9510602,
+                "gross_used": 9763099
+            }
+        }, {
+            "virtual_id": "002021",
+            "budget_id": "002021",
+            "title": "יחידות מטה",
+            "weight": 1,
+            "values": {
+                "net_allocated": 967028,
+                "net_revised": 967028,
+                "net_used": 216030,
+                "gross_revised": 992359,
+                "gross_used": 230927
+            }
+        }]
+    }, {
+        "year": 2009,
+        "items": [{
+            "virtual_id": "002022",
+            "budget_id": "002022",
+            "title": "אמרכלות ועובדי משרד",
+            "weight": 1,
+            "values": {
+                "net_allocated": 582023,
+                "net_revised": 582023,
+                "net_used": 670461,
+                "gross_revised": 585152,
+                "gross_used": 672126
+            }
+        }, {
+            "virtual_id": "002021",
+            "budget_id": "002021",
+            "title": "יחידות מטה",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1279844,
+                "net_revised": 1279844,
+                "net_used": 214794,
+                "gross_revised": 1305675,
+                "gross_used": 227768
+            }
+        }, {
+            "virtual_id": "0020999999",
+            "budget_id": "0020999999",
+            "title": "חשבון מעבר",
+            "weight": 1,
+            "values": {
+                "gross_revised": 0,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "00209999",
+            "budget_id": "00209999",
+            "weight": 1,
+            "values": {
+                "gross_revised": 0,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002030",
+            "budget_id": "002030",
+            "title": "הסעות הצטיידות ופיתוח",
+            "weight": 1,
+            "values": {
+                "net_allocated": 595795,
+                "net_revised": 595795,
+                "net_used": 682864,
+                "gross_revised": 598403,
+                "gross_used": 684882
+            }
+        }, {
+            "virtual_id": "002024",
+            "budget_id": "002024",
+            "title": "מינהל פדגוגי-כללי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 918972,
+                "net_revised": 918972,
+                "net_used": 1043728,
+                "gross_revised": 928237,
+                "gross_used": 1048617
+            }
+        }, {
+            "virtual_id": "002099",
+            "budget_id": "002099",
+            "weight": 1,
+            "values": {
+                "gross_revised": 0,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002027",
+            "budget_id": "002027",
+            "title": "חינוך על יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 7335714,
+                "net_revised": 7335714,
+                "net_used": 7710090,
+                "gross_revised": 7659323,
+                "gross_used": 8017213
+            }
+        }, {
+            "virtual_id": "002029",
+            "budget_id": "002029",
+            "title": "חינוך עצמאי ומוכר",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1446045,
+                "net_revised": 1446045,
+                "net_used": 1602379,
+                "gross_revised": 1448245,
+                "gross_used": 1602536
+            }
+        }, {
+            "virtual_id": "002033",
+            "budget_id": "002033",
+            "title": "טלויזיה חינוכית",
+            "weight": 1,
+            "values": {
+                "net_allocated": 82427,
+                "net_revised": 82427,
+                "net_used": 98547,
+                "gross_revised": 112127,
+                "gross_used": 111366
+            }
+        }, {
+            "virtual_id": "002031",
+            "budget_id": "002031",
+            "title": "תרבות",
+            "weight": 1,
+            "values": {
+                "net_allocated": 39877,
+                "net_revised": 39877,
+                "net_used": 54386,
+                "gross_revised": 39880,
+                "gross_used": 54387
+            }
+        }, {
+            "virtual_id": "002025",
+            "budget_id": "002025",
+            "title": "חינוך קדם יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2581261,
+                "net_revised": 2581261,
+                "net_used": 2914906,
+                "gross_revised": 3326879,
+                "gross_used": 3629120
+            }
+        }, {
+            "virtual_id": "002023",
+            "budget_id": "002023",
+            "title": "מינהל מורים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1730098,
+                "net_revised": 1730098,
+                "net_used": 2057247,
+                "gross_revised": 1731460,
+                "gross_used": 2057266
+            }
+        }, {
+            "virtual_id": "002032",
+            "budget_id": "002032",
+            "title": "רשות הספורט",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2059,
+                "net_revised": 2059,
+                "net_used": 1965,
+                "gross_revised": 2059,
+                "gross_used": 1965
+            }
+        }, {
+            "virtual_id": "002038",
+            "budget_id": "002038",
+            "title": "העברות למוסדות תורניים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 866459,
+                "net_revised": 866459,
+                "net_used": 1108366,
+                "gross_revised": 867959,
+                "gross_used": 1109721
+            }
+        }, {
+            "virtual_id": "002026",
+            "budget_id": "002026",
+            "title": "חינוך יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 10742313,
+                "net_revised": 10742313,
+                "net_used": 9803348,
+                "gross_revised": 11001293,
+                "gross_used": 10008841
+            }
+        }, {
+            "virtual_id": "002028",
+            "budget_id": "002028",
+            "title": "חינוך התישבותי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2109110,
+                "net_revised": 2109110,
+                "net_used": 2077652,
+                "gross_revised": 2255857,
+                "gross_used": 2227424
+            }
+        }]
+    }, {
+        "year": 2010,
+        "items": [{
+            "virtual_id": "002028",
+            "budget_id": "002028",
+            "title": "חינוך התישבותי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2178958,
+                "net_revised": 2178958,
+                "gross_revised": 2326705,
+                "gross_used": 2344250
+            }
+        }, {
+            "virtual_id": "002025",
+            "budget_id": "002025",
+            "title": "חינוך קדם יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2641764,
+                "net_revised": 2641764,
+                "gross_revised": 3399888,
+                "gross_used": 3406623
+            }
+        }, {
+            "virtual_id": "002022",
+            "budget_id": "002022",
+            "title": "אמרכלות ועובדי משרד",
+            "weight": 1,
+            "values": {
+                "net_allocated": 595412,
+                "net_revised": 595412,
+                "gross_revised": 598541,
+                "gross_used": 717509
+            }
+        }, {
+            "virtual_id": "002032",
+            "budget_id": "002032",
+            "title": "רשות הספורט",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1910,
+                "net_revised": 1910,
+                "gross_revised": 1910,
+                "gross_used": 1731
+            }
+        }, {
+            "virtual_id": "002030",
+            "budget_id": "002030",
+            "title": "הסעות הצטיידות ופיתוח",
+            "weight": 1,
+            "values": {
+                "net_allocated": 940451,
+                "net_revised": 940451,
+                "gross_revised": 943059,
+                "gross_used": 1225202
+            }
+        }, {
+            "virtual_id": "002038",
+            "budget_id": "002038",
+            "title": "העברות למוסדות תורניים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 854010,
+                "net_revised": 854010,
+                "gross_revised": 855510,
+                "gross_used": 1159517
+            }
+        }, {
+            "virtual_id": "002029",
+            "budget_id": "002029",
+            "title": "חינוך עצמאי ומוכר",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1551859,
+                "net_revised": 1551859,
+                "gross_revised": 1554059,
+                "gross_used": 1856208
+            }
+        }, {
+            "virtual_id": "002027",
+            "budget_id": "002027",
+            "title": "חינוך על יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 8269132,
+                "net_revised": 8269132,
+                "gross_revised": 8592741,
+                "gross_used": 8410275
+            }
+        }, {
+            "virtual_id": "002023",
+            "budget_id": "002023",
+            "title": "מינהל מורים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1781251,
+                "net_revised": 1781251,
+                "gross_revised": 1782613,
+                "gross_used": 2005780
+            }
+        }, {
+            "virtual_id": "002026",
+            "budget_id": "002026",
+            "title": "חינוך יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 11175484,
+                "net_revised": 11175484,
+                "gross_revised": 11434464,
+                "gross_used": 11894020
+            }
+        }, {
+            "virtual_id": "002031",
+            "budget_id": "002031",
+            "title": "תרבות",
+            "weight": 1,
+            "values": {
+                "net_allocated": 36713,
+                "net_revised": 36713,
+                "gross_revised": 36716,
+                "gross_used": 93365
+            }
+        }, {
+            "virtual_id": "002099",
+            "budget_id": "002099",
+            "title": "חשבון מעבר",
+            "weight": 1,
+            "values": {
+                "net_allocated": 0
+            }
+        }, {
+            "virtual_id": "002024",
+            "budget_id": "002024",
+            "title": "מינהל פדגוגי-כללי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 918102,
+                "net_revised": 918102,
+                "gross_revised": 927367,
+                "gross_used": 1188275
+            }
+        }, {
+            "virtual_id": "002021",
+            "budget_id": "002021",
+            "title": "יחידות מטה",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1392125,
+                "net_revised": 1392125,
+                "gross_revised": 1417956,
+                "gross_used": 279064
+            }
+        }, {
+            "virtual_id": "002033",
+            "budget_id": "002033",
+            "title": "טלויזיה חינוכית",
+            "weight": 1,
+            "values": {
+                "net_allocated": 81753,
+                "net_revised": 81753,
+                "gross_revised": 111453,
+                "gross_used": 108274
+            }
+        }]
+    }, {
+        "year": 2011,
+        "items": [{
+            "virtual_id": "002021",
+            "budget_id": "002021",
+            "title": "יחידות מטה",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1258833,
+                "net_revised": 1258833,
+                "gross_revised": 1283329,
+                "gross_used": 138607
+            }
+        }, {
+            "virtual_id": "002024",
+            "budget_id": "002024",
+            "title": "מינהל פדגוגי-כללי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1194465,
+                "net_revised": 1194465,
+                "gross_revised": 1207405,
+                "gross_used": 631111
+            }
+        }, {
+            "virtual_id": "002030",
+            "budget_id": "002030",
+            "title": "הסעות הצטיידות ופיתוח",
+            "weight": 1,
+            "values": {
+                "net_allocated": 958375,
+                "net_revised": 958375,
+                "gross_revised": 962876,
+                "gross_used": 621574
+            }
+        }, {
+            "virtual_id": "002026",
+            "budget_id": "002026",
+            "title": "חינוך יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 12135309,
+                "net_revised": 12135309,
+                "gross_revised": 12401189,
+                "gross_used": 7518277
+            }
+        }, {
+            "virtual_id": "002023",
+            "budget_id": "002023",
+            "title": "מינהל מורים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1863749,
+                "net_revised": 1863749,
+                "gross_revised": 1863809,
+                "gross_used": 952347
+            }
+        }, {
+            "virtual_id": "002099",
+            "budget_id": "002099",
+            "title": "חשבון מעבר",
+            "weight": 1,
+            "values": {
+                "net_allocated": 0
+            }
+        }, {
+            "virtual_id": "002029",
+            "budget_id": "002029",
+            "title": "חינוך עצמאי ומוכר",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1733606,
+                "net_revised": 1733606,
+                "gross_revised": 1735806,
+                "gross_used": 1079453
+            }
+        }, {
+            "virtual_id": "002038",
+            "budget_id": "002038",
+            "title": "העברות למוסדות תורניים",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1074758,
+                "net_revised": 1074758,
+                "gross_revised": 1076258,
+                "gross_used": 630024
+            }
+        }, {
+            "virtual_id": "002033",
+            "budget_id": "002033",
+            "title": "טלויזיה חינוכית",
+            "weight": 1,
+            "values": {
+                "net_allocated": 81998,
+                "net_revised": 81998,
+                "gross_revised": 111698,
+                "gross_used": 71633
+            }
+        }, {
+            "virtual_id": "002032",
+            "budget_id": "002032",
+            "title": "רשות הספורט",
+            "weight": 1,
+            "values": {
+                "net_allocated": 1847,
+                "net_revised": 1847,
+                "gross_revised": 1847,
+                "gross_used": 131
+            }
+        }, {
+            "virtual_id": "002022",
+            "budget_id": "002022",
+            "title": "אמרכלות ועובדי משרד",
+            "weight": 1,
+            "values": {
+                "net_allocated": 647881,
+                "net_revised": 647881,
+                "gross_revised": 649686,
+                "gross_used": 368637
+            }
+        }, {
+            "virtual_id": "002025",
+            "budget_id": "002025",
+            "title": "חינוך קדם יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2791987,
+                "net_revised": 2791987,
+                "gross_revised": 3572217,
+                "gross_used": 2366900
+            }
+        }, {
+            "virtual_id": "002028",
+            "budget_id": "002028",
+            "title": "חינוך התישבותי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 2335316,
+                "net_revised": 2335316,
+                "gross_revised": 2482263,
+                "gross_used": 1460282
+            }
+        }, {
+            "virtual_id": "002031",
+            "budget_id": "002031",
+            "title": "תרבות",
+            "weight": 1,
+            "values": {
+                "net_allocated": 35220,
+                "net_revised": 35220,
+                "gross_revised": 35223,
+                "gross_used": 24183
+            }
+        }, {
+            "virtual_id": "002027",
+            "budget_id": "002027",
+            "title": "חינוך על יסודי",
+            "weight": 1,
+            "values": {
+                "net_allocated": 8787991,
+                "net_revised": 8787991,
+                "gross_revised": 9113115,
+                "gross_used": 5751417
+            }
+        }]
+    }, {
+        "year": 2012,
+        "items": [{
+            "virtual_id": "002026",
+            "budget_id": "002026",
+            "title": "חינוך יסודי",
+            "weight": 1,
+            "values": {
+                "net_revised": 13011473,
+                "gross_revised": 13277353,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002038",
+            "budget_id": "002038",
+            "title": "העברות למוסדות תורניים",
+            "weight": 1,
+            "values": {
+                "net_revised": 1042186,
+                "gross_revised": 1043686,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002023",
+            "budget_id": "002023",
+            "title": "מינהל מורים",
+            "weight": 1,
+            "values": {
+                "net_revised": 1859318,
+                "gross_revised": 1859378,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002031",
+            "budget_id": "002031",
+            "title": "תרבות",
+            "weight": 1,
+            "values": {
+                "net_revised": 34212,
+                "gross_revised": 34215,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002027",
+            "budget_id": "002027",
+            "title": "חינוך על יסודי",
+            "weight": 1,
+            "values": {
+                "net_revised": 8845372,
+                "gross_revised": 9170496,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002030",
+            "budget_id": "002030",
+            "title": "הסעות הצטיידות ופיתוח",
+            "weight": 1,
+            "values": {
+                "net_revised": 947848,
+                "gross_revised": 952349,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002032",
+            "budget_id": "002032",
+            "title": "רשות הספורט",
+            "weight": 1,
+            "values": {
+                "net_revised": 1800,
+                "gross_revised": 1800,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002029",
+            "budget_id": "002029",
+            "title": "חינוך עצמאי ומוכר",
+            "weight": 1,
+            "values": {
+                "net_revised": 1734377,
+                "gross_revised": 1736577,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002033",
+            "budget_id": "002033",
+            "title": "טלויזיה חינוכית",
+            "weight": 1,
+            "values": {
+                "net_revised": 80941,
+                "gross_revised": 110641,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002021",
+            "budget_id": "002021",
+            "title": "יחידות מטה",
+            "weight": 1,
+            "values": {
+                "net_revised": 1723080,
+                "gross_revised": 1747576,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002024",
+            "budget_id": "002024",
+            "title": "מינהל פדגוגי-כללי",
+            "weight": 1,
+            "values": {
+                "net_revised": 1189288,
+                "gross_revised": 1202228,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002022",
+            "budget_id": "002022",
+            "title": "אמרכלות ועובדי משרד",
+            "weight": 1,
+            "values": {
+                "net_revised": 645467,
+                "gross_revised": 647337,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002025",
+            "budget_id": "002025",
+            "title": "חינוך קדם יסודי",
+            "weight": 1,
+            "values": {
+                "net_revised": 2800833,
+                "gross_revised": 3580688,
+                "gross_used": 0
+            }
+        }, {
+            "virtual_id": "002028",
+            "budget_id": "002028",
+            "title": "חינוך התישבותי",
+            "weight": 1,
+            "values": {
+                "net_revised": 2362244,
+                "gross_revised": 2509191,
+                "gross_used": 0
+            }
+        }]
+    }]
+}

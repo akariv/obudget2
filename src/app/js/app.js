@@ -278,7 +278,7 @@
           var hash;
           hash = $.param.fragment();
           console.log("**hash changed to " + hash);
-          model.getData("/data/" + hash);
+          model.getData(hash);
         });
         if (location.hash.length === 0) {
           location.hash = "00";
@@ -379,6 +379,19 @@
         that.notifyItemLoaded(budget);
         localStorage.setItem("ob_" + budget.virtual_id, JSON.stringify(budget));
       };
+      this.loadLocally = function(slug, callback) {
+        var h, s;
+        h = ($('head'))[0];
+        s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = "." + slug;
+        s.addEventListener('load', function(e) {
+          console.log("** loaded locally");
+          callback(window.exports.data);
+        }, false);
+        window.exports = {};
+        h.appendChild(s);
+      };
       /*
       		tell everyone the item we've loaded
       */
@@ -390,17 +403,24 @@
     }
 
     _Singleton_Model.prototype.getData = function(slug) {
-      var data;
+      var data, loadLocally, loadResponse;
       if (this.loading) {
         return;
       } else {
-        data = JSON.parse(localStorage.getItem("ob_data" + slug));
+        data = JSON.parse(localStorage.getItem("ob_" + slug));
         if (data != null) {
           this.loadResponse(data);
-        } else {
-
+          return;
         }
-        H.getRecord(slug, this.loadResponse);
+        loadResponse = this.loadResponse;
+        loadLocally = this.loadLocally;
+        H.getRecord("/data/" + slug, function(data) {
+          if (data != null) {
+            loadResponse(data);
+          } else {
+            loadLocally("/data/" + slug, loadResponse);
+          }
+        });
         this.loading = true;
       }
     };

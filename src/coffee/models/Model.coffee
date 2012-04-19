@@ -33,6 +33,20 @@ class _Singleton_Model
 
 			return
 
+		@loadLocally = (slug, callback) ->
+			h=($ 'head')[0]
+			s = document.createElement 'script'
+			s.type = 'text/javascript'
+			s.src =  "." + slug
+			s.addEventListener 'load', (e) ->
+				callback window.exports.data
+				return
+			, false
+			window.exports = {}
+			h.appendChild s
+			return
+
+
 		###
 		tell everyone the item we've loaded
 		###
@@ -46,13 +60,22 @@ class _Singleton_Model
 		if @loading
 			return
 		else
-			data = JSON.parse localStorage.getItem "ob_data" + slug
+			data = JSON.parse localStorage.getItem "ob_" + slug
+
 			if data?
 				@loadResponse data
-			else
+				return
 
-#			H.getRecord("/data/hasadna/budget-ninja/" + slug, @loadResponse)
-			H.getRecord(slug, @loadResponse)
+			loadResponse = @loadResponse
+			loadLocally = @loadLocally
+			# Catch ajax errors when invoking
+			H.getRecord "/data/" + slug, (data)->
+				if data?
+					loadResponse data
+				else
+					loadLocally "/data/" + slug, loadResponse
+				return
+
 			@loading = true
 		return
 

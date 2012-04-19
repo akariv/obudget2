@@ -19,6 +19,8 @@ Open in a browser:
 
     src/app/index.html
 
+**Note** - Currently you can only view budget items "00" (“המדינה") and "0020" ("משרד החינוך")
+
 Build
 ===
 Make sure you have [CoffeeScript](http://coffeescript.org/) installed. If you are using **Windows**, install using [these](http://www.colourcoding.net/blog/archive/2011/09/20/using-coffeescript-on-windows.aspx) instructions
@@ -27,8 +29,6 @@ Run the make file
 (On windows Install [make for windows](http://www.equation.com/servlet/equation.cmd?fa=make))
 
     make
-
-
 
 Develop
 ===
@@ -67,4 +67,3 @@ When you have finished making your changes, you'll need to push up your changes 
 This pushes everything in that branch up. Then you can go back over to the main github page and issue a pull request from there.  Tell us what you want us to merge and what it does/fixes, and one of us will pick it up.
 
 That lets us know that there's something new from you that needs to be pulled in. We'll review it and get back to you about it if we have any questions. Otherwise, we'll integrate it and let you know when it's in!
-

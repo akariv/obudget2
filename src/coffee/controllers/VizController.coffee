@@ -18,7 +18,6 @@ $.extend
 			# set up the model listener
 			mlist = $.ModelListener
 				loadItem : (data)->
-					console.log "** Visualization controller received data "
 					# set navigation title
 					($ "#navigator #ancestors").html Mustache.to_html ($ "#_navigator_ancestors").html(), data
 					($ "#navigator #current_section").html Mustache.to_html ($ "#_navigator_current_section").html(), data
@@ -31,7 +30,7 @@ $.extend
 			$(window).bind 'hashchange', (e) ->
 				hash = $.param.fragment()
 				console.log "**hash changed to " + hash
-				model.getData "/data/" + hash
+				model.getData hash
 				return
 
 			# initialize budget visualization

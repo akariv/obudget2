@@ -24,11 +24,23 @@ var H = (function () {
 
     function DBServerGetJson(path,params,callback) {
     	shouldCache(params);
-    	$.get(joinApiServerPath(path),
-      		  params,
-      		  function (data) {
-      			 callback(data);
-      		  },"jsonp");
+    	$.jsonp({
+    		"url": joinApiServerPath(path),
+    		"data": params,
+    		callbackParameter : "callback",
+			"success": function (data) {
+				callback(data);
+			},
+			"error": function (XMLHttpRequest, textStatus, errorThrown){
+				callback(null, XMLHttpRequest, textStatus, errorThrown);
+			}
+    	});
+
+//    	$.get(
+//      		  params,
+//      		  function (data) {
+//      			 callback(data);
+//      		  },"jsonp");
     }
 
     function DBServerGetHtml(path,params,elementId,callback) {
