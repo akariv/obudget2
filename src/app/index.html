@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" xmlns:fb="http://www.facebook.com/2008/fbml">
-<html>
 <head>
+<html>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<style type="text/css" title="currentStyle">
 		@import "lib/DataTables-1.9.0/css/jquery.dataTables.css";
@@ -21,6 +21,15 @@
 
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=410778285612463";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 	<!-- Run some Javascript when then page has loaded-->
 	<script>
 		$($.OB.initControllers);
@@ -64,15 +73,5 @@
 		<div id="embed-widget">
 		</div>
 	</div>
-	<script src=
-		"http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"
-		type="text/javascript">
-
-	</script>
-
-	<fb:comments></fb:comments>
-
-	<script type="text/javascript">
-		FB.init("410778285612463", "http://obudget2server.appspot.com/src/app/xd_receiver.html");
-	</script>
+	<div class="fb-comments" data-href="http://obudget2server.appspot.com/" data-num-posts="2" data-width="470"></div>
 </body>
