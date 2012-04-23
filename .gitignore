@@ -2,3 +2,4 @@
 *.orig
 out/
 /.settings**
+node_modules
