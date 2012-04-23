@@ -1,3 +1,4 @@
+console.log("drydrop post receive hook");
 (function() {
   var tableDef, _Singleton_Model,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
@@ -268,7 +269,6 @@
         model = $.Model.get();
         mlist = $.ModelListener({
           loadItem: function(data) {
-            console.log("** Visualization controller received data ");
             ($("#navigator #ancestors")).html(Mustache.to_html(($("#_navigator_ancestors")).html(), data));
             ($("#navigator #current_section")).html(Mustache.to_html(($("#_navigator_current_section")).html(), data));
           }
@@ -386,7 +386,6 @@
         s.type = 'text/javascript';
         s.src = "." + slug;
         s.addEventListener('load', function(e) {
-          console.log("** loaded locally");
           callback(window.exports.data);
         }, false);
         window.exports = {};
