@@ -1,4 +1,3 @@
-console.log("drydrop post receive hook");
 (function() {
   var tableDef, _Singleton_Model,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
@@ -271,6 +270,8 @@ console.log("drydrop post receive hook");
           loadItem: function(data) {
             ($("#navigator #ancestors")).html(Mustache.to_html(($("#_navigator_ancestors")).html(), data));
             ($("#navigator #current_section")).html(Mustache.to_html(($("#_navigator_current_section")).html(), data));
+            $("#fbCommentsPlaceholder").html('<div class="fb-comments" data-href="http://obudget2.cloudfoundry.com/index.html#' + data.virtual_id + '" data-num-posts="2" data-width="470"></div>');
+            if (typeof FB !== "undefined" && FB !== null) FB.XFBML.parse();
           }
         });
         model.addListener(mlist);

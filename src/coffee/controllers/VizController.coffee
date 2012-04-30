@@ -21,7 +21,12 @@ $.extend
 					# set navigation title
 					($ "#navigator #ancestors").html Mustache.to_html ($ "#_navigator_ancestors").html(), data
 					($ "#navigator #current_section").html Mustache.to_html ($ "#_navigator_current_section").html(), data
-					#($ "#navigator").html "<a href='#" + data.ancestry[0].virtual_id + "'>" + data.ancestry[0].title + "</a>"
+
+					# Set the facebook comments plugin for the current graph
+					$("#fbCommentsPlaceholder").html '<div class="fb-comments" data-href="http://obudget2.cloudfoundry.com/index.html#' + data.virtual_id + '" data-num-posts="2" data-width="470"></div>'
+					if FB?
+						FB.XFBML.parse()
+
 					return
 
 			model.addListener mlist
