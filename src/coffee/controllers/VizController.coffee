@@ -39,6 +39,9 @@ $.extend
 			# Set up the url hash listener
 			$(window).bind 'hashchange', (e) ->
 				hash = $.param.fragment()
+				# Links coming in from Disqus contain the "!" character
+				if hash.substring(0,1) == '!'
+					hash = hash.substring(1)
 				console.log "**hash changed to " + hash
 				model.getData hash
 				return

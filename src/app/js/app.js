@@ -285,6 +285,7 @@
         $(window).bind('hashchange', function(e) {
           var hash;
           hash = $.param.fragment();
+          if (hash.substring(0, 1) === '!') hash = hash.substring(1);
           console.log("**hash changed to " + hash);
           model.getData(hash);
         });
