@@ -81,6 +81,8 @@
             var disqus_shortname = 'obudet2-test'; // required: replace example with your forum shortname
             //var disqus_developer = 1; // developer mode is on
 
+			/* TODO: make sure that a valid hash is created for use with disqus,
+				In case a url with a hash like this: #dfsdfkjd is loaded */
 			var hash = window.location.hash.substring(1);
 			if (hash.substring(0,1) == '!'){
 				hash = hash.substring(1);
