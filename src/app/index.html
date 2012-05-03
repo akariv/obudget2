@@ -85,6 +85,9 @@
 			if (hash.substring(0,1) == '!'){
 				hash = hash.substring(1);
 			}
+			if (hash.length == 0){
+				hash = '00';
+			}
 
             var disqus_url = "http://obudget2.cloudfoundry.com/index.html#!" + hash;
 			console.log("** loading Disqus with url " + disqus_url);
