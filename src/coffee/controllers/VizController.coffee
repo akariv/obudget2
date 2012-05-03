@@ -23,10 +23,15 @@ $.extend
 					($ "#navigator #current_section").html Mustache.to_html ($ "#_navigator_current_section").html(), data
 
 					# Set the facebook comments plugin for the current graph
-					$("#fbCommentsPlaceholder").html '<div class="fb-comments" data-href="http://obudget2.cloudfoundry.com/index.html#' + data.virtual_id + '" data-num-posts="2" data-width="470"></div>'
-					if FB?
-						FB.XFBML.parse()
-
+					#$("#fbCommentsPlaceholder").html '<div class="fb-comments" data-href="http://obudget2.cloudfoundry.com/index.html#' + data.virtual_id + '" data-num-posts="2" data-width="470"></div>'
+					if DISQUS?
+						DISQUS.reset
+							reload: true,
+							config: ()->
+								# refactor magic word 'disqus'
+								window.disqus_identifier = this.page.identifier = "disqus" + data.virtual_id;
+								window.disqus_url = this.page.url = "http://obudget2.cloudfoundry.com/index.html#!" + data.virtual_id;
+								return
 					return
 
 			model.addListener mlist

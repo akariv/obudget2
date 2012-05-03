@@ -270,8 +270,15 @@
           loadItem: function(data) {
             ($("#navigator #ancestors")).html(Mustache.to_html(($("#_navigator_ancestors")).html(), data));
             ($("#navigator #current_section")).html(Mustache.to_html(($("#_navigator_current_section")).html(), data));
-            $("#fbCommentsPlaceholder").html('<div class="fb-comments" data-href="http://obudget2.cloudfoundry.com/index.html#' + data.virtual_id + '" data-num-posts="2" data-width="470"></div>');
-            if (typeof FB !== "undefined" && FB !== null) FB.XFBML.parse();
+            if (typeof DISQUS !== "undefined" && DISQUS !== null) {
+              DISQUS.reset({
+                reload: true,
+                config: function() {
+                  window.disqus_identifier = this.page.identifier = "disqus" + data.virtual_id;
+                  window.disqus_url = this.page.url = "http://obudget2.cloudfoundry.com/index.html#!" + data.virtual_id;
+                }
+              });
+            }
           }
         });
         model.addListener(mlist);
