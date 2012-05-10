@@ -31,7 +31,7 @@ $.extend
 			if that.onSubSection?
 				$.extend tableOptions, fnCreatedRow : ( nRow, aData, iDataIndex ) ->
 					$(nRow).click (event)->
-						that.onSubSection(aData[2])
+						that.onSubSection(aData)
 						return
 				table = $('table', @container).dataTable tableOptions
 			else

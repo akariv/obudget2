@@ -19,8 +19,9 @@ $.extend
 			mlist = $.ModelListener
 				loadItem : (data)->
 					# set navigation title
-					($ "#navigator #ancestors").html Mustache.to_html ($ "#_navigator_ancestors").html(), data
-					($ "#navigator #current_section").html Mustache.to_html ($ "#_navigator_current_section").html(), data
+					$.extend data, {mus_url: $.titleToUrl data.title}
+					($ "#navigator #ancestors").html Mustache.to_html $.mustacheTemplates.navigator_ancestors, data
+					($ "#navigator #current_section").html Mustache.to_html $.mustacheTemplates.navigator_current_section, data
 
 					# Set the facebook comments plugin for the current graph
 					#$("#fbCommentsPlaceholder").html '<div class="fb-comments" data-href="http://obudget2.cloudfoundry.com/index.html#' + data.virtual_id + '" data-num-posts="2" data-width="470"></div>'
@@ -35,23 +36,17 @@ $.extend
 					return
 
 			model.addListener mlist
+			model.getData History.getState().data.vid
 
-			# Set up the url hash listener
-			$(window).bind 'hashchange', (e) ->
-				hash = $.param.fragment()
-				# Links coming in from Disqus contain the "!" character
-				if hash.substring(0,1) == '!'
-					hash = hash.substring(1)
-				console.log "**hash changed to " + hash
-				model.getData hash
+			# Set up the History state change
+			History.Adapter.bind window, 'statechange', ->
+				console.log "state changed!"
+				if not History.getState().data.vid?
+					console.log "** no data vid in state"
+					return
+
+				model.getData History.getState().data.vid
 				return
-
-			# initialize budget visualization
-			if location.hash.length == 0
-				location.hash = "00"
-			else
-				$(window).trigger 'hashchange'
-
 
 			# TODO create a "default slug" and make it accessible to all controllers
 

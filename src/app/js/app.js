@@ -213,8 +213,10 @@
         return new $.TableView(div);
       };
       this.onSubSection = function(subsection) {
-        console.log("SubSection called " + subsection);
-        location.hash = subsection;
+        History.pushState({
+          vid: subsection[2],
+          rand: Math.random()
+        }, subsection[1], $.titleToUrl(subsection[1]));
       };
       TableController.__super__.constructor.call(this, $viz);
       return;
@@ -268,8 +270,15 @@
         model = $.Model.get();
         mlist = $.ModelListener({
           loadItem: function(data) {
-            ($("#navigator #ancestors")).html(Mustache.to_html(($("#_navigator_ancestors")).html(), data));
-            ($("#navigator #current_section")).html(Mustache.to_html(($("#_navigator_current_section")).html(), data));
+            $.extend(data, {
+              mus_url: $.titleToUrl(data.title)
+            });
+            console.log("** loadItem data");
+            console.log(data);
+            console.log($.mustacheTemplates.navigator_ancestors);
+            console.log($.mustacheTemplates.navigator_current_section);
+            ($("#navigator #ancestors")).html(Mustache.to_html($.mustacheTemplates.navigator_ancestors, data));
+            ($("#navigator #current_section")).html(Mustache.to_html($.mustacheTemplates.navigator_current_section, data));
             if (typeof DISQUS !== "undefined" && DISQUS !== null) {
               DISQUS.reset({
                 reload: true,
@@ -282,18 +291,15 @@
           }
         });
         model.addListener(mlist);
-        $(window).bind('hashchange', function(e) {
-          var hash;
-          hash = $.param.fragment();
-          if (hash.substring(0, 1) === '!') hash = hash.substring(1);
-          console.log("**hash changed to " + hash);
-          model.getData(hash);
+        model.getData(History.getState().data.vid);
+        History.Adapter.bind(window, 'statechange', function() {
+          console.log("state changed!");
+          if (!(History.getState().data.vid != null)) {
+            console.log("** no data vid in state");
+            return;
+          }
+          model.getData(History.getState().data.vid);
         });
-        if (location.hash.length === 0) {
-          location.hash = "00";
-        } else {
-          $(window).trigger('hashchange');
-        }
         _ref = $.Visualization.controllers();
         _fn = function(cont) {
           /*
@@ -528,6 +534,19 @@
   };
 
   $.extend({
+    mustacheTemplates: {
+      navigator_ancestors: "{{#ancestry}}<a href='/{{mus_url}}' onclick=\"History.pushState({vid:'{{virtual_id}}', rand:Math.random()}, '{{title}}', $.titleToUrl('{{title}}')); return false;\">{{title}}</a> > {{/ancestry}}",
+      navigator_current_section: '<a href="/{{mus_url}}" onclick="return false">{{title}}</a>'
+    }
+  });
+
+  $.extend({
+    titleToUrl: function(title) {
+      return title.replace(" ", "-");
+    }
+  });
+
+  $.extend({
     LineChartView: function($container) {
       var that;
       that = this;
@@ -647,7 +666,7 @@
           $.extend(tableOptions, {
             fnCreatedRow: function(nRow, aData, iDataIndex) {
               return $(nRow).click(function(event) {
-                that.onSubSection(aData[2]);
+                that.onSubSection(aData);
               });
             }
           });

@@ -2,17 +2,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<meta property="og:title" content="The Rock"/>
-<meta property="og:type" content="Website"/>
-<meta property="og:url" content="http://obudget2.cloudfoundry.com/index.html#00"/>
-<meta property="og:image" content="http://ia.media-imdb.com/rock.jpg"/>
-<meta property="og:site_name" content="ISRAEL SPENDING"/>
-<meta property="og:description"
-      content="A group of U.S. Marines, under command of
-               a renegade general, take over Alcatraz and
-               threaten San Francisco Bay with biological
-               weapons."/>        
-    	<link rel="image_src" href="http://sstatic.net/stackoverflow/img/polyglot-404.png"/>
+		<meta property="og:title" content="{{ogtitle}}"/>
+		<meta property="og:type" content="Website"/>
+		<meta property="og:url" content="{{ogurl}}"/>
+		<meta property="og:image" content="http://obudget2.cloudfoundry.com/images/obudget2.jpg"/>
+		<meta property="og:site_name" content="ISRAEL SPENDING"/>
+		<meta property="og:description"
+		      content="A group of U.S. Marines, under command of
+		               a renegade general, take over Alcatraz and
+		               threaten San Francisco Bay with biological
+		               weapons."/>
 		<title>Israel Spending</title>
         <style type="text/css" title="currentStyle">
             @import "lib/DataTables-1.9.0/css/jquery.dataTables.css";
@@ -37,21 +36,22 @@
         </script>
     </head>
     <body>
-    	<img src="http://s3.amazonaws.com/theoatmeal-img/thumbnails/tyrannosaur_crack.png" style="display:none"/>
+		<script src="http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+		<!-- Injected by the server, to indicate the History "state" of the document -->
+		<script type="text/javascript">
+			$(function(){
+				var title = '{{init_title}}';
+				var url = escape('{{init_url}}');
+				History.replaceState({vid:'{{init_vid}}',rand:Math.random()}, title, url);
+			});
+
+		</script>
         <!-- Run some Javascript when then page has loaded-->
         <script>
             $($.OB.initControllers);
             $($.OB.main);
         </script>
         <h1>התקציב הפתוח</h1>
-        <script id="_navigator_ancestors" type="text/html">
-            {{#ancestry}}<a href="#{{virtual_id}}">{{title}}</a>
-            >
-            {{/ancestry}}
-        </script>
-        <script id="_navigator_current_section" type="text/html">
-            <a href="#{{virtual_id}}">{{title}}</a>
-        </script>
         <div id="navigator">
             <span id="ancestors"></span>
             <span id="current_section"></span>
@@ -84,6 +84,7 @@
             <div id="embed-widget">
             </div>
         </div>
+		<!-- Disqus recent comments -->
 		<div id="recentcomments" class="dsq-widget"><h2 class="dsq-widget-title">תגובות אחרונות</h2><script type="text/javascript" src="http://obudet2-test.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=32&excerpt_length=200"></script></div><a href="http://disqus.com/">Powered by Disqus</a>
 
 
