@@ -8,7 +8,7 @@ class $.TableController extends $.Controller
 		@onSubSection = (subsection) ->
 			console.log History.getState()
 			state = History.getState()
-			History.pushState {vid:subsection[2], rand:Math.random()}, subsection[1], $.titleToUrl(state.title) + "/" + $.titleToUrl(subsection[1])
+			History.pushState {vid:subsection[2], rand:Math.random()}, subsection[1], $.titleToUrl({title:subsection[1], vid:subsection[2]})
 			return
 
 		super $viz

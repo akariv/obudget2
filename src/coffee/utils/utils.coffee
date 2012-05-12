@@ -1,3 +1,3 @@
 $.extend
-	titleToUrl : (title) ->
-		title.replace " ", "-"
+	titleToUrl : (data) ->
+		(data.title.replace " ", "-") + "?vid=" + data.vid

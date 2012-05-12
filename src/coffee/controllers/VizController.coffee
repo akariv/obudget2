@@ -19,10 +19,15 @@ $.extend
 			mlist = $.ModelListener
 				loadItem : (data)->
 					# set navigation title
-					$.extend data, {mus_url: $.titleToUrl data.title}
+					$.extend data, mus_url: $.titleToUrl
+						title: data.title
+						vid: data.virtual_id
 					if data.ancestry?
 						$.each data.ancestry, (index, value)->
-							$.extend value, {mus_url: $.titleToUrl value.title}
+							$.extend value, mus_url: $.titleToUrl
+								title:value.title
+								vid: value.virtual_id
+							return
 
 
 					console.log "** loadITen - set navigation."

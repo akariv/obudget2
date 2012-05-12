@@ -1,5 +1,5 @@
 (function() {
-  var Strings, tableDef, _Singleton_Model,
+  var tableDef, _Singleton_Model,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
@@ -219,7 +219,10 @@
         History.pushState({
           vid: subsection[2],
           rand: Math.random()
-        }, subsection[1], $.titleToUrl(state.title) + "/" + $.titleToUrl(subsection[1]));
+        }, subsection[1], $.titleToUrl({
+          title: subsection[1],
+          vid: subsection[2]
+        }));
       };
       TableController.__super__.constructor.call(this, $viz);
       return;
@@ -274,12 +277,18 @@
         mlist = $.ModelListener({
           loadItem: function(data) {
             $.extend(data, {
-              mus_url: $.titleToUrl(data.title)
+              mus_url: $.titleToUrl({
+                title: data.title,
+                vid: data.virtual_id
+              })
             });
             if (data.ancestry != null) {
               $.each(data.ancestry, function(index, value) {
-                return $.extend(value, {
-                  mus_url: $.titleToUrl(value.title)
+                $.extend(value, {
+                  mus_url: $.titleToUrl({
+                    title: value.title,
+                    vid: value.virtual_id
+                  })
                 });
               });
             }
@@ -474,12 +483,6 @@
     }
   });
 
-  Strings = {
-    defaultTitle: "תקציב המדינה",
-    defaultUrl: "/תקציב-המדינה",
-    defaultVID: '00'
-  };
-
   window.createVirtualItem = function(data) {
     var budget, dataByYear, dataByYearSorted, vid;
     vid = data._src.substring(1 + data._src.lastIndexOf("/"));
@@ -549,14 +552,14 @@
 
   $.extend({
     mustacheTemplates: {
-      navigator_ancestors: "{{#ancestry}}<a href='/{{mus_url}}' onclick=\"History.pushState({vid:'{{virtual_id}}', rand:Math.random()}, '{{title}}', $.titleToUrl('/{{title}}')); return false;\">{{title}}</a> > {{/ancestry}}",
+      navigator_ancestors: "{{#ancestry}}<a href='/{{mus_url}}' onclick=\"History.pushState({vid:'{{virtual_id}}', rand:Math.random()}, '{{title}}', $.titleToUrl({title:'/{{title}}',vid:'{{virtual_id}}'})); return false;\">{{title}}</a> > {{/ancestry}}",
       navigator_current_section: '<a href="/{{mus_url}}" onclick="return false">{{title}}</a>'
     }
   });
 
   $.extend({
-    titleToUrl: function(title) {
-      return title.replace(" ", "-");
+    titleToUrl: function(data) {
+      return (data.title.replace(" ", "-")) + "?vid=" + data.vid;
     }
   });
 

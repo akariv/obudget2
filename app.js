@@ -28,7 +28,8 @@ app.get('/*',function(req,res,next){
 
 app.get('/', function(req, res) {
 	console.log(req.url);
-	res.render("index", {'ogurl': 'http://' + req.headers.host + req.url, 'ogtitle' : 'תקציב המדינה', init_title: "תקציב המדינה", init_url: "המדינה", init_vid: "00"});
+	var vid = "00"
+	res.render("index", {'ogurl': 'http://' + req.headers.host + req.url, 'ogtitle' : 'תקציב המדינה', init_title: "תקציב המדינה", init_url: "המדינה"  + "?vid=" + vid, init_vid: vid});
 });
 
 app.get('/:title', function(req, res){
@@ -46,7 +47,7 @@ app.get('/:title', function(req, res){
 	  }
 	})
 	var vid = "00"
-	res.render("index", {'ogurl': 'http://' + req.headers.host + req.url, 'ogtitle' : req.params.title, init_title: req.params.title, init_url: req.params.title, init_vid: vid});
+	res.render("index", {'ogurl': 'http://' + req.headers.host + req.url, 'ogtitle' : req.params.title, init_title: req.params.title, init_url: req.params.title + "?vid=" + vid, init_vid: vid});
 });
 
 
