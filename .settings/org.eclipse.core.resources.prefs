@@ -1,11 +1,10 @@
-#Thu May 10 04:13:57 IDT 2012
+#Sat May 12 13:12:11 IDT 2012
 eclipse.preferences.version=1
 encoding/.gitignore=UTF-8
 encoding//src/app/index.html=UTF-8
 encoding//src/coffee/controllers/ChartController.coffee=UTF-8
 encoding//src/coffee/controllers/VizController.coffee=UTF-8
 encoding//src/coffee/models/Model.coffee=UTF-8
-encoding//src/coffee/models/Strings.coffee=UTF-8
 encoding//src/coffee/utils/create_v_item.coffee=UTF-8
 encoding//src/coffee/views/PieChartView.coffee=UTF-8
 encoding//src/coffee/views/TableView.coffee=UTF-8

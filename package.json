@@ -4,6 +4,7 @@
   "dependencies":{
       "express":""
     , "hulk-hogan": "0.0.6"
+	, "request" :""
 
   }
 }

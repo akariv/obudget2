@@ -6,7 +6,9 @@ class $.TableController extends $.Controller
 		@createMultiYearView = (div)->
 				new $.TableView div
 		@onSubSection = (subsection) ->
-			History.pushState {vid:subsection[2], rand:Math.random()}, subsection[1], $.titleToUrl(subsection[1])
+			console.log History.getState()
+			state = History.getState()
+			History.pushState {vid:subsection[2], rand:Math.random()}, subsection[1], $.titleToUrl(state.title) + "/" + $.titleToUrl(subsection[1])
 			return
 
 		super $viz

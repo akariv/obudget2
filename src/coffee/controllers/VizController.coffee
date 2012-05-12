@@ -20,10 +20,17 @@ $.extend
 				loadItem : (data)->
 					# set navigation title
 					$.extend data, {mus_url: $.titleToUrl data.title}
+					if data.ancestry?
+						$.each data.ancestry, (index, value)->
+							$.extend value, {mus_url: $.titleToUrl value.title}
+
+
+					console.log "** loadITen - set navigation."
+					console.log data
 					($ "#navigator #ancestors").html Mustache.to_html $.mustacheTemplates.navigator_ancestors, data
 					($ "#navigator #current_section").html Mustache.to_html $.mustacheTemplates.navigator_current_section, data
 
-					# Set the facebook comments plugin for the current graph
+					# Set the Disqus comments plugin for the current graph
 					#$("#fbCommentsPlaceholder").html '<div class="fb-comments" data-href="http://obudget2.cloudfoundry.com/index.html#' + data.virtual_id + '" data-num-posts="2" data-width="470"></div>'
 					if DISQUS?
 						DISQUS.reset
@@ -47,8 +54,6 @@ $.extend
 
 				model.getData History.getState().data.vid
 				return
-
-			# TODO create a "default slug" and make it accessible to all controllers
 
 			for cont in $.Visualization.controllers()
 				do (cont) ->

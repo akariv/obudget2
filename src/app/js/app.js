@@ -1,5 +1,5 @@
 (function() {
-  var tableDef, _Singleton_Model,
+  var Strings, tableDef, _Singleton_Model,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
@@ -213,10 +213,13 @@
         return new $.TableView(div);
       };
       this.onSubSection = function(subsection) {
+        var state;
+        console.log(History.getState());
+        state = History.getState();
         History.pushState({
           vid: subsection[2],
           rand: Math.random()
-        }, subsection[1], $.titleToUrl(subsection[1]));
+        }, subsection[1], $.titleToUrl(state.title) + "/" + $.titleToUrl(subsection[1]));
       };
       TableController.__super__.constructor.call(this, $viz);
       return;
@@ -273,10 +276,15 @@
             $.extend(data, {
               mus_url: $.titleToUrl(data.title)
             });
-            console.log("** loadItem data");
+            if (data.ancestry != null) {
+              $.each(data.ancestry, function(index, value) {
+                return $.extend(value, {
+                  mus_url: $.titleToUrl(value.title)
+                });
+              });
+            }
+            console.log("** loadITen - set navigation.");
             console.log(data);
-            console.log($.mustacheTemplates.navigator_ancestors);
-            console.log($.mustacheTemplates.navigator_current_section);
             ($("#navigator #ancestors")).html(Mustache.to_html($.mustacheTemplates.navigator_ancestors, data));
             ($("#navigator #current_section")).html(Mustache.to_html($.mustacheTemplates.navigator_current_section, data));
             if (typeof DISQUS !== "undefined" && DISQUS !== null) {
@@ -466,6 +474,12 @@
     }
   });
 
+  Strings = {
+    defaultTitle: "תקציב המדינה",
+    defaultUrl: "/תקציב-המדינה",
+    defaultVID: '00'
+  };
+
   window.createVirtualItem = function(data) {
     var budget, dataByYear, dataByYearSorted, vid;
     vid = data._src.substring(1 + data._src.lastIndexOf("/"));
@@ -535,7 +549,7 @@
 
   $.extend({
     mustacheTemplates: {
-      navigator_ancestors: "{{#ancestry}}<a href='/{{mus_url}}' onclick=\"History.pushState({vid:'{{virtual_id}}', rand:Math.random()}, '{{title}}', $.titleToUrl('{{title}}')); return false;\">{{title}}</a> > {{/ancestry}}",
+      navigator_ancestors: "{{#ancestry}}<a href='/{{mus_url}}' onclick=\"History.pushState({vid:'{{virtual_id}}', rand:Math.random()}, '{{title}}', $.titleToUrl('/{{title}}')); return false;\">{{title}}</a> > {{/ancestry}}",
       navigator_current_section: '<a href="/{{mus_url}}" onclick="return false">{{title}}</a>'
     }
   });

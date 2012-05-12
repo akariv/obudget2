@@ -17,10 +17,31 @@
             @import "lib/DataTables-1.9.0/css/jquery.dataTables.css";
             @import "css/index.css";
         </style>
+        <script type="text/javascript">
+//        	var whp = window.history.pushState;
+//        	var whr = window.history.replaceState;
+//
+//        	window.history.pushState = function(){
+//				console.log("** pushState called.");
+//				whp.apply(window.history,arguments);
+//			}
+//        	window.history.replaceState = function(){
+//				console.log("** replaceState called.");
+//				whr.apply(window.history,arguments);
+//			}
+
+
+        </script>
         <script type="text/javascript" src="lib/jquery/jquery-1.7.1.js">
         </script>
-        <script type="text/javascript" src="lib/jquery/jquery.ba-bbq.js">
-        </script>
+		<script type="text/javascript">
+			function resetState(){
+				var title = '{{init_title}}';
+				var url = escape('{{init_url}}');
+				History.replaceState({vid:'{{init_vid}}',rand:Math.random()}, title, url);
+			}
+			$(resetState);
+		</script>
         <script type="text/javascript" src="lib/jquery/jquery.jsonp-2.3.0.js">
         </script>
         <script type="text/javascript" src="lib/highcharts/highcharts.js">
@@ -36,16 +57,16 @@
         </script>
     </head>
     <body>
-		<script src="http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
-		<!-- Injected by the server, to indicate the History "state" of the document -->
-		<script type="text/javascript">
-			$(function(){
-				var title = '{{init_title}}';
-				var url = escape('{{init_url}}');
-				History.replaceState({vid:'{{init_vid}}',rand:Math.random()}, title, url);
-			});
 
-		</script>
+
+
+        <script type="text/javascript" src="lib/history.js">
+        </script>
+        <script type="text/javascript" src="lib/history.html4.js">
+        </script>
+        <script type="text/javascript" src="lib/history.adapter.jquery.js">
+        </script>
+		<!-- Injected by the server, to indicate the History "state" of the document -->
         <!-- Run some Javascript when then page has loaded-->
         <script>
             $($.OB.initControllers);
@@ -85,7 +106,7 @@
             </div>
         </div>
 		<!-- Disqus recent comments -->
-		<div id="recentcomments" class="dsq-widget"><h2 class="dsq-widget-title">תגובות אחרונות</h2><script type="text/javascript" src="http://obudet2-test.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=32&excerpt_length=200"></script></div><a href="http://disqus.com/">Powered by Disqus</a>
+		<div id="recentcomments" class="dsq-widget"><h2 class="dsq-widget-title">תגובות אחרונות</h2><script defer type="text/javascript" src="http://obudet2-test.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=32&excerpt_length=200"></script></div><a href="http://disqus.com/">Powered by Disqus</a>
 
 
         <div id="disqus_thread">
