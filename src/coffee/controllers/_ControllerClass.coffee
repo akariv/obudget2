@@ -1,4 +1,8 @@
 # The file name is with an underscore so that the coffeescript compiler will render this file first
+
+#CR: You can actually use a make-file (or some script) to enforce it... the fact that it's implicit and implementation dependent is not too good
+#CR: If I understand correctly, this class assumes that each visualization has both a single and a multiple year view - which is not the case. In fact, I think that each chart should only have one "mode" (i.e. single/multi) - maybe the raw-data table can handle both modes, but that's the exception. The only thing the controller should know is which one is it, so it can adjust external controls accordingly.
+#CR: I would expect that a controller wouldn't have any view-related functionality (i.e no HTML)
 class $.Controller
 	constructor : ($vizdiv)->
 
