@@ -6,7 +6,7 @@ class $.Model
 # The actual Singleton class
 class _Singleton_Model
 	constructor: (@args) ->
-		that = this
+		that = this   #CR: Why is this needed?
 		###
 		our local cache  of data
 		###
@@ -20,7 +20,7 @@ class _Singleton_Model
 		###
 		load a json response from an ajax call
 		###
-		@loadResponse = (budget) ->
+		@loadResponse = (budget) -> #CR: Why are this defined in the constructor and not as regular methods? Are you familiar with the '=>' operator of coffeescript?
 			localStorage.setItem budget.virtual_id, JSON.stringify budget
 
 			that.loading = false
@@ -29,11 +29,11 @@ class _Singleton_Model
 			console.log budget
 			that.cache[budget.virtual_id] = budget
 			that.notifyItemLoaded budget
-			localStorage.setItem "ob_" + budget.virtual_id, JSON.stringify budget
+			localStorage.setItem "ob_" + budget.virtual_id, JSON.stringify budget #CR: Why do you need it twice?
 
 			return
 
-		@loadLocally = (slug, callback) ->
+		@loadLocally = (slug, callback) -> #CR: Why didn't you use the 'jsonp' ajax loading method in jQuery?
 			h=($ 'head')[0]
 			s = document.createElement 'script'
 			s.type = 'text/javascript'
@@ -48,7 +48,7 @@ class _Singleton_Model
 
 
 		###
-		tell everyone the item we've loaded
+		tell everyone the item we''ve loaded
 		###
 		@notifyItemLoaded = (item) ->
 			$.each(that.listeners, (i) ->
@@ -60,7 +60,7 @@ class _Singleton_Model
 		if @loading
 			return
 		else
-			data = JSON.parse localStorage.getItem "ob_" + slug
+			data = JSON.parse localStorage.getItem "ob_" + slug #CR: Are you sure that this can't throw an exception?
 
 			if data?
 				@loadResponse data
@@ -90,7 +90,7 @@ $.extend
 	###
 	allow people to create listeners easily
 	###
-	ModelListener : (list = {}) ->
+	ModelListener : (list = {}) -> #CR: I guess that only loadItem is implemented right now?
 		$.extend(
 			loadBegin : ->
 			loadFinish : ->

@@ -1,3 +1,4 @@
+#CR: I think that pie and line charts are two unrelated charts, which should not be tied together.
 class $.ChartController extends $.Controller
 	constructor : ($viz = 'visualization')->
 		@id = 'chartViz'

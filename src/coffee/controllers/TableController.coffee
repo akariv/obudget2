@@ -1,3 +1,4 @@
+#CR: Why didn't you use BBQ in the end?
 class $.TableController extends $.Controller
 	constructor : ($viz = 'visualization')->
 		@id = 'tableViz'
@@ -8,7 +9,7 @@ class $.TableController extends $.Controller
 		@onSubSection = (subsection) ->
 			console.log History.getState()
 			state = History.getState()
-			History.pushState {vid:subsection[2], rand:Math.random()}, subsection[1], $.titleToUrl({title:subsection[1], vid:subsection[2]})
+			History.pushState {vid:subsection[2], rand:Math.random()}, subsection[1], $.titleToUrl({title:subsection[1], vid:subsection[2]}) #CR: Please explain the rand thing...
 			return
 
 		super $viz

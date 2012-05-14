@@ -1,3 +1,5 @@
+#CR: So this is a controller manager, but it actually contains lots of view related functionality. Better separate it to a layout controller which takes care of all the other widgets on the screen (i.e. not visualizations).
+
 $.extend
 	Visualization:
 		visibleCont : =>
@@ -39,6 +41,8 @@ $.extend
 
 					# Set the Disqus comments plugin for the current graph
 					#$("#fbCommentsPlaceholder").html '<div class="fb-comments" data-href="http://obudget2.cloudfoundry.com/index.html#' + data.virtual_id + '" data-num-posts="2" data-width="470"></div>'
+
+                                        #CR: The commenting mechanism should have been separated using a generic interface.
 					if DISQUS?
 						DISQUS.reset
 							reload: true,
