@@ -44,6 +44,8 @@
 		</script>
         <script type="text/javascript" src="lib/jquery/jquery.jsonp-2.3.0.js">
         </script>
+        <script type="text/javascript" src="lib/json2.js">
+        </script>
         <script type="text/javascript" src="lib/highcharts/highcharts.js">
         </script>
         <script type="text/javascript" src="lib/mustache.js">
@@ -81,11 +83,6 @@
             חיפוש<input type="text">
             </input>
         </div>
-        <script id="_searchresults" type="text/html">
-            {{#searchresults}}<a href="#{{budget_id}}">{{title}}</a>
-            <br>
-            {{/searchresults}}
-        </script>
         <div id="searchresults">
         </div>
         <hr>

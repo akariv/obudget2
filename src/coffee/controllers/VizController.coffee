@@ -19,14 +19,16 @@ $.extend
 			mlist = $.ModelListener
 				loadItem : (data)->
 					# set navigation title
-					$.extend data, mus_url: $.titleToUrl
+					mus_data =
 						title: data.title
 						vid: data.virtual_id
+					$.extend data, {mus_url: $.titleToUrl mus_data}, {mus_onclick : $.titleToOnClick mus_data}
 					if data.ancestry?
 						$.each data.ancestry, (index, value)->
-							$.extend value, mus_url: $.titleToUrl
-								title:value.title
+							mus_value =
+								title: value.title
 								vid: value.virtual_id
+							$.extend value, {mus_url: $.titleToUrl mus_value}, {mus_onclick: $.titleToOnClick mus_value}
 							return
 
 

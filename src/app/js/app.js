@@ -179,15 +179,32 @@
       searchbox = this.$searchbox;
       searchresults = this.$searchresults;
       this.$searchbox.keypress(function(e) {
-        var url;
+        var qdata, url;
         if (e.keyCode === 13) {
           console.log(searchbox.val());
-          url = "http://budget.msh.gov.il/00?text=" + searchbox.val() + "&full=1&num=20&distinct=1";
-          $.get(url, function(data) {
+          url = 'http://api.yeda.us/data/hasadna/budget-ninja/';
+          qdata = {
+            query: '{\"title\":\"' + searchbox.val() + '\"}',
+            o: 'jsonp'
+          };
+          $.get(url, qdata, function(data) {
+            console.log("search results");
+            console.log(data);
+            $.each(data, function(index, value) {
+              var mus_data;
+              mus_data = {
+                title: value.title,
+                vid: value._src
+              };
+              $.extend(value, {
+                mus_onclick: $.titleToOnClick(mus_data)
+              });
+            });
             data = {
               searchresults: data
             };
-            return searchresults.html(Mustache.to_html(($("#_" + searchresults[0].id)).html(), data));
+            console.log($("#_searchresults"));
+            return searchresults.html(Mustache.to_html($.mustacheTemplates.searchresults, data));
           }, "jsonp");
           e.preventDefault();
         }
@@ -276,19 +293,27 @@
         model = $.Model.get();
         mlist = $.ModelListener({
           loadItem: function(data) {
+            var mus_data;
+            mus_data = {
+              title: data.title,
+              vid: data.virtual_id
+            };
             $.extend(data, {
-              mus_url: $.titleToUrl({
-                title: data.title,
-                vid: data.virtual_id
-              })
+              mus_url: $.titleToUrl(mus_data)
+            }, {
+              mus_onclick: $.titleToOnClick(mus_data)
             });
             if (data.ancestry != null) {
               $.each(data.ancestry, function(index, value) {
+                var mus_value;
+                mus_value = {
+                  title: value.title,
+                  vid: value.virtual_id
+                };
                 $.extend(value, {
-                  mus_url: $.titleToUrl({
-                    title: value.title,
-                    vid: value.virtual_id
-                  })
+                  mus_url: $.titleToUrl(mus_value)
+                }, {
+                  mus_onclick: $.titleToOnClick(mus_value)
                 });
               });
             }
@@ -552,14 +577,18 @@
 
   $.extend({
     mustacheTemplates: {
-      navigator_ancestors: "{{#ancestry}}<a href='/{{mus_url}}' onclick=\"History.pushState({vid:'{{virtual_id}}', rand:Math.random()}, '{{title}}', $.titleToUrl({title:'/{{title}}',vid:'{{virtual_id}}'})); return false;\">{{title}}</a> > {{/ancestry}}",
-      navigator_current_section: '<a href="/{{mus_url}}" onclick="return false">{{title}}</a>'
+      navigator_ancestors: "{{#ancestry}}<a href='/{{mus_url}}' onclick='{{mus_onclick}}'}>{{title}}</a> > {{/ancestry}}",
+      navigator_current_section: '<a href="/{{mus_url}}" onclick="return false">{{title}}</a>',
+      searchresults: '{{#searchresults}}<a href="/{{title}}" onclick="{{mus_onclick}}">{{title}}</a> <br> {{/searchresults}}'
     }
   });
 
   $.extend({
     titleToUrl: function(data) {
       return (data.title.replace(" ", "-")) + "?vid=" + data.vid;
+    },
+    titleToOnClick: function(data) {
+      return "History.pushState({vid:'" + data.vid + "',rand:Math.random()}, '" + data.title + "', '" + $.titleToUrl(data) + "'); return false;";
     }
   });
 
