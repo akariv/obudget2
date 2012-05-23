@@ -20,18 +20,22 @@ class $.TableController extends $.Controller
 		multiYearData = []
 
 		# Latest year
-		latestYearData = budget.data[budget.data.length - 2]
+		# TODO, currently this is the last year.
+		latestYearData = budget.components[budget.components.length - 2]
 
 		# Take the net allocated value and display in the table
 		$.each latestYearData.items, (index, item) ->
 			if item.values.net_allocated?
 				singleYearData.push [(parseInt item.values.net_allocated), item.title, item.virtual_id]
+			else
+				true
+				#TODO - mark missing values.
 			return
 
 		@getSingleYearView().setData singleYearData
 
 		# Create the multiYear data
-		$.each budget.data, (index, yearData) ->
+		$.each budget.components, (index, yearData) ->
 			currentYear = yearData.year
 			yearSum = 0
 			$.each yearData.items, (index, item) ->

@@ -21,7 +21,9 @@ class _Singleton_Model
 		load a json response from an ajax call
 		###
 		@loadResponse = (budget) -> #CR: Why are this defined in the constructor and not as regular methods? Are you familiar with the '=>' operator of coffeescript?
-			localStorage.setItem budget.virtual_id, JSON.stringify budget
+			#console.log "saving " + budget.virtual_id
+			#localStorage.setItem budget.virtual_id, JSON.stringify budget
+			#console.log "localStorage.setItem budget complete"
 
 			that.loading = false
 			console.log "budget"
@@ -69,11 +71,11 @@ class _Singleton_Model
 			loadResponse = @loadResponse
 			loadLocally = @loadLocally
 			# Catch ajax errors when invoking
-			H.getRecord "/data/" + slug, (data)->
+			H.getRecord "/" + slug, (data)->
 				if data?
 					loadResponse data
 				else
-					loadLocally "/data/" + slug, loadResponse
+					loadLocally "/" + slug, loadResponse
 				return
 
 			@loading = true

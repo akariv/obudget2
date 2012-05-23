@@ -26,7 +26,8 @@ $.extend
 						vid: data.virtual_id
 					$.extend data, {mus_url: $.titleToUrl mus_data}, {mus_onclick : $.titleToOnClick mus_data}
 					if data.ancestry?
-						$.each data.ancestry, (index, value)->
+						data.mus_ancestry = data.ancestry.slice(0).reverse()
+						$.each data.mus_ancestry, (index, value)->
 							mus_value =
 								title: value.title
 								vid: value.virtual_id
@@ -34,8 +35,8 @@ $.extend
 							return
 
 
-					console.log "** loadITen - set navigation."
-					console.log data
+					console.log "** loadItem - set navigation."
+					console.log data.ancestry
 					($ "#navigator #ancestors").html Mustache.to_html $.mustacheTemplates.navigator_ancestors, data
 					($ "#navigator #current_section").html Mustache.to_html $.mustacheTemplates.navigator_current_section, data
 

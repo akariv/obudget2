@@ -114,7 +114,7 @@
     ChartController.prototype.dataLoaded = function(budget) {
       var categories, emptyItems, latestYearData, mutliYearData, singleYearData, sums;
       singleYearData = [];
-      latestYearData = budget.data[budget.data.length - 2];
+      latestYearData = budget.components[budget.components.length - 2];
       emptyItems = [];
       $.each(latestYearData.items, function(index, item) {
         if (item.values.net_allocated != null) {
@@ -129,7 +129,7 @@
       this.getSingleYearView().setData(singleYearData);
       sums = [];
       categories = [];
-      $.each(budget.data, function(index, yearData) {
+      $.each(budget.components, function(index, yearData) {
         var currentYear, yearSum;
         currentYear = yearData.year;
         yearSum = 0;
@@ -181,15 +181,13 @@
       this.$searchbox.keypress(function(e) {
         var qdata, url;
         if (e.keyCode === 13) {
-          console.log(searchbox.val());
+          console.log("** " + searchbox.val());
           url = 'http://api.yeda.us/data/hasadna/budget-ninja/';
           qdata = {
             query: '{\"title\":\"' + searchbox.val() + '\"}',
             o: 'jsonp'
           };
           $.get(url, qdata, function(data) {
-            console.log("search results");
-            console.log(data);
             $.each(data, function(index, value) {
               var mus_data;
               mus_data = {
@@ -203,7 +201,6 @@
             data = {
               searchresults: data
             };
-            console.log($("#_searchresults"));
             return searchresults.html(Mustache.to_html($.mustacheTemplates.searchresults, data));
           }, "jsonp");
           e.preventDefault();
@@ -249,14 +246,16 @@
       var latestYearData, multiYearData, singleYearData;
       singleYearData = [];
       multiYearData = [];
-      latestYearData = budget.data[budget.data.length - 2];
+      latestYearData = budget.components[budget.components.length - 2];
       $.each(latestYearData.items, function(index, item) {
         if (item.values.net_allocated != null) {
           singleYearData.push([parseInt(item.values.net_allocated), item.title, item.virtual_id]);
+        } else {
+          true;
         }
       });
       this.getSingleYearView().setData(singleYearData);
-      $.each(budget.data, function(index, yearData) {
+      $.each(budget.components, function(index, yearData) {
         var currentYear, yearSum;
         currentYear = yearData.year;
         yearSum = 0;
@@ -304,7 +303,8 @@
               mus_onclick: $.titleToOnClick(mus_data)
             });
             if (data.ancestry != null) {
-              $.each(data.ancestry, function(index, value) {
+              data.mus_ancestry = data.ancestry.slice(0).reverse();
+              $.each(data.mus_ancestry, function(index, value) {
                 var mus_value;
                 mus_value = {
                   title: value.title,
@@ -317,8 +317,8 @@
                 });
               });
             }
-            console.log("** loadITen - set navigation.");
-            console.log(data);
+            console.log("** loadItem - set navigation.");
+            console.log(data.ancestry);
             ($("#navigator #ancestors")).html(Mustache.to_html($.mustacheTemplates.navigator_ancestors, data));
             ($("#navigator #current_section")).html(Mustache.to_html($.mustacheTemplates.navigator_current_section, data));
             if (typeof DISQUS !== "undefined" && DISQUS !== null) {
@@ -427,7 +427,6 @@
       		load a json response from an ajax call
       */
       this.loadResponse = function(budget) {
-        localStorage.setItem(budget.virtual_id, JSON.stringify(budget));
         that.loading = false;
         console.log("budget");
         console.log("******");
@@ -449,7 +448,7 @@
         h.appendChild(s);
       };
       /*
-      		tell everyone the item we've loaded
+      		tell everyone the item we''ve loaded
       */
       this.notifyItemLoaded = function(item) {
         $.each(that.listeners, function(i) {
@@ -470,11 +469,11 @@
         }
         loadResponse = this.loadResponse;
         loadLocally = this.loadLocally;
-        H.getRecord("/data/" + slug, function(data) {
+        H.getRecord("/" + slug, function(data) {
           if (data != null) {
             loadResponse(data);
           } else {
-            loadLocally("/data/" + slug, loadResponse);
+            loadLocally("/" + slug, loadResponse);
           }
         });
         this.loading = true;
@@ -577,7 +576,7 @@
 
   $.extend({
     mustacheTemplates: {
-      navigator_ancestors: "{{#ancestry}}<a href='/{{mus_url}}' onclick='{{mus_onclick}}'}>{{title}}</a> > {{/ancestry}}",
+      navigator_ancestors: "{{#mus_ancestry}}<a href='/{{mus_url}}' onclick='{{mus_onclick}}'}>{{title}}</a> > {{/mus_ancestry}}",
       navigator_current_section: '<a href="/{{mus_url}}" onclick="return false">{{title}}</a>',
       searchresults: '{{#searchresults}}<a href="/{{title}}" onclick="{{mus_onclick}}">{{title}}</a> <br> {{/searchresults}}'
     }
@@ -585,7 +584,10 @@
 
   $.extend({
     titleToUrl: function(data) {
-      return (data.title.replace(" ", "-")) + "?vid=" + data.vid;
+      var newtitle;
+      newtitle = (data.title.replace(/\ /g, "-")) + "?vid=" + data.vid;
+      console.log("replaced " + data.title + " with " + newtitle);
+      return newtitle;
     },
     titleToOnClick: function(data) {
       return "History.pushState({vid:'" + data.vid + "',rand:Math.random()}, '" + data.title + "', '" + $.titleToUrl(data) + "'); return false;";

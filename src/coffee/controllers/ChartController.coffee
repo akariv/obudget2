@@ -14,7 +14,7 @@ class $.ChartController extends $.Controller
 	dataLoaded : (budget) =>
 		singleYearData = []
 		# Latest year
-		latestYearData = budget.data[budget.data.length - 2]
+		latestYearData = budget.components[budget.components.length - 2]
 
 		# Take the net allocated value and display in the table
 		emptyItems = []
@@ -34,7 +34,7 @@ class $.ChartController extends $.Controller
 		# Create the multiYear data
 		sums = []
 		categories = []
-		$.each budget.data, (index, yearData) ->
+		$.each budget.components, (index, yearData) ->
 			currentYear = yearData.year
 			yearSum = 0
 			$.each yearData.items, (index, item) ->
