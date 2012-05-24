@@ -15,20 +15,29 @@ Features and bugs waiting for volunteers to develop are listed [here](https://tr
 Run
 ===
 
-Open in a browser:
+- Install [node.js](http://nodejs.org/)
+- Run the following command:
+-
 
-    src/app/index.html
+    node app.js
 
-**Note** - Currently you can only view budget items "00" (“המדינה") and "0020" ("משרד החינוך")
+- Open your browser with the following address:
+-
+
+    localhost:3000
+
 
 Build
 ===
-Make sure you have [CoffeeScript](http://coffeescript.org/) installed. If you are using **Windows**, install using [these](http://www.colourcoding.net/blog/archive/2011/09/20/using-coffeescript-on-windows.aspx) instructions
+Make sure you have [CoffeeScript](http://coffeescript.org/) installed. To install, run the following command from the command line (Windows, Mac, Linux):
 
-Run the make file
-(On windows Install [make for windows](http://www.equation.com/servlet/equation.cmd?fa=make))
+    npm install -g coffee-script
 
-    make
+Note: you must have node.js installed as well
+
+after installing coffeescript, compiling the project with 'cake'. It comes with coffeescript:
+
+    cake build
 
 Develop
 ===

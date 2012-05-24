@@ -1,7 +1,7 @@
 var H = (function () {
     var my = {},
 		//APIServer = "http://api.yeda.us",
-		APIServer = "http://127.0.0.1:8080",
+		APIServer = "/data",
         useCacheNextRequest = true;
 
     // Low Level API

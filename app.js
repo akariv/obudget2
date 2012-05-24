@@ -31,7 +31,7 @@ app.configure(function(){
 //	console.log(req.url);
 //});
 app.get('/*',function(req,res,next){
-    res.header('Content-Length' , 5000 );
+    //res.header('Content-Length' , 5000 );
     next(); // http://expressjs.com/guide.html#passing-route control
 });
 
@@ -60,25 +60,41 @@ app.get('/:title', function(req, res){
 		console.log("WARNING: more than one virtual_id for title '" + title + "'");
 	}
 	var vid = potentialIds.virtual_ids[0];
-
-	console.log(potentialIds);
-	console.log("** vid == "+vid);
-	//http://api.yeda.us/data/hasadna/budget-ninja/?o=jsonp&callback=jsonp1336632333921&query=%7B%22title%22%3A%22%D7%9E%D7%A9%D7%A8%D7%93+%D7%94%D7%97%D7%99%D7%A0%D7%95%D7%9A%22%7D
-	//var ninja_req = 'http://api.yeda.us/data/hasadna/budget-ninja/?o=json&query=%7B%22title%22%3A%22' + encodeURI(title) + '%22%7D';
-	var ninja_req = 'http://127.0.0.1/' + vid;
-
-	console.log(ninja_req);
-	request(ninja_req, function (error, response, body) {
-	  if (!error && response.statusCode == 200) {
-	    console.log(body) // Print the google web page.
-	  }
-	})
 	res.render("index", {'ogurl': 'http://' + req.headers.host + req.url, 'ogtitle' : req.params.title, init_title: req.params.title, init_url: req.params.title + "?vid=" + vid, init_vid: vid});
 });
 
+
+app.get('/data/:bgt', function(req, res){
+	var query = req.query;
+	var callback = query.callback;
+
+	var data = null;
+	console.log(req.params.bgt)
+	fs.readFile('src/test-server/data/virtual_items_' + req.params.bgt.substring(0,8) + '.json', 'utf-8', function(err,data){
+	  if(err) {
+	    console.error("Could not open file: %s", err);
+		res.writeHead(500);
+	    res.end('Internal Server Error');
+	  } else {
+		vitems = JSON.parse(data);
+		res.writeHead(200);
+		res.end(callback + "(" + JSON.stringify(getVirtualItem(req.params.bgt,vitems)) + ")");
+	  }
+
+	});
+});
 
 app.listen(process.env.VCAP_APP_PORT || 3000);
 
 //function virtualToPhysical(path) {
 //    return __dirname + '/src/app' + path;
 //}
+
+function getVirtualItem(virtualId, data){
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].virtual_id === virtualId) {
+            return data[i];
+        }
+    }
+    return null;
+}
