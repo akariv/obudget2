@@ -1,0 +1,265 @@
+[
+    {
+        "ancestry": [
+            {
+                "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                "virtual_id": "bgt-00850101"
+            }, 
+            {
+                "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                "virtual_id": "bgt-008501"
+            }, 
+            {
+                "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                "virtual_id": "bgt-0085"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "0085010101", 
+            "years": [
+                {
+                    "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                    "values": {
+                        "net_allocated": 313, 
+                        "net_revised": 313
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }
+            ]
+        }, 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+        "virtual_id": "bgt-0085010101"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                "virtual_id": "bgt-008501"
+            }, 
+            {
+                "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                "virtual_id": "bgt-0085"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "00850101", 
+            "years": [
+                {
+                    "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                    "values": {
+                        "net_allocated": 313, 
+                        "net_revised": 313
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }
+            ]
+        }, 
+        "components": [
+            {
+                "items": [
+                    {
+                        "budget_id": "0085010101", 
+                        "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                        "values": {
+                            "net_allocated": 313, 
+                            "net_revised": 313
+                        }, 
+                        "virtual_id": "bgt-0085010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1992
+            }
+        ], 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+        "virtual_id": "bgt-00850101"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                "virtual_id": "bgt-0085"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "008501", 
+            "years": [
+                {
+                    "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                    "values": {
+                        "net_allocated": 313, 
+                        "net_revised": 313
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }
+            ]
+        }, 
+        "components": [
+            {
+                "items": [
+                    {
+                        "budget_id": "00850101", 
+                        "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                        "values": {
+                            "net_allocated": 313, 
+                            "net_revised": 313
+                        }, 
+                        "virtual_id": "bgt-00850101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1992
+            }
+        ], 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+        "virtual_id": "bgt-008501"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "0085", 
+            "years": [
+                {
+                    "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                    "values": {
+                        "net_allocated": 313, 
+                        "net_revised": 313
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }, 
+                {
+                    "title": "0085-2004", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2004
+                }, 
+                {
+                    "title": "0085-2005", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2005
+                }, 
+                {
+                    "title": "0085-2007", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2007
+                }, 
+                {
+                    "title": "0085-2008", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2008
+                }, 
+                {
+                    "title": "0085-2009", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2009
+                }, 
+                {
+                    "title": "0085-2010", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2010
+                }, 
+                {
+                    "title": "0085-2011", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2011
+                }, 
+                {
+                    "title": "0085-2012", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2012
+                }
+            ]
+        }, 
+        "components": [
+            {
+                "items": [
+                    {
+                        "budget_id": "008501", 
+                        "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+                        "values": {
+                            "net_allocated": 313, 
+                            "net_revised": 313
+                        }, 
+                        "virtual_id": "bgt-008501", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1992
+            }
+        ], 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05d4\u05d5\u05df \u05d7\u05d5\u05d6\u05e8 \u05ea\u05e7\u05e6\u05d9\u05d1\u05d9", 
+        "virtual_id": "bgt-0085"
+    }
+]

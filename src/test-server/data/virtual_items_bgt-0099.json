@@ -1,0 +1,2772 @@
+[
+    {
+        "ancestry": [
+            {
+                "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                "virtual_id": "bgt-009902"
+            }, 
+            {
+                "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                "virtual_id": "bgt-0099"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "00990201", 
+            "years": [
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 970000, 
+                        "net_revised": 970000, 
+                        "net_used": 892571
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 820000, 
+                        "net_revised": 820000, 
+                        "net_used": 812677
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1993
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 790000, 
+                        "net_revised": 790000, 
+                        "net_used": 845372
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1994
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 860000, 
+                        "net_revised": 860000, 
+                        "net_used": 848462
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1995
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 808000, 
+                        "gross_used": 788511, 
+                        "net_allocated": 808000, 
+                        "net_revised": 808000, 
+                        "net_used": 1164103
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1996
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 733900, 
+                        "gross_used": 726381, 
+                        "net_allocated": 733900, 
+                        "net_revised": 733900, 
+                        "net_used": 726381
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1997
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 725000, 
+                        "gross_used": 1812668, 
+                        "net_allocated": 725000, 
+                        "net_revised": 725000, 
+                        "net_used": 1812668
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 612000, 
+                        "gross_used": 1757782, 
+                        "net_allocated": 612000, 
+                        "net_revised": 612000, 
+                        "net_used": 1757782
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1999
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 595000, 
+                        "gross_used": 1348084, 
+                        "net_allocated": 595000, 
+                        "net_revised": 595000, 
+                        "net_used": 1348084
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2000
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 500000, 
+                        "gross_used": 1494113, 
+                        "net_allocated": 500000, 
+                        "net_revised": 500000, 
+                        "net_used": 1494113
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2001
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 1461000, 
+                        "gross_used": 1104535, 
+                        "net_allocated": 1461000, 
+                        "net_revised": 1461000, 
+                        "net_used": 1104535
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2002
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 1115000, 
+                        "gross_used": 1468721, 
+                        "net_allocated": 1115000, 
+                        "net_revised": 1115000, 
+                        "net_used": 1468721
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2003
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 792402, 
+                        "net_revised": 0, 
+                        "net_used": 792402
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2004
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 303799, 
+                        "net_revised": 0, 
+                        "net_used": 303799
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2005
+                }
+            ]
+        }, 
+        "components": [
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 970000, 
+                            "net_revised": 970000, 
+                            "net_used": 892571
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1992
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 820000, 
+                            "net_revised": 820000, 
+                            "net_used": 812677
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1993
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 790000, 
+                            "net_revised": 790000, 
+                            "net_used": 845372
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1994
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 860000, 
+                            "net_revised": 860000, 
+                            "net_used": 848462
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1995
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 808000, 
+                            "net_revised": 808000, 
+                            "net_used": 1164103
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1996
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 733900, 
+                            "net_revised": 733900, 
+                            "net_used": 726381
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1997
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 725000, 
+                            "net_revised": 710500, 
+                            "net_used": 1812668
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "0099020195", 
+                        "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                        "values": {
+                            "net_revised": 14500
+                        }, 
+                        "virtual_id": "bgt-0099020195", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1998
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 612000, 
+                            "net_revised": 612000, 
+                            "net_used": 1757782
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1999
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 1348084, 
+                            "gross_used": 905000, 
+                            "net_allocated": 595000, 
+                            "net_revised": 905000, 
+                            "net_used": 1348084
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2000
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 1494113, 
+                            "gross_used": 500000, 
+                            "net_allocated": 500000, 
+                            "net_revised": 500000, 
+                            "net_used": 1494113
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2001
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 1104534, 
+                            "gross_used": 1461000, 
+                            "net_allocated": 1461000, 
+                            "net_revised": 1461000, 
+                            "net_used": 1104535
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2002
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 1115000, 
+                            "net_revised": 1115000, 
+                            "net_used": 1468721
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2003
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 792402, 
+                            "net_used": 792402
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2004
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099020101", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 303799, 
+                            "net_used": 303799
+                        }, 
+                        "virtual_id": "bgt-0099020101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2005
+            }
+        ], 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+        "virtual_id": "bgt-00990201"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05e7\u05e8\u05df", 
+                "virtual_id": "bgt-00990101"
+            }, 
+            {
+                "title": "\u05e7\u05e8\u05df", 
+                "virtual_id": "bgt-009901"
+            }, 
+            {
+                "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                "virtual_id": "bgt-0099"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "0099010195", 
+            "years": [
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "net_revised": 15500
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }
+            ]
+        }, 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+        "virtual_id": "bgt-0099010195"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                "virtual_id": "bgt-0099"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "009901", 
+            "years": [
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 1065000, 
+                        "net_revised": 1065000, 
+                        "net_used": 1085324
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 780000, 
+                        "net_revised": 780000, 
+                        "net_used": 542601
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1993
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 710000, 
+                        "net_revised": 710000, 
+                        "net_used": 822169
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1994
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 890000, 
+                        "net_revised": 890000, 
+                        "net_used": 840505
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1995
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 849500, 
+                        "gross_used": 412852, 
+                        "net_allocated": 849500, 
+                        "net_revised": 849500, 
+                        "net_used": 412852
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1996
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 724100, 
+                        "gross_used": 393966, 
+                        "net_allocated": 724100, 
+                        "net_revised": 724100, 
+                        "net_used": 393966
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1997
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 775000, 
+                        "gross_used": 1614983, 
+                        "net_allocated": 775000, 
+                        "net_revised": 775000, 
+                        "net_used": 1614983
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 565000, 
+                        "gross_used": 392714, 
+                        "net_allocated": 565000, 
+                        "net_revised": 565000, 
+                        "net_used": 392714
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1999
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 730000, 
+                        "gross_used": 417482, 
+                        "net_allocated": 730000, 
+                        "net_revised": 730000, 
+                        "net_used": 417482
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2000
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 550000, 
+                        "gross_used": 444231, 
+                        "net_allocated": 550000, 
+                        "net_revised": 550000, 
+                        "net_used": 444231
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2001
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 570000, 
+                        "gross_used": 808343, 
+                        "net_allocated": 570000, 
+                        "net_revised": 570000, 
+                        "net_used": 808343
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2002
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 615000, 
+                        "gross_used": 639760, 
+                        "net_allocated": 615000, 
+                        "net_revised": 615000, 
+                        "net_used": 639760
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2003
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 676200, 
+                        "net_revised": 0, 
+                        "net_used": 676200
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2004
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 574059, 
+                        "net_revised": 0, 
+                        "net_used": 574059
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2005
+                }
+            ]
+        }, 
+        "components": [
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 1065000, 
+                            "net_revised": 1065000, 
+                            "net_used": 1085324
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1992
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 780000, 
+                            "net_revised": 780000, 
+                            "net_used": 542601
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1993
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 710000, 
+                            "net_revised": 710000, 
+                            "net_used": 822169
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1994
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 890000, 
+                            "net_revised": 890000, 
+                            "net_used": 840505
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1995
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 849500, 
+                            "gross_used": 412852, 
+                            "net_allocated": 849500, 
+                            "net_revised": 849500, 
+                            "net_used": 412852
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1996
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 724100, 
+                            "gross_used": 393966, 
+                            "net_allocated": 724100, 
+                            "net_revised": 724100, 
+                            "net_used": 393966
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1997
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 775000, 
+                            "gross_used": 1614983, 
+                            "net_allocated": 775000, 
+                            "net_revised": 775000, 
+                            "net_used": 1614983
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1998
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 565000, 
+                            "gross_used": 392714, 
+                            "net_allocated": 565000, 
+                            "net_revised": 565000, 
+                            "net_used": 392714
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1999
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 730000, 
+                            "gross_used": 417482, 
+                            "net_allocated": 730000, 
+                            "net_revised": 730000, 
+                            "net_used": 417482
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2000
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 550000, 
+                            "gross_used": 444231, 
+                            "net_allocated": 550000, 
+                            "net_revised": 550000, 
+                            "net_used": 444231
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2001
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 570000, 
+                            "gross_used": 808343, 
+                            "net_allocated": 570000, 
+                            "net_revised": 570000, 
+                            "net_used": 808343
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2002
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 615000, 
+                            "gross_used": 639760, 
+                            "net_allocated": 615000, 
+                            "net_revised": 615000, 
+                            "net_used": 639760
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2003
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 0, 
+                            "gross_used": 676200, 
+                            "net_revised": 0, 
+                            "net_used": 676200
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2004
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 0, 
+                            "gross_used": 574059, 
+                            "net_revised": 0, 
+                            "net_used": 574059
+                        }, 
+                        "virtual_id": "bgt-00990101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2005
+            }
+        ], 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05e7\u05e8\u05df", 
+        "virtual_id": "bgt-009901"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                "virtual_id": "bgt-0099"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "009902", 
+            "years": [
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 970000, 
+                        "net_revised": 970000, 
+                        "net_used": 892571
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 820000, 
+                        "net_revised": 820000, 
+                        "net_used": 812677
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1993
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 790000, 
+                        "net_revised": 790000, 
+                        "net_used": 845372
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1994
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 860000, 
+                        "net_revised": 860000, 
+                        "net_used": 848462
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1995
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 808000, 
+                        "gross_used": 788511, 
+                        "net_allocated": 808000, 
+                        "net_revised": 808000, 
+                        "net_used": 1164103
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1996
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 733900, 
+                        "gross_used": 726381, 
+                        "net_allocated": 733900, 
+                        "net_revised": 733900, 
+                        "net_used": 726381
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1997
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 725000, 
+                        "gross_used": 1812668, 
+                        "net_allocated": 725000, 
+                        "net_revised": 725000, 
+                        "net_used": 1812668
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 612000, 
+                        "gross_used": 1757782, 
+                        "net_allocated": 612000, 
+                        "net_revised": 612000, 
+                        "net_used": 1757782
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1999
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 595000, 
+                        "gross_used": 1348084, 
+                        "net_allocated": 595000, 
+                        "net_revised": 595000, 
+                        "net_used": 1348084
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2000
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 500000, 
+                        "gross_used": 1494113, 
+                        "net_allocated": 500000, 
+                        "net_revised": 500000, 
+                        "net_used": 1494113
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2001
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 1461000, 
+                        "gross_used": 1104535, 
+                        "net_allocated": 1461000, 
+                        "net_revised": 1461000, 
+                        "net_used": 1104535
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2002
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 1115000, 
+                        "gross_used": 1468721, 
+                        "net_allocated": 1115000, 
+                        "net_revised": 1115000, 
+                        "net_used": 1468721
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2003
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 792402, 
+                        "net_revised": 0, 
+                        "net_used": 792402
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2004
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 303799, 
+                        "net_revised": 0, 
+                        "net_used": 303799
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2005
+                }
+            ]
+        }, 
+        "components": [
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 970000, 
+                            "net_revised": 970000, 
+                            "net_used": 892571
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1992
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 820000, 
+                            "net_revised": 820000, 
+                            "net_used": 812677
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1993
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 790000, 
+                            "net_revised": 790000, 
+                            "net_used": 845372
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1994
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 860000, 
+                            "net_revised": 860000, 
+                            "net_used": 848462
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1995
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 808000, 
+                            "gross_used": 788511, 
+                            "net_allocated": 808000, 
+                            "net_revised": 808000, 
+                            "net_used": 1164103
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1996
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 733900, 
+                            "gross_used": 726381, 
+                            "net_allocated": 733900, 
+                            "net_revised": 733900, 
+                            "net_used": 726381
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1997
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 725000, 
+                            "gross_used": 1812668, 
+                            "net_allocated": 725000, 
+                            "net_revised": 725000, 
+                            "net_used": 1812668
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1998
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 612000, 
+                            "gross_used": 1757782, 
+                            "net_allocated": 612000, 
+                            "net_revised": 612000, 
+                            "net_used": 1757782
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1999
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 595000, 
+                            "gross_used": 1348084, 
+                            "net_allocated": 595000, 
+                            "net_revised": 595000, 
+                            "net_used": 1348084
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2000
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 500000, 
+                            "gross_used": 1494113, 
+                            "net_allocated": 500000, 
+                            "net_revised": 500000, 
+                            "net_used": 1494113
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2001
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 1461000, 
+                            "gross_used": 1104535, 
+                            "net_allocated": 1461000, 
+                            "net_revised": 1461000, 
+                            "net_used": 1104535
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2002
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 1115000, 
+                            "gross_used": 1468721, 
+                            "net_allocated": 1115000, 
+                            "net_revised": 1115000, 
+                            "net_used": 1468721
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2003
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 0, 
+                            "gross_used": 792402, 
+                            "net_revised": 0, 
+                            "net_used": 792402
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2004
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "00990201", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 0, 
+                            "gross_used": 303799, 
+                            "net_revised": 0, 
+                            "net_used": 303799
+                        }, 
+                        "virtual_id": "bgt-00990201", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2005
+            }
+        ], 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+        "virtual_id": "bgt-009902"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05e7\u05e8\u05df", 
+                "virtual_id": "bgt-00990101"
+            }, 
+            {
+                "title": "\u05e7\u05e8\u05df", 
+                "virtual_id": "bgt-009901"
+            }, 
+            {
+                "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                "virtual_id": "bgt-0099"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "0099010101", 
+            "years": [
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 1065000, 
+                        "net_revised": 1065000, 
+                        "net_used": 1085324
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 780000, 
+                        "net_revised": 780000, 
+                        "net_used": 542601
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1993
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 710000, 
+                        "net_revised": 710000, 
+                        "net_used": 822169
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1994
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 890000, 
+                        "net_revised": 890000, 
+                        "net_used": 840505
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1995
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 849500, 
+                        "net_revised": 849500, 
+                        "net_used": 412852
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1996
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 724100, 
+                        "net_revised": 724100, 
+                        "net_used": 393966
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1997
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 775000, 
+                        "net_revised": 759500, 
+                        "net_used": 1614983
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 565000, 
+                        "net_revised": 565000, 
+                        "net_used": 392714
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1999
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 417482, 
+                        "gross_used": 420000, 
+                        "net_allocated": 730000, 
+                        "net_revised": 420000, 
+                        "net_used": 417482
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2000
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 444230, 
+                        "gross_used": 550000, 
+                        "net_allocated": 550000, 
+                        "net_revised": 550000, 
+                        "net_used": 444231
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2001
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 808342, 
+                        "gross_used": 570000, 
+                        "net_allocated": 570000, 
+                        "net_revised": 570000, 
+                        "net_used": 808343
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2002
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 615000, 
+                        "net_revised": 615000, 
+                        "net_used": 639760
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2003
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 676200, 
+                        "net_used": 676200
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2004
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 574059, 
+                        "net_used": 574059
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2005
+                }
+            ]
+        }, 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05e7\u05e8\u05df", 
+        "virtual_id": "bgt-0099010101"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "0099", 
+            "years": [
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "net_allocated": 2035000, 
+                        "net_revised": 2035000, 
+                        "net_used": 1977895
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "net_allocated": 1600000, 
+                        "net_revised": 1600000, 
+                        "net_used": 1355278
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1993
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "net_allocated": 1500000, 
+                        "net_revised": 1500000, 
+                        "net_used": 1667541
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1994
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "net_allocated": 1750000, 
+                        "net_revised": 1750000, 
+                        "net_used": 1688967
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1995
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 1657500, 
+                        "gross_used": 1201363, 
+                        "net_allocated": 1657500, 
+                        "net_revised": 1657500, 
+                        "net_used": 1576955
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1996
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 1458000, 
+                        "gross_used": 1120347, 
+                        "net_allocated": 1458000, 
+                        "net_revised": 1458000, 
+                        "net_used": 1120347
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1997
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 1500000, 
+                        "gross_used": 3427651, 
+                        "net_allocated": 1500000, 
+                        "net_revised": 1500000, 
+                        "net_used": 3427651
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 1177000, 
+                        "gross_used": 2150496, 
+                        "net_allocated": 1177000, 
+                        "net_revised": 1177000, 
+                        "net_used": 2150496
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1999
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 1325000, 
+                        "gross_used": 1765567, 
+                        "net_allocated": 1325000, 
+                        "net_revised": 1325000, 
+                        "net_used": 1765567
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2000
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 1050000, 
+                        "gross_used": 1938344, 
+                        "net_allocated": 1050000, 
+                        "net_revised": 1050000, 
+                        "net_used": 1938344
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2001
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 2031000, 
+                        "gross_used": 1912878, 
+                        "net_allocated": 2031000, 
+                        "net_revised": 2031000, 
+                        "net_used": 1912878
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2002
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 1730000, 
+                        "gross_used": 2108481, 
+                        "net_allocated": 1730000, 
+                        "net_revised": 1730000, 
+                        "net_used": 2108481
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2003
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 1468602, 
+                        "net_revised": 0, 
+                        "net_used": 1468602
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2004
+                }, 
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 877858, 
+                        "net_revised": 0, 
+                        "net_used": 877858
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2005
+                }, 
+                {
+                    "title": "0099-2007", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2007
+                }, 
+                {
+                    "title": "0099-2008", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2008
+                }, 
+                {
+                    "title": "0099-2009", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2009
+                }, 
+                {
+                    "title": "0099-2010", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2010
+                }, 
+                {
+                    "title": "0099-2011", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2011
+                }, 
+                {
+                    "title": "0099-2012", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 0, 
+                        "net_revised": 0
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2012
+                }
+            ]
+        }, 
+        "components": [
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 1065000, 
+                            "net_revised": 1065000, 
+                            "net_used": 1085324
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 970000, 
+                            "net_revised": 970000, 
+                            "net_used": 892571
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1992
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 780000, 
+                            "net_revised": 780000, 
+                            "net_used": 542601
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 820000, 
+                            "net_revised": 820000, 
+                            "net_used": 812677
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1993
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 710000, 
+                            "net_revised": 710000, 
+                            "net_used": 822169
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 790000, 
+                            "net_revised": 790000, 
+                            "net_used": 845372
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1994
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 890000, 
+                            "net_revised": 890000, 
+                            "net_used": 840505
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "net_allocated": 860000, 
+                            "net_revised": 860000, 
+                            "net_used": 848462
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1995
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 849500, 
+                            "gross_used": 412852, 
+                            "net_allocated": 849500, 
+                            "net_revised": 849500, 
+                            "net_used": 412852
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 808000, 
+                            "gross_used": 788511, 
+                            "net_allocated": 808000, 
+                            "net_revised": 808000, 
+                            "net_used": 1164103
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1996
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 724100, 
+                            "gross_used": 393966, 
+                            "net_allocated": 724100, 
+                            "net_revised": 724100, 
+                            "net_used": 393966
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 733900, 
+                            "gross_used": 726381, 
+                            "net_allocated": 733900, 
+                            "net_revised": 733900, 
+                            "net_used": 726381
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1997
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 775000, 
+                            "gross_used": 1614983, 
+                            "net_allocated": 775000, 
+                            "net_revised": 775000, 
+                            "net_used": 1614983
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 725000, 
+                            "gross_used": 1812668, 
+                            "net_allocated": 725000, 
+                            "net_revised": 725000, 
+                            "net_used": 1812668
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1998
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 565000, 
+                            "gross_used": 392714, 
+                            "net_allocated": 565000, 
+                            "net_revised": 565000, 
+                            "net_used": 392714
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 612000, 
+                            "gross_used": 1757782, 
+                            "net_allocated": 612000, 
+                            "net_revised": 612000, 
+                            "net_used": 1757782
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1999
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 730000, 
+                            "gross_used": 417482, 
+                            "net_allocated": 730000, 
+                            "net_revised": 730000, 
+                            "net_used": 417482
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 595000, 
+                            "gross_used": 1348084, 
+                            "net_allocated": 595000, 
+                            "net_revised": 595000, 
+                            "net_used": 1348084
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2000
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 550000, 
+                            "gross_used": 444231, 
+                            "net_allocated": 550000, 
+                            "net_revised": 550000, 
+                            "net_used": 444231
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 500000, 
+                            "gross_used": 1494113, 
+                            "net_allocated": 500000, 
+                            "net_revised": 500000, 
+                            "net_used": 1494113
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2001
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 570000, 
+                            "gross_used": 808343, 
+                            "net_allocated": 570000, 
+                            "net_revised": 570000, 
+                            "net_used": 808343
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 1461000, 
+                            "gross_used": 1104535, 
+                            "net_allocated": 1461000, 
+                            "net_revised": 1461000, 
+                            "net_used": 1104535
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2002
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 615000, 
+                            "gross_used": 639760, 
+                            "net_allocated": 615000, 
+                            "net_revised": 615000, 
+                            "net_used": 639760
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 1115000, 
+                            "gross_used": 1468721, 
+                            "net_allocated": 1115000, 
+                            "net_revised": 1115000, 
+                            "net_used": 1468721
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2003
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 0, 
+                            "gross_used": 676200, 
+                            "net_revised": 0, 
+                            "net_used": 676200
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 0, 
+                            "gross_used": 792402, 
+                            "net_revised": 0, 
+                            "net_used": 792402
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2004
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "009901", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 0, 
+                            "gross_used": 574059, 
+                            "net_revised": 0, 
+                            "net_used": 574059
+                        }, 
+                        "virtual_id": "bgt-009901", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "009902", 
+                        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                        "values": {
+                            "gross_revised": 0, 
+                            "gross_used": 303799, 
+                            "net_revised": 0, 
+                            "net_used": 303799
+                        }, 
+                        "virtual_id": "bgt-009902", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2005
+            }
+        ], 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+        "virtual_id": "bgt-0099"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                "virtual_id": "bgt-00990201"
+            }, 
+            {
+                "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                "virtual_id": "bgt-009902"
+            }, 
+            {
+                "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                "virtual_id": "bgt-0099"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "0099020195", 
+            "years": [
+                {
+                    "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                    "values": {
+                        "net_revised": 14500
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }
+            ]
+        }, 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+        "virtual_id": "bgt-0099020195"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                "virtual_id": "bgt-00990201"
+            }, 
+            {
+                "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                "virtual_id": "bgt-009902"
+            }, 
+            {
+                "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                "virtual_id": "bgt-0099"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "0099020101", 
+            "years": [
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 970000, 
+                        "net_revised": 970000, 
+                        "net_used": 892571
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 820000, 
+                        "net_revised": 820000, 
+                        "net_used": 812677
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1993
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 790000, 
+                        "net_revised": 790000, 
+                        "net_used": 845372
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1994
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 860000, 
+                        "net_revised": 860000, 
+                        "net_used": 848462
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1995
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 808000, 
+                        "net_revised": 808000, 
+                        "net_used": 1164103
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1996
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 733900, 
+                        "net_revised": 733900, 
+                        "net_used": 726381
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1997
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 725000, 
+                        "net_revised": 710500, 
+                        "net_used": 1812668
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 612000, 
+                        "net_revised": 612000, 
+                        "net_used": 1757782
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1999
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 1348084, 
+                        "gross_used": 905000, 
+                        "net_allocated": 595000, 
+                        "net_revised": 905000, 
+                        "net_used": 1348084
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2000
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 1494113, 
+                        "gross_used": 500000, 
+                        "net_allocated": 500000, 
+                        "net_revised": 500000, 
+                        "net_used": 1494113
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2001
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 1104534, 
+                        "gross_used": 1461000, 
+                        "net_allocated": 1461000, 
+                        "net_revised": 1461000, 
+                        "net_used": 1104535
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2002
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "net_allocated": 1115000, 
+                        "net_revised": 1115000, 
+                        "net_used": 1468721
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2003
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 792402, 
+                        "net_used": 792402
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2004
+                }, 
+                {
+                    "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+                    "values": {
+                        "gross_revised": 303799, 
+                        "net_used": 303799
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2005
+                }
+            ]
+        }, 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05e8\u05d9\u05d1\u05d9\u05ea", 
+        "virtual_id": "bgt-0099020101"
+    }, 
+    {
+        "ancestry": [
+            {
+                "title": "\u05e7\u05e8\u05df", 
+                "virtual_id": "bgt-009901"
+            }, 
+            {
+                "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                "virtual_id": "bgt-0099"
+            }, 
+            {
+                "title": "\u05d4\u05de\u05d3\u05d9\u05e0\u05d4", 
+                "virtual_id": "bgt-00"
+            }
+        ], 
+        "author": "\u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "budget_item": {
+            "budget_id": "00990101", 
+            "years": [
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 1065000, 
+                        "net_revised": 1065000, 
+                        "net_used": 1085324
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1992
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 780000, 
+                        "net_revised": 780000, 
+                        "net_used": 542601
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1993
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 710000, 
+                        "net_revised": 710000, 
+                        "net_used": 822169
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1994
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "net_allocated": 890000, 
+                        "net_revised": 890000, 
+                        "net_used": 840505
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1995
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 849500, 
+                        "gross_used": 412852, 
+                        "net_allocated": 849500, 
+                        "net_revised": 849500, 
+                        "net_used": 412852
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1996
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 724100, 
+                        "gross_used": 393966, 
+                        "net_allocated": 724100, 
+                        "net_revised": 724100, 
+                        "net_used": 393966
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1997
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 775000, 
+                        "gross_used": 1614983, 
+                        "net_allocated": 775000, 
+                        "net_revised": 775000, 
+                        "net_used": 1614983
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1998
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 565000, 
+                        "gross_used": 392714, 
+                        "net_allocated": 565000, 
+                        "net_revised": 565000, 
+                        "net_used": 392714
+                    }, 
+                    "weight": 1.0, 
+                    "year": 1999
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 730000, 
+                        "gross_used": 417482, 
+                        "net_allocated": 730000, 
+                        "net_revised": 730000, 
+                        "net_used": 417482
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2000
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 550000, 
+                        "gross_used": 444231, 
+                        "net_allocated": 550000, 
+                        "net_revised": 550000, 
+                        "net_used": 444231
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2001
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 570000, 
+                        "gross_used": 808343, 
+                        "net_allocated": 570000, 
+                        "net_revised": 570000, 
+                        "net_used": 808343
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2002
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 615000, 
+                        "gross_used": 639760, 
+                        "net_allocated": 615000, 
+                        "net_revised": 615000, 
+                        "net_used": 639760
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2003
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 676200, 
+                        "net_revised": 0, 
+                        "net_used": 676200
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2004
+                }, 
+                {
+                    "title": "\u05e7\u05e8\u05df", 
+                    "values": {
+                        "gross_revised": 0, 
+                        "gross_used": 574059, 
+                        "net_revised": 0, 
+                        "net_used": 574059
+                    }, 
+                    "weight": 1.0, 
+                    "year": 2005
+                }
+            ]
+        }, 
+        "components": [
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 1065000, 
+                            "net_revised": 1065000, 
+                            "net_used": 1085324
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1992
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 780000, 
+                            "net_revised": 780000, 
+                            "net_used": 542601
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1993
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 710000, 
+                            "net_revised": 710000, 
+                            "net_used": 822169
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1994
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 890000, 
+                            "net_revised": 890000, 
+                            "net_used": 840505
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1995
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 849500, 
+                            "net_revised": 849500, 
+                            "net_used": 412852
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1996
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 724100, 
+                            "net_revised": 724100, 
+                            "net_used": 393966
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1997
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 775000, 
+                            "net_revised": 759500, 
+                            "net_used": 1614983
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }, 
+                    {
+                        "budget_id": "0099010195", 
+                        "title": "\u05d4\u05d7\u05d6\u05e8 \u05d7\u05d5\u05d1\u05d5\u05ea \u05dc\u05d1\u05e0\u05e7 \u05d9\u05e9\u05e8\u05d0\u05dc", 
+                        "values": {
+                            "net_revised": 15500
+                        }, 
+                        "virtual_id": "bgt-0099010195", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1998
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 565000, 
+                            "net_revised": 565000, 
+                            "net_used": 392714
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 1999
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 417482, 
+                            "gross_used": 420000, 
+                            "net_allocated": 730000, 
+                            "net_revised": 420000, 
+                            "net_used": 417482
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2000
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 444230, 
+                            "gross_used": 550000, 
+                            "net_allocated": 550000, 
+                            "net_revised": 550000, 
+                            "net_used": 444231
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2001
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 808342, 
+                            "gross_used": 570000, 
+                            "net_allocated": 570000, 
+                            "net_revised": 570000, 
+                            "net_used": 808343
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2002
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "net_allocated": 615000, 
+                            "net_revised": 615000, 
+                            "net_used": 639760
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2003
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 676200, 
+                            "net_used": 676200
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2004
+            }, 
+            {
+                "items": [
+                    {
+                        "budget_id": "0099010101", 
+                        "title": "\u05e7\u05e8\u05df", 
+                        "values": {
+                            "gross_revised": 574059, 
+                            "net_used": 574059
+                        }, 
+                        "virtual_id": "bgt-0099010101", 
+                        "weight": 1.0
+                    }
+                ], 
+                "year": 2005
+            }
+        ], 
+        "description": "\u05e1\u05e2\u05d9\u05e3 \u05d6\u05d4 \u05e0\u05d2\u05d6\u05e8 \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05de\u05e0\u05ea\u05d5\u05e0\u05d9 \u05de\u05e9\u05e8\u05d3 \u05d4\u05d0\u05d5\u05e6\u05e8", 
+        "tags": [], 
+        "title": "\u05e7\u05e8\u05df", 
+        "virtual_id": "bgt-00990101"
+    }
+]
