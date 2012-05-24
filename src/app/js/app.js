@@ -5,28 +5,6 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
     _this = this;
 
-  $.extend({
-    OB: {
-      initControllers: function() {
-        $.Visualization.addController($.TableController, $("#vis-contents"));
-        $.Visualization.addController($.ChartController, $("#vis-contents"));
-      },
-      main: function() {
-        var search;
-        $.Visualization.initControllers($("#vis-buttons"));
-        $.Visualization.showController($.Visualization.controllers()[0]);
-        search = new $.Search($("#searchbox input"), $("#searchresults"));
-        search.init();
-      },
-      /*
-      		For use by the embed html
-      */
-      getURLParameter: function(name) {
-        return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|#|;|$)').exec(location.search) || ["", ""])[1].replace(/\+/g, '%20')) || null;
-      }
-    }
-  });
-
   $.Controller = (function() {
 
     function Controller($vizdiv) {
@@ -507,73 +485,6 @@
     }
   });
 
-  window.createVirtualItem = function(data) {
-    var budget, dataByYear, dataByYearSorted, vid;
-    vid = data._src.substring(1 + data._src.lastIndexOf("/"));
-    vid = vid.substring(0, vid.indexOf("_"));
-    dataByYear = {};
-    $.each(data.refs, function(index, value) {
-      var current_year;
-      if (!(dataByYear[value.year] != null)) {
-        current_year = {
-          year: value.year,
-          items: []
-        };
-        current_year.items.push(value);
-        dataByYear[value.year] = current_year;
-      } else {
-        dataByYear[value.year].items.push(value);
-      }
-    });
-    dataByYearSorted = [];
-    $.each(dataByYear, function(index, value) {
-      return dataByYearSorted.push(value);
-    });
-    dataByYearSorted.sort(function(a, b) {
-      if (a.year > b.year) {
-        return 1;
-      } else if (b.year > a.year) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
-    budget = {};
-    budget.title = data.title;
-    budget.description = "תקציב " + data.title;
-    budget.author = "התקציב הפתוח";
-    budget.virtual_id = vid;
-    budget.data = [];
-    $.each(dataByYearSorted, function(index, value) {
-      var budgetData;
-      budgetData = {
-        year: value.year
-      };
-      budgetData.items = [];
-      $.each(value.items, function(index, value) {
-        var dataValues, item;
-        dataValues = {
-          net_allocated: value.net_allocated,
-          net_revised: value.net_revised,
-          net_used: value.net_used,
-          gross_revised: value.gross_revised,
-          gross_used: value.gross_used
-        };
-        item = {
-          virtual_id: value.code,
-          budget_id: value.code,
-          title: value.title,
-          weight: 1.0,
-          values: dataValues
-        };
-        budgetData.items.push(item);
-      });
-      budget.data.push(budgetData);
-    });
-    localStorage.setItem(budget.virtual_id, JSON.stringify(budget));
-    return budget;
-  };
-
   $.extend({
     mustacheTemplates: {
       navigator_ancestors: "{{#mus_ancestry}}<a href='/{{mus_url}}' onclick='{{mus_onclick}}'}>{{title}}</a> > {{/mus_ancestry}}",
@@ -774,5 +685,27 @@
       "sLast": "אחרון"
     }
   };
+
+  $.extend({
+    OB: {
+      initControllers: function() {
+        $.Visualization.addController($.TableController, $("#vis-contents"));
+        $.Visualization.addController($.ChartController, $("#vis-contents"));
+      },
+      main: function() {
+        var search;
+        $.Visualization.initControllers($("#vis-buttons"));
+        $.Visualization.showController($.Visualization.controllers()[0]);
+        search = new $.Search($("#searchbox input"), $("#searchresults"));
+        search.init();
+      },
+      /*
+      		For use by the embed html
+      */
+      getURLParameter: function(name) {
+        return decodeURIComponent((RegExp('[?|&]' + name + '=' + '(.+?)(&|#|;|$)').exec(location.search) || ["", ""])[1].replace(/\+/g, '%20')) || null;
+      }
+    }
+  });
 
 }).call(this);
