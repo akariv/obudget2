@@ -16,13 +16,18 @@ Run
 ===
 
 - Install [node.js](http://nodejs.org/)
-- Run the following command:
--
+- Run the following command. This will install all external packages needed
+
+
+    npm install
+
+- Run the application server:
+
 
     node app.js
 
 - Open your browser with the following address:
--
+
 
     localhost:3000
 

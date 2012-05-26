@@ -3,7 +3,6 @@ fs     = require 'fs'
 appFiles  = [
   	'controllers/ControllerClass'
 	'controllers/ChartController'
-    'controllers/NavigationController'
    	'controllers/SearchController'
   	'controllers/TableController'
   	'controllers/VizController'
