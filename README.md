@@ -19,17 +19,17 @@ Run
 - Run the following command. This will install all external packages needed
 
 
-    npm install
+        npm install
 
 - Run the application server:
 
 
-    node app.js
+        node app.js
 
 - Open your browser with the following address:
 
 
-    localhost:3000
+        localhost:3000
 
 
 Build
