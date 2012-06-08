@@ -15,6 +15,8 @@
 		<title>Israel Spending</title>
         <style type="text/css" title="currentStyle">
             @import "lib/DataTables-1.9.0/css/jquery.dataTables.css";
+            @import "css/bootstrap-rtl.css";
+            @import "css/bootstrap-responsive-rtl.css";
         </style>
         <script type="text/javascript">
 //        	var whp = window.history.pushState;
@@ -73,19 +75,26 @@
             $($.OB.initControllers);
             $($.OB.main);
         </script>
-        <img src="images/logo.png" alt="התקציב הפתוח"></img>
-        <div id="navigator">
-            <span id="ancestors"></span>
-            <span id="current_section"></span>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="brand" href="{{main_url}}">התקציב הפתוח</a>
+      <div id="navigator">
+        <span id="ancestors" class="navbar-text"></span>
+        <span id="current_section" class="navbar-text"></span>
+        <div id="searchbox" class="pull-left navbar-search navbar-text">
+          <input type="text"> </input>
         </div>
-        <div id="searchbox">
-            חיפוש<input type="text">
-            </input>
-        </div>
-        <div id="searchresults">
-        </div>
-        <hr>
-        <div id="visualizations">
+        <span class="pull-left search-label">חיפוש</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main" class="container-fluid">
+<div class="row">
+  <div class="span3">
+    <div class="row">
             <div id="multiYear">
                 <form id="multiYearForm" action="">
                     <!-- TODO: The values should not be true and false, but something more meaningful --><input type="radio" name="group1" value="false" checked>לפי שנה
@@ -94,13 +103,31 @@
                     <br>
                 </form>
             </div>
-            <div id="vis-contents">
-            </div>
             <div id="vis-buttons">
             </div>
             <div id="embed-widget">
             </div>
-        </div>
+      <ul class="nav nav-list">
+        <li class="nav-header">קישורים</li>
+      </ul>
+    </div>
+  </div>
+  <div class="span9">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#agendas-tab" data-toggle="tab">דגלים</a>
+      </li>
+      <li>
+        <a href="#comments-tab" data-toggle="tab">תגובות גולשים</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="agendas-tab" class="tab-pane active">
+            <div id="vis-contents">
+            </div>
+      </div>
+
+      <div id="comments-tab" class="tab-pane">
 		<!-- Disqus recent comments -->
 		<div id="recentcomments" class="dsq-widget"><h2 class="dsq-widget-title">תגובות אחרונות</h2><script defer type="text/javascript" src="http://obudet2-test.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=32&excerpt_length=200"></script></div><a href="http://disqus.com/">Powered by Disqus</a>
 
@@ -138,5 +165,11 @@
             Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
         <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
     </body>
 </html>

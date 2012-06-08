@@ -3,3 +3,5 @@
 out/
 /.settings**
 node_modules
+.*
+*.swp
