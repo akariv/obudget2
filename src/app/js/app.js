@@ -100,8 +100,17 @@
     }
 
     ChartController.prototype.dataLoaded = function(budget) {
-      var categories, emptyItems, latestYearData, mutliYearData, singleYearData, sums;
+      var categories, emptyItems, item, latestYearData, mutliYearData, otherPart, singleYearData, singleYearMaxLength, sumOtherPart, sums, years, _i, _j, _len, _len1, _ref;
       singleYearData = [];
+      console.log("budget = ");
+      console.log(budget);
+      years = [];
+      _ref = budget.components;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        item = _ref[_i];
+        years.push(item.year);
+      }
+      console.log(years);
       latestYearData = budget.components[budget.components.length - 2];
       emptyItems = [];
       $.each(latestYearData.items, function(index, item) {
@@ -114,6 +123,24 @@
       console.log("subsections with no net_allocated value:");
       console.log("****************");
       console.log(emptyItems);
+      singleYearMaxLength = 9;
+      singleYearData.sort(function(a, b) {
+        if (a[1] < b[1]) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      if (singleYearData.length > singleYearMaxLength) {
+        otherPart = singleYearData.slice(singleYearMaxLength);
+        singleYearData = singleYearData.slice(0, singleYearMaxLength);
+        sumOtherPart = 0;
+        for (_j = 0, _len1 = otherPart.length; _j < _len1; _j++) {
+          item = otherPart[_j];
+          sumOtherPart += item[1];
+        }
+        singleYearData.push(['סעיפים אחרים', sumOtherPart]);
+      }
       this.getSingleYearView().setData(singleYearData);
       sums = [];
       categories = [];
@@ -143,17 +170,6 @@
     return ChartController;
 
   })($.Controller);
-
-  $.NavigationController = (function() {
-
-    function NavigationController() {
-      this;
-      return;
-    }
-
-    return NavigationController;
-
-  })();
 
   $.Search = (function() {
 
@@ -637,25 +653,30 @@
       this.setData = function(data) {
         var table, tableOptions;
         this.container.html('\
-			<table cellpadding="0" cellspacing="0" border="0" class="display">\
-				<thead>\
-					<tr>\
-						<th>תקציב</th>\
-						<th>שנה</th>\
-						<th>מזהה</th>\
-					</tr>\
-				</thead>\
-				<tbody>\
-					<tr class="odd gradeX">\
-						<td>1234.0</td>\
-						<td>1948</td>\
-						<td>0020</td>\
-					</tr>\
-				</tbody>\
-			</table>\
-			');
+            <table cellpadding="0" cellspacing="0" border="0" class="display">\
+                <thead>\
+                    <tr>\
+                        <th>תקציב</th>\
+                        <th>שנה</th>\
+                        <th>מזהה</th>\
+                    </tr>\
+                </thead>\
+                <tbody>\
+                    <tr class="odd gradeX">\
+                        <td>1234.0</td>\
+                        <td>1948</td>\
+                        <td>0020</td>\
+                    </tr>\
+                </tbody>\
+            </table>\
+            ');
         table = null;
         tableOptions = $.extend({}, tableDef);
+        if ($(this.container).hasClass('multiYear')) {
+          tableOptions.aaSorting = [[1, "desc"]];
+        } else {
+          tableOptions.aaSorting = [[0, "desc"]];
+        }
         if (that.onSubSection != null) {
           $.extend(tableOptions, {
             fnCreatedRow: function(nRow, aData, iDataIndex) {
@@ -672,23 +693,23 @@
         return table.fnAddData(data);
       };
       this.container.html('\
-		<table cellpadding="0" cellspacing="0" border="0" class="display">\
-			<thead>\
-				<tr>\
-					<th>תקציב</th>\
-					<th>שנה</th>\
-					<th>מזהה</th>\
-				</tr>\
-			</thead>\
-			<tbody>\
-				<tr class="odd gradeX">\
-					<td>1234.0</td>\
-					<td>1948</td>\
-					<td>0020</td>\
-				</tr>\
-			</tbody>\
-		</table>\
-		');
+        <table cellpadding="0" cellspacing="0" border="0" class="display">\
+            <thead>\
+                <tr>\
+                    <th>תקציב</th>\
+                    <th>שנה</th>\
+                    <th>מזהה</th>\
+                </tr>\
+            </thead>\
+            <tbody>\
+                <tr class="odd gradeX">\
+                    <td>1234.0</td>\
+                    <td>1948</td>\
+                    <td>0020</td>\
+                </tr>\
+            </tbody>\
+        </table>\
+        ');
       $('table', this.container).dataTable(tableDef);
     }
   });
