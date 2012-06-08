@@ -1,5 +1,5 @@
 $.extend
-	LineChartView : ($container)->
+	ColumnChartView : ($container)->
 		that = this
 		this.setData = (data) ->
 			###
@@ -16,7 +16,7 @@ $.extend
 		this.line = new Highcharts.Chart
 			chart :
 				renderTo : $container[0].id
-				type : 'line'
+				type : 'column'
 			title :
 				text : 'תקציב המדינה'
 			xAxis :

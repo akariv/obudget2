@@ -1,5 +1,5 @@
 (function() {
-  var tableDef, _Singleton_Model,
+  var str, tableDef, _Singleton_Model,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
@@ -9,9 +9,6 @@
 
     function Controller($vizdiv) {
       var mlist, model, that;
-      this.displayMultiYear = false;
-      this.multiYearChartClass = 'multiYear';
-      this.singleYearChartClass = 'singleYear';
       this.vizDiv = ($("<div id='" + this.id + "'></div>")).appendTo($vizdiv);
       model = $.Model.get();
       that = this;
@@ -21,82 +18,48 @@
         }
       });
       model.addListener(mlist);
-      this.getSingleYearView();
-      this.getMultiYearView();
+      this.getView();
       return;
     }
 
-    Controller.prototype.setMultiYear = function(multiYear) {
-      if (multiYear == null) multiYear = true;
-      if (this.displayMultiYear === multiYear) {} else {
-        $("#" + this.id + " ." + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", false);
-        this.displayMultiYear = multiYear;
-        $("#" + this.id + " ." + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", true);
-      }
-    };
-
-    Controller.prototype.chartIdByMultiYear = function(multiYear) {
-      if (multiYear) {
-        return this.multiYearChartClass;
-      } else {
-        return this.singleYearChartClass;
-      }
-    };
-
     Controller.prototype.visible = function(visible) {
       if (visible == null) visible = true;
-      return $("#" + this.id + " ." + this.chartIdByMultiYear(this.displayMultiYear)).toggleClass("active", visible);
+      return $("#" + this.id).toggleClass("active", visible);
     };
 
-    Controller.prototype.getMultiYearView = function() {
-      var multiYearViewDiv;
-      if (!(this.multiYearView != null)) {
-        multiYearViewDiv = ($("<div id='" + this.id + "_" + this.multiYearChartClass + "' class='viz " + this.multiYearChartClass + "'></div>")).appendTo(this.vizDiv);
-        this.multiYearView = this.createMultiYearView(multiYearViewDiv);
-      }
-      return this.multiYearView;
-    };
-
-    Controller.prototype.getSingleYearView = function() {
-      var singleYearViewDiv;
-      if (!(this.singleYearView != null)) {
-        singleYearViewDiv = ($("<div id='" + this.id + "_" + this.singleYearChartClass + "' class='viz " + this.singleYearChartClass + "'></div>")).appendTo(this.vizDiv);
-        this.singleYearView = this.createSingleYearView(singleYearViewDiv);
-      }
-      return this.singleYearView;
+    Controller.prototype.getView = function() {
+      if (!(this.view != null)) this.view = this.createView(this.vizDiv);
+      return this.view;
     };
 
     return Controller;
 
   })();
 
-  $.ChartController = (function(_super) {
+  $.PieChartController = (function(_super) {
 
-    __extends(ChartController, _super);
+    __extends(PieChartController, _super);
 
-    function ChartController($viz) {
+    function PieChartController($viz) {
       if ($viz == null) $viz = 'visualization';
       this.dataLoaded = __bind(this.dataLoaded, this);
-      this.id = 'chartViz';
-      this.createSingleYearView = function(div) {
+      this.id = 'piechartViz';
+      this.createView = function(div) {
         return new $.PieChartView(div);
       };
-      this.createMultiYearView = function(div) {
-        return new $.LineChartView(div);
-      };
       this.onSubSection = function(subsection) {};
-      ChartController.__super__.constructor.call(this, $viz);
+      PieChartController.__super__.constructor.call(this, $viz);
       return;
     }
 
-    ChartController.prototype.dataLoaded = function(budget) {
-      var categories, emptyItems, item, latestYearData, mutliYearData, otherPart, singleYearData, singleYearMaxLength, sumOtherPart, sums, _i, _len;
-      singleYearData = [];
+    PieChartController.prototype.dataLoaded = function(budget) {
+      var data, emptyItems, item, latestYearData, otherPart, singleYearMaxLength, sumOtherPart, _i, _len;
+      data = [];
       latestYearData = budget.components[budget.components.length - 2];
       emptyItems = [];
       $.each(latestYearData.items, function(index, item) {
         if (item.values.net_allocated != null) {
-          singleYearData.push([item.title, item.values.net_allocated]);
+          data.push([item.title, item.values.net_allocated]);
         } else {
           emptyItems.push(item.title);
         }
@@ -105,24 +68,48 @@
       console.log("****************");
       console.log(emptyItems);
       singleYearMaxLength = 9;
-      singleYearData.sort(function(a, b) {
+      data.sort(function(a, b) {
         if (a[1] < b[1]) {
           return 1;
         } else {
           return -1;
         }
       });
-      if (singleYearData.length > singleYearMaxLength) {
-        otherPart = singleYearData.slice(singleYearMaxLength);
-        singleYearData = singleYearData.slice(0, singleYearMaxLength);
+      if (data.length > singleYearMaxLength) {
+        otherPart = data.slice(singleYearMaxLength);
+        data = data.slice(0, singleYearMaxLength);
         sumOtherPart = 0;
         for (_i = 0, _len = otherPart.length; _i < _len; _i++) {
           item = otherPart[_i];
           sumOtherPart += item[1];
         }
-        singleYearData.push(['סעיפים אחרים', sumOtherPart]);
+        data.push([str.piechartOthers, sumOtherPart]);
       }
-      this.getSingleYearView().setData(singleYearData);
+      this.getView().setData(data);
+    };
+
+    return PieChartController;
+
+  })($.Controller);
+
+  $.ColumnChartController = (function(_super) {
+
+    __extends(ColumnChartController, _super);
+
+    function ColumnChartController($viz) {
+      if ($viz == null) $viz = 'visualization';
+      this.dataLoaded = __bind(this.dataLoaded, this);
+      this.id = 'chartViz';
+      this.createView = function(div) {
+        return new $.ColumnChartView(div);
+      };
+      this.onSubSection = function(subsection) {};
+      ColumnChartController.__super__.constructor.call(this, $viz);
+      return;
+    }
+
+    ColumnChartController.prototype.dataLoaded = function(budget) {
+      var categories, data, sums;
       sums = [];
       categories = [];
       $.each(budget.components, function(index, yearData) {
@@ -139,16 +126,16 @@
           categories.push(currentYear);
         }
       });
-      mutliYearData = {
+      data = {
         title: budget.title,
         source: budget.author,
         categories: categories,
         sums: sums
       };
-      this.getMultiYearView().setData(mutliYearData);
+      this.getView().setData(data);
     };
 
-    return ChartController;
+    return ColumnChartController;
 
   })($.Controller);
 
@@ -198,18 +185,60 @@
 
   })();
 
-  $.TableController = (function(_super) {
+  $.SingleYearTableController = (function(_super) {
 
-    __extends(TableController, _super);
+    __extends(SingleYearTableController, _super);
 
-    function TableController($viz) {
+    function SingleYearTableController($viz) {
       if ($viz == null) $viz = 'visualization';
       this.dataLoaded = __bind(this.dataLoaded, this);
       this.id = 'tableViz';
-      this.createSingleYearView = function(div) {
+      this.createView = function(div) {
         return new $.TableView(div, this.onSubSection);
       };
-      this.createMultiYearView = function(div) {
+      this.onSubSection = function(subsection) {
+        var state;
+        console.log(History.getState());
+        state = History.getState();
+        History.pushState({
+          vid: subsection[2],
+          rand: Math.random()
+        }, subsection[1], $.titleToUrl({
+          title: subsection[1],
+          vid: subsection[2]
+        }));
+      };
+      SingleYearTableController.__super__.constructor.call(this, $viz);
+      return;
+    }
+
+    SingleYearTableController.prototype.dataLoaded = function(budget) {
+      var data, latestYearData;
+      data = [];
+      latestYearData = budget.components[budget.components.length - 2];
+      $.each(latestYearData.items, function(index, item) {
+        if (item.values.net_allocated != null) {
+          data.push([parseInt(item.values.net_allocated), item.title, item.virtual_id]);
+        } else {
+          true;
+        }
+      });
+      this.getView().setData(data);
+    };
+
+    return SingleYearTableController;
+
+  })($.Controller);
+
+  $.MultiYearTableController = (function(_super) {
+
+    __extends(MultiYearTableController, _super);
+
+    function MultiYearTableController($viz) {
+      if ($viz == null) $viz = 'visualization';
+      this.dataLoaded = __bind(this.dataLoaded, this);
+      this.id = 'tableViz';
+      this.createView = function(div) {
         return new $.TableView(div);
       };
       this.onSubSection = function(subsection) {
@@ -224,23 +253,13 @@
           vid: subsection[2]
         }));
       };
-      TableController.__super__.constructor.call(this, $viz);
+      MultiYearTableController.__super__.constructor.call(this, $viz);
       return;
     }
 
-    TableController.prototype.dataLoaded = function(budget) {
-      var latestYearData, multiYearData, singleYearData;
-      singleYearData = [];
-      multiYearData = [];
-      latestYearData = budget.components[budget.components.length - 2];
-      $.each(latestYearData.items, function(index, item) {
-        if (item.values.net_allocated != null) {
-          singleYearData.push([parseInt(item.values.net_allocated), item.title, item.virtual_id]);
-        } else {
-          true;
-        }
-      });
-      this.getSingleYearView().setData(singleYearData);
+    MultiYearTableController.prototype.dataLoaded = function(budget) {
+      var data;
+      data = [];
       $.each(budget.components, function(index, yearData) {
         var currentYear, yearSum;
         currentYear = yearData.year;
@@ -250,12 +269,12 @@
             yearSum += item.values.net_allocated;
           }
         });
-        if (yearSum > 0) multiYearData.push([yearSum, currentYear, currentYear]);
+        if (yearSum > 0) data.push([yearSum, currentYear, currentYear]);
       });
-      this.getMultiYearView().setData(multiYearData);
+      this.getView().setData(data);
     };
 
-    return TableController;
+    return MultiYearTableController;
 
   })($.Controller);
 
@@ -351,11 +370,6 @@
         /*
         			Year Span radio button selector
         */
-        $("#multiYearForm").change(function(event) {
-          var val;
-          val = ($(':checked', event.currentTarget)).val();
-          $.Visualization.visibleCont().setMultiYear(val === "true");
-        });
       },
       showController: function(cont) {
         if ((_this._visCont != null) && _this._visCont !== cont) {
@@ -513,8 +527,12 @@
     }
   });
 
+  str = {
+    piechartOthers: 'סעיפים אחרים'
+  };
+
   $.extend({
-    LineChartView: function($container) {
+    ColumnChartView: function($container) {
       var that;
       that = this;
       this.setData = function(data) {
@@ -532,7 +550,7 @@
       this.line = new Highcharts.Chart({
         chart: {
           renderTo: $container[0].id,
-          type: 'line'
+          type: 'column'
         },
         title: {
           text: 'תקציב המדינה'
@@ -613,15 +631,15 @@
             <table cellpadding="0" cellspacing="0" border="0" class="display">\
                 <thead>\
                     <tr>\
-                        <th>תקציב</th>\
-                        <th>שנה</th>\
+                        <th>מספרים</th>\
+                        <th>מילים</th>\
                         <th>מזהה</th>\
                     </tr>\
                 </thead>\
                 <tbody>\
                     <tr class="odd gradeX">\
                         <td>1234.0</td>\
-                        <td>1948</td>\
+                        <td>תיאור כלשהו</td>\
                         <td>0020</td>\
                     </tr>\
                 </tbody>\
@@ -702,8 +720,10 @@
   $.extend({
     OB: {
       initControllers: function() {
-        $.Visualization.addController($.TableController, $("#vis-contents"));
-        $.Visualization.addController($.ChartController, $("#vis-contents"));
+        $.Visualization.addController($.SingleYearTableController, $("#vis-contents"));
+        $.Visualization.addController($.MultiYearTableController, $("#vis-contents"));
+        $.Visualization.addController($.ColumnChartController, $("#vis-contents"));
+        $.Visualization.addController($.PieChartController, $("#vis-contents"));
       },
       main: function() {
         var search;

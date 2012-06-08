@@ -11,15 +11,15 @@ $.extend
             <table cellpadding="0" cellspacing="0" border="0" class="display">
                 <thead>
                     <tr>
-                        <th>תקציב</th>
-                        <th>שנה</th>
+                        <th>מספרים</th>
+                        <th>מילים</th>
                         <th>מזהה</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="odd gradeX">
                         <td>1234.0</td>
-                        <td>1948</td>
+                        <td>תיאור כלשהו</td>
                         <td>0020</td>
                     </tr>
                 </tbody>

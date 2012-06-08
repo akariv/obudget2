@@ -3,9 +3,9 @@
 class $.Controller
 	constructor : ($vizdiv)->
 
-		@displayMultiYear = false
-		@multiYearChartClass = 'multiYear'
-		@singleYearChartClass = 'singleYear'
+#		@displayMultiYear = false
+#		@multiYearChartClass = 'multiYear'
+#		@singleYearChartClass = 'singleYear'
 
 		@vizDiv = ($ "<div id='#{@id}'></div>").appendTo $vizdiv
 
@@ -19,37 +19,30 @@ class $.Controller
 
 		model.addListener mlist
 
-		@getSingleYearView()
-		@getMultiYearView()
+#		@getSingleYearView()
+		@getView()
 
 		return
-	setMultiYear : (multiYear = true) ->
-		if @displayMultiYear == multiYear
-			# do nothing
-		else
-			$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",false
-			@displayMultiYear = multiYear
-
-			$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",true
-		return
-	chartIdByMultiYear : (multiYear) ->
-		if multiYear
-			return @multiYearChartClass
-		else
-			return @singleYearChartClass
+#	setMultiYear : (multiYear = true) ->
+#		if @displayMultiYear == multiYear
+#			# do nothing
+#		else
+#			$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",false
+#			@displayMultiYear = multiYear
+#
+#			$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",true
+#		return
+#	chartIdByMultiYear : (multiYear) ->
+#		if multiYear
+#			return @multiYearChartClass
+#		else
+#			return @singleYearChartClass
 	visible : (visible=true) ->
-		$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",visible
-	getMultiYearView : ->
-		if not @multiYearView?
+		$("#" + @id).toggleClass "active",visible
+		#$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",visible
+	getView : ->
+		if not @view?
 			#id attribute is needed for highcharts
-			multiYearViewDiv = ($ "<div id='" + @id + "_" + @multiYearChartClass + "' class='viz " + @multiYearChartClass + "'></div>").appendTo @vizDiv
-			@multiYearView = @createMultiYearView multiYearViewDiv
-		return @multiYearView
-
-	getSingleYearView : ->
-		if not @singleYearView?
-			#id attribute is needed for highcharts
-			singleYearViewDiv = ($ "<div id='" + @id + "_" + @singleYearChartClass + "' class='viz " + @singleYearChartClass + "'></div>").appendTo @vizDiv
-			@singleYearView = @createSingleYearView singleYearViewDiv
-		return @singleYearView
-
+			#viewDiv = ($ "<div id='" + @id + "_" + @multiYearChartClass + "' class='viz " + @multiYearChartClass + "'></div>").appendTo @vizDiv
+			@view = @createView @vizDiv
+		return @view

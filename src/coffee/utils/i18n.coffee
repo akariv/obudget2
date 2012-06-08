@@ -1,0 +1,3 @@
+str =
+	piechartOthers : 'סעיפים אחרים'
+

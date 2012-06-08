@@ -88,10 +88,10 @@ $.extend
 			###
 			Year Span radio button selector
 			###
-			$("#multiYearForm").change (event)->
-				val = ($ ':checked',event.currentTarget).val()
-				$.Visualization.visibleCont().setMultiYear (val == "true")
-				return
+#			$("#multiYearForm").change (event)->
+#				val = ($ ':checked',event.currentTarget).val()
+#				$.Visualization.visibleCont().setMultiYear (val == "true")
+#				return
 
 
 			return

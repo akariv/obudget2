@@ -2,8 +2,10 @@ $.extend
 	OB :
 		initControllers : ->
 			# TODO find a better way to add controllers. The suggested way duplicates passing parameters both here and in the initController function.
-			$.Visualization.addController $.TableController,$ "#vis-contents"
-			$.Visualization.addController $.ChartController,$ "#vis-contents"
+			$.Visualization.addController $.SingleYearTableController,$ "#vis-contents"
+			$.Visualization.addController $.MultiYearTableController,$ "#vis-contents"
+			$.Visualization.addController $.ColumnChartController,$ "#vis-contents"
+			$.Visualization.addController $.PieChartController,$ "#vis-contents"
 
 			return
 		main : ->

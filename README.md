@@ -16,7 +16,7 @@ Run
 ===
 
 - Install [node.js](http://nodejs.org/)
-- Run the following command. This will install all external packages needed
+- Run the following command from the project root. This will install all external packages needed
 
 
         npm install
@@ -55,7 +55,7 @@ The source files are located in the follwoing directory:
 
 The html and css files are located here:
 
-    src/target
+    src/app
 
 ---
 
