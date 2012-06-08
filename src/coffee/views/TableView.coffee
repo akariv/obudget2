@@ -34,9 +34,12 @@ $.extend
                 tableOptions.aaSorting = [[0, "desc"]]
             if that.onSubSection?
                 $.extend tableOptions, fnCreatedRow : ( nRow, aData, iDataIndex ) ->
+                    for cell in $('td', nRow)
+                        do (cell) ->  
+                            $(cell).html '<a href="">' + $(cell).html() + '</a>' 
                     $(nRow).click (event)->
                         that.onSubSection(aData)
-                        return
+                        return false
                 table = $('table', @container).dataTable tableOptions
             else
                 table = $('table', @container).dataTable tableOptions
