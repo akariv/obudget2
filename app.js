@@ -78,7 +78,13 @@ app.get('/data/:bgt', function(req, res){
 	  } else {
 		vitems = JSON.parse(data);
 		res.writeHead(200);
-		res.end(callback + "(" + JSON.stringify(getVirtualItem(req.params.bgt,vitems)) + ")");
+		var response = "";
+		if (callback === undefined) {
+			response = JSON.stringify(getVirtualItem(req.params.bgt,vitems));
+		} else {
+			response = callback + "(" + JSON.stringify(getVirtualItem(req.params.bgt,vitems)) + ")"
+		}
+		res.end(response);
 	  }
 
 	});
