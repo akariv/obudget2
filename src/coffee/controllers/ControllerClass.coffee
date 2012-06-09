@@ -18,7 +18,7 @@ class $.Controller
 		@getView()
 
 		return
-	visible : (visible=true) ->
+	setVisible : (visible=true) ->
 		$("#" + @id).toggleClass "active",visible
 	getView : ->
 		if not @view?

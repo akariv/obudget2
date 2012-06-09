@@ -22,7 +22,7 @@
       return;
     }
 
-    Controller.prototype.visible = function(visible) {
+    Controller.prototype.setVisible = function(visible) {
       if (visible == null) visible = true;
       return $("#" + this.id).toggleClass("active", visible);
     };
@@ -192,7 +192,7 @@
     function SingleYearTableController($viz) {
       if ($viz == null) $viz = 'visualization';
       this.dataLoaded = __bind(this.dataLoaded, this);
-      this.id = 'tableViz';
+      this.id = 'singleYearTableViz';
       this.createView = function(div) {
         return new $.TableView(div, this.onSubSection);
       };
@@ -237,7 +237,7 @@
     function MultiYearTableController($viz) {
       if ($viz == null) $viz = 'visualization';
       this.dataLoaded = __bind(this.dataLoaded, this);
-      this.id = 'tableViz';
+      this.id = 'multiYearTableViz';
       this.createView = function(div) {
         return new $.TableView(div);
       };
@@ -373,10 +373,10 @@
       },
       showController: function(cont) {
         if ((_this._visCont != null) && _this._visCont !== cont) {
-          _this._visCont.visible(false);
+          _this._visCont.setVisible(false);
         }
         _this._visCont = cont;
-        cont.visible(true);
+        cont.setVisible(true);
         ($("#embed-widget textarea")).html('&lt;iframe width="560" height="315" src="VizEmbed.html?' + cont.id + '" &gt;&lt;/iframe&gt;');
       },
       controllerByType: function(type) {

@@ -98,9 +98,9 @@ $.extend
 
 		showController : (cont) =>
 			if (@_visCont? and @_visCont != cont)
-				@_visCont.visible(false);
+				@_visCont.setVisible(false);
 			@_visCont = cont
-			cont.visible(true)
+			cont.setVisible(true)
 
 			# set embedding text
 			($ "#embed-widget textarea").html '&lt;iframe width="560" height="315" src="VizEmbed.html?' + cont.id + '" &gt;&lt;/iframe&gt;'

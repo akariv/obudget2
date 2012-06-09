@@ -1,0 +1,7 @@
+#vis-contents > div.active {
+	display: block;
+}
+
+#vis-contents > div{
+	display:none;
+}

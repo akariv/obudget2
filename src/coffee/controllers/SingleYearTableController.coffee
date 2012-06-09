@@ -1,7 +1,7 @@
 #CR: Why didn't you use BBQ in the end?
 class $.SingleYearTableController extends $.Controller
 	constructor : ($viz = 'visualization')->
-		@id = 'tableViz'
+		@id = 'singleYearTableViz'
 		@createView = (div)->
 				new $.TableView div,@onSubSection
 		@onSubSection = (subsection) ->
