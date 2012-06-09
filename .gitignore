@@ -3,5 +3,6 @@
 out/
 /.settings**
 node_modules
+src/app/js/app.js
 .*
 *.swp
