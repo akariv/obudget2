@@ -15,9 +15,12 @@ $.extend
     	        nHead.getElementsByTagName('th')[1].innerHTML = data.title2
             if that.onSubSection?
                 $.extend tableOptions, fnCreatedRow : ( nRow, aData, iDataIndex ) ->
+                    for cell in $('td', nRow)
+                        do (cell) ->  
+                            $(cell).html '<a href="">' + $(cell).html() + '</a>' 
                     $(nRow).click (event)->
                         that.onSubSection(aData)
-                        return
+                        return false
                 table = $('table', @container).dataTable tableOptions
             else
                 table = $('table', @container).dataTable tableOptions
