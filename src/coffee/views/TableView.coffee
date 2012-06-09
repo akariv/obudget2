@@ -10,11 +10,11 @@ $.extend
             @container.html '
             <table cellpadding="0" cellspacing="0" border="0" class="display">
                 <thead>
-                    <tr>
+                    <!--<tr>
                         <th>מספרים</th>
                         <th>מילים</th>
                         <th>מזהה</th>
-                    </tr>
+                    </tr> -->
                 </thead>
                 <tbody>
                     <tr class="odd gradeX">
@@ -28,11 +28,10 @@ $.extend
 
             table = null
             tableOptions = $.extend {}, tableDef
-            if $(@container).hasClass('multiYear')
-                tableOptions.aaSorting = [[1, "desc"]]
-            else
-                tableOptions.aaSorting = [[0, "desc"]]
-            if that.onSubSection?
+            $.extend tableOptions, fnHeaderCallback : (nHead, aData, iStart, iEnd, aiDisplay) ->
+             nHead.getElementsByTagName('th')[0].innerHTML = data.title1
+             nHead.getElementsByTagName('th')[1].innerHTML = data.title2
+            if that.onSubSection? 
                 $.extend tableOptions, fnCreatedRow : ( nRow, aData, iDataIndex ) ->
                     $(nRow).click (event)->
                         that.onSubSection(aData)
@@ -42,15 +41,15 @@ $.extend
                 table = $('table', @container).dataTable tableOptions
 
             table.fnClearTable false
-            table.fnAddData data
+            table.fnAddData data.values
 
         @container.html '
         <table cellpadding="0" cellspacing="0" border="0" class="display">
             <thead>
                 <tr>
-                    <th>תקציב</th>
+                    <!--<th>תקציב</th>
                     <th>שנה</th>
-                    <th>מזהה</th>
+                    <th>מזהה</th> -->
                 </tr>
             </thead>
             <tbody>

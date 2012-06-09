@@ -14,7 +14,11 @@ class $.MultiYearTableController extends $.Controller
 		return
 	dataLoaded : (budget) =>
 		# initialization
-		data = []
+		data = 
+                          title1: "שנה"
+                          title2: "תקציב"
+                          values: []
+                         
 
 		# Create the multiYear data
 		$.each budget.components, (index, yearData) ->
@@ -26,7 +30,7 @@ class $.MultiYearTableController extends $.Controller
 				return
 			# setData expects an array of 3 object items
 			if yearSum > 0
-				data.push [yearSum, currentYear, currentYear]
+				data.values.push [yearSum, currentYear, currentYear]
 			return
 
 		@getView().setData data

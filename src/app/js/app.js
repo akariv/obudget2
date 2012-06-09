@@ -214,11 +214,15 @@
 
     SingleYearTableController.prototype.dataLoaded = function(budget) {
       var data, latestYearData;
-      data = [];
+      data = {
+        title1: "סעיף",
+        title2: "תקציב",
+        values: []
+      };
       latestYearData = budget.components[budget.components.length - 2];
       $.each(latestYearData.items, function(index, item) {
         if (item.values.net_allocated != null) {
-          data.push([parseInt(item.values.net_allocated), item.title, item.virtual_id]);
+          data.values.push([parseInt(item.values.net_allocated), item.title, item.virtual_id]);
         } else {
           true;
         }
@@ -259,7 +263,11 @@
 
     MultiYearTableController.prototype.dataLoaded = function(budget) {
       var data;
-      data = [];
+      data = {
+        title1: "שנה",
+        title2: "תקציב",
+        values: []
+      };
       $.each(budget.components, function(index, yearData) {
         var currentYear, yearSum;
         currentYear = yearData.year;
@@ -269,7 +277,7 @@
             yearSum += item.values.net_allocated;
           }
         });
-        if (yearSum > 0) data.push([yearSum, currentYear, currentYear]);
+        if (yearSum > 0) data.values.push([yearSum, currentYear, currentYear]);
       });
       this.getView().setData(data);
     };
@@ -630,11 +638,11 @@
         this.container.html('\
             <table cellpadding="0" cellspacing="0" border="0" class="display">\
                 <thead>\
-                    <tr>\
+                    <!--<tr>\
                         <th>מספרים</th>\
                         <th>מילים</th>\
                         <th>מזהה</th>\
-                    </tr>\
+                    </tr> -->\
                 </thead>\
                 <tbody>\
                     <tr class="odd gradeX">\
@@ -647,11 +655,12 @@
             ');
         table = null;
         tableOptions = $.extend({}, tableDef);
-        if ($(this.container).hasClass('multiYear')) {
-          tableOptions.aaSorting = [[1, "desc"]];
-        } else {
-          tableOptions.aaSorting = [[0, "desc"]];
-        }
+        $.extend(tableOptions, {
+          fnHeaderCallback: function(nHead, aData, iStart, iEnd, aiDisplay) {
+            nHead.getElementsByTagName('th')[0].innerHTML = data.title1;
+            return nHead.getElementsByTagName('th')[1].innerHTML = data.title2;
+          }
+        });
         if (that.onSubSection != null) {
           $.extend(tableOptions, {
             fnCreatedRow: function(nRow, aData, iDataIndex) {
@@ -665,15 +674,15 @@
           table = $('table', this.container).dataTable(tableOptions);
         }
         table.fnClearTable(false);
-        return table.fnAddData(data);
+        return table.fnAddData(data.values);
       };
       this.container.html('\
         <table cellpadding="0" cellspacing="0" border="0" class="display">\
             <thead>\
                 <tr>\
-                    <th>תקציב</th>\
+                    <!--<th>תקציב</th>\
                     <th>שנה</th>\
-                    <th>מזהה</th>\
+                    <th>מזהה</th> -->\
                 </tr>\
             </thead>\
             <tbody>\
