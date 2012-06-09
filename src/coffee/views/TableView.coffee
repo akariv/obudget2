@@ -28,10 +28,6 @@ $.extend
 
             table = null
             tableOptions = $.extend {}, tableDef
-            if $(@container).hasClass('multiYear')
-                tableOptions.aaSorting = [[1, "desc"]]
-            else
-                tableOptions.aaSorting = [[0, "desc"]]
             if that.onSubSection?
                 $.extend tableOptions, fnCreatedRow : ( nRow, aData, iDataIndex ) ->
                     $(nRow).click (event)->

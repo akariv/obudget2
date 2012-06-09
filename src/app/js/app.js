@@ -647,11 +647,6 @@
             ');
         table = null;
         tableOptions = $.extend({}, tableDef);
-        if ($(this.container).hasClass('multiYear')) {
-          tableOptions.aaSorting = [[1, "desc"]];
-        } else {
-          tableOptions.aaSorting = [[0, "desc"]];
-        }
         if (that.onSubSection != null) {
           $.extend(tableOptions, {
             fnCreatedRow: function(nRow, aData, iDataIndex) {

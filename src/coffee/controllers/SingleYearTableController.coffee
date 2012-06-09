@@ -15,7 +15,6 @@ class $.SingleYearTableController extends $.Controller
 	dataLoaded : (budget) =>
 		# initialization
 		data = []
-		#multiYearData = []
 
 		# Latest year
 		# TODO, currently this is the last year.

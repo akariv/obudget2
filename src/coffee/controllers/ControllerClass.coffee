@@ -3,10 +3,6 @@
 class $.Controller
 	constructor : ($vizdiv)->
 
-#		@displayMultiYear = false
-#		@multiYearChartClass = 'multiYear'
-#		@singleYearChartClass = 'singleYear'
-
 		@vizDiv = ($ "<div id='#{@id}'></div>").appendTo $vizdiv
 
 		model = $.Model.get()
@@ -19,27 +15,11 @@ class $.Controller
 
 		model.addListener mlist
 
-#		@getSingleYearView()
 		@getView()
 
 		return
-#	setMultiYear : (multiYear = true) ->
-#		if @displayMultiYear == multiYear
-#			# do nothing
-#		else
-#			$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",false
-#			@displayMultiYear = multiYear
-#
-#			$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",true
-#		return
-#	chartIdByMultiYear : (multiYear) ->
-#		if multiYear
-#			return @multiYearChartClass
-#		else
-#			return @singleYearChartClass
 	visible : (visible=true) ->
 		$("#" + @id).toggleClass "active",visible
-		#$("#" + @id + " ." + @chartIdByMultiYear(@displayMultiYear) ).toggleClass "active",visible
 	getView : ->
 		if not @view?
 			#id attribute is needed for highcharts

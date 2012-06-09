@@ -2,47 +2,33 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta property="og:title" content="{{ogtitle}}"/>
-		<meta property="og:type" content="Website"/>
-		<meta property="og:url" content="{{ogurl}}"/>
-		<meta property="og:image" content="http://obudget2.cloudfoundry.com/images/obudget2.jpg"/>
-		<meta property="og:site_name" content="ISRAEL SPENDING"/>
-		<meta property="og:description"
-		      content="A group of U.S. Marines, under command of
-		               a renegade general, take over Alcatraz and
-		               threaten San Francisco Bay with biological
-		               weapons."/>
-		<title>Israel Spending</title>
+        <meta property="og:title" content="{{ogtitle}}"/>
+        <meta property="og:type" content="Website"/>
+        <meta property="og:url" content="{{ogurl}}"/>
+        <meta property="og:image" content="http://obudget2.cloudfoundry.com/images/obudget2.jpg"/>
+        <meta property="og:site_name" content="ISRAEL SPENDING"/>
+        <meta property="og:description" content="A group of U.S. Marines, under command of
+ a renegade general,  take over Alcatraz and threaten San Francisco Bay with biological weapons."/>
+        <title>Israel Spending</title>
         <style type="text/css" title="currentStyle">
             @import "lib/DataTables-1.9.0/css/jquery.dataTables.css";
             @import "css/bootstrap-rtl.css";
             @import "css/bootstrap-responsive-rtl.css";
         </style>
-        <script type="text/javascript">
-//        	var whp = window.history.pushState;
-//        	var whr = window.history.replaceState;
-//
-//        	window.history.pushState = function(){
-//				console.log("** pushState called.");
-//				whp.apply(window.history,arguments);
-//			}
-//        	window.history.replaceState = function(){
-//				console.log("** replaceState called.");
-//				whr.apply(window.history,arguments);
-//			}
-
-
-        </script>
         <script type="text/javascript" src="lib/jquery/jquery-1.7.1.js">
         </script>
-		<script type="text/javascript">
-			function resetState(){
-				var title = '{{init_title}}';
-				var url = escape('{{init_url}}');
-				History.replaceState({vid:'{{init_vid}}',rand:Math.random()}, title, url);
-			}
-			$(resetState);
-		</script>
+        <script type="text/javascript">
+            function resetState(){
+                var title = '{{init_title}}';
+                var url = escape('{{init_url}}');
+                History.replaceState({
+                    vid: '{{init_vid}}',
+                    rand: Math.random()
+                }, title, url);
+            }
+
+            $(resetState);
+        </script>
         <script type="text/javascript" src="lib/jquery/jquery.jsonp-2.3.0.js">
         </script>
         <script type="text/javascript" src="lib/json2.js">
@@ -60,116 +46,114 @@
         </script>
     </head>
     <body>
-
-
-
         <script type="text/javascript" src="lib/history.js">
         </script>
         <script type="text/javascript" src="lib/history.html4.js">
         </script>
         <script type="text/javascript" src="lib/history.adapter.jquery.js">
         </script>
-		<!-- Injected by the server, to indicate the History "state" of the document -->
-        <!-- Run some Javascript when then page has loaded-->
+        <!-- Injected by the server, to indicate the History "state" of the document --><!-- Run some Javascript when then page has loaded-->
         <script>
             $($.OB.initControllers);
             $($.OB.main);
         </script>
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="brand" href="{{main_url}}">התקציב הפתוח</a>
-      <div id="navigator">
-        <span id="ancestors" class="navbar-text"></span>
-        <span id="current_section" class="navbar-text"></span>
-        <div id="searchbox" class="pull-left navbar-search navbar-text">
-          <input type="text"> </input>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="brand" href="{{main_url}}">התקציב הפתוח</a>
+                    <div id="navigator">
+                        <span id="ancestors" class="navbar-text"></span>
+                        <span id="current_section" class="navbar-text"></span>
+                        <div id="searchbox" class="pull-left navbar-search navbar-text">
+                            <input type="text">
+                            </input>
+                        </div><span class="pull-left search-label">חיפוש</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <span class="pull-left search-label">חיפוש</span>
-      </div>
-    </div>
-  </div>
-</div>
+        <div id="main" class="container-fluid">
+            <div class="row">
+                <div class="span3">
+                    <div class="row">
+                        <div id="multiYear">
+                            <form id="multiYearForm" action="">
+                                <!-- TODO: The values should not be true and false, but something more meaningful --><input type="radio" name="group1" value="false" checked>לפי שנה
+                                <br>
+                                <input type="radio" name="group1" value="true">על פני תקופה
+                                <br>
+                            </form>
+                        </div>
+                        <div id="vis-buttons">
+                        </div>
+                        <div id="embed-widget">
+                        </div>
+                        <ul class="nav nav-list">
+                            <li class="nav-header">
+                                קישורים
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="span9">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#agendas-tab" data-toggle="tab">דגלים</a>
+                        </li>
+                        <li>
+                            <a href="#comments-tab" data-toggle="tab">תגובות גולשים</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="agendas-tab" class="tab-pane active">
+                            <div id="vis-contents">
+                            </div>
+                        </div>
+                        <div id="comments-tab" class="tab-pane">
+                            <!-- Disqus recent comments -->
+                            <div id="recentcomments" class="dsq-widget">
+                                <h2 class="dsq-widget-title">תגובות אחרונות</h2>
+                                <script defer type="text/javascript" src="http://obudet2-test.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=32&excerpt_length=200">
+                                </script>
+                            </div>
+                            <a href="http://disqus.com/">Powered by Disqus</a>
+                            <div id="disqus_thread">
+                            </div>
+                            <script type="text/javascript">
+                                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                                var disqus_shortname = 'obudet2-test'; // required: replace example with your forum shortname
+                                //var disqus_developer = 1; // developer mode is on
 
-<div id="main" class="container-fluid">
-<div class="row">
-  <div class="span3">
-    <div class="row">
-            <div id="multiYear">
-                <form id="multiYearForm" action="">
-                    <!-- TODO: The values should not be true and false, but something more meaningful --><input type="radio" name="group1" value="false" checked>לפי שנה
-                    <br>
-                    <input type="radio" name="group1" value="true">על פני תקופה
-                    <br>
-                </form>
-            </div>
-            <div id="vis-buttons">
-            </div>
-            <div id="embed-widget">
-            </div>
-      <ul class="nav nav-list">
-        <li class="nav-header">קישורים</li>
-      </ul>
-    </div>
-  </div>
-  <div class="span9">
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#agendas-tab" data-toggle="tab">דגלים</a>
-      </li>
-      <li>
-        <a href="#comments-tab" data-toggle="tab">תגובות גולשים</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div id="agendas-tab" class="tab-pane active">
-            <div id="vis-contents">
-            </div>
-      </div>
+                                /* TODO: make sure that a valid hash is created for use with disqus,
+                                 In case a url with a hash like this: #dfsdfkjd is loaded */
+                                var hash = window.location.hash.substring(1);
+                                if (hash.substring(0, 1) == '!') {
+                                    hash = hash.substring(1);
+                                }
+                                if (hash.length == 0) {
+                                    hash = '00';
+                                }
 
-      <div id="comments-tab" class="tab-pane">
-		<!-- Disqus recent comments -->
-		<div id="recentcomments" class="dsq-widget"><h2 class="dsq-widget-title">תגובות אחרונות</h2><script defer type="text/javascript" src="http://obudet2-test.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=32&excerpt_length=200"></script></div><a href="http://disqus.com/">Powered by Disqus</a>
-
-
-        <div id="disqus_thread">
+                                var disqus_url = "http://obudget2.cloudfoundry.com/index.html#!" + hash;
+                                console.log("** loading Disqus with url " + disqus_url);
+                                var disqus_identifier = 'disqus' + hash;
+                                /* * * DON'T EDIT BELOW THIS LINE * * */
+                                (function(){
+                                    var dsq = document.createElement('script');
+                                    dsq.type = 'text/javascript';
+                                    dsq.async = true;
+                                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                })();
+                            </script>
+                            <noscript>
+                                Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+                            </noscript>
+                            <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'obudet2-test'; // required: replace example with your forum shortname
-            //var disqus_developer = 1; // developer mode is on
-
-			/* TODO: make sure that a valid hash is created for use with disqus,
-				In case a url with a hash like this: #dfsdfkjd is loaded */
-			var hash = window.location.hash.substring(1);
-			if (hash.substring(0,1) == '!'){
-				hash = hash.substring(1);
-			}
-			if (hash.length == 0){
-				hash = '00';
-			}
-
-            var disqus_url = "http://obudget2.cloudfoundry.com/index.html#!" + hash;
-			console.log("** loading Disqus with url " + disqus_url);
-			var disqus_identifier = 'disqus' + hash;
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function(){
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>
-            Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
     </body>
 </html>
