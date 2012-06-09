@@ -7,27 +7,12 @@ $.extend
 
         @setData = (data) ->
 
-            @container.html '
-            <table cellpadding="0" cellspacing="0" border="0" class="display">
-                <thead>
-                    <tr>
-                        <th>מספרים</th>
-                        <th>מילים</th>
-                        <th>מזהה</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="odd gradeX">
-                        <td>1234.0</td>
-                        <td>תיאור כלשהו</td>
-                        <td>0020</td>
-                    </tr>
-                </tbody>
-            </table>
-            '
-
             table = null
             tableOptions = $.extend {}, tableDef
+
+            $.extend tableOptions, fnHeaderCallback : (nHead, aData, iStart, iEnd, aiDisplay) ->
+	            nHead.getElementsByTagName('th')[0].innerHTML = data.title1
+    	        nHead.getElementsByTagName('th')[1].innerHTML = data.title2
             if that.onSubSection?
                 $.extend tableOptions, fnCreatedRow : ( nRow, aData, iDataIndex ) ->
                     $(nRow).click (event)->
@@ -38,7 +23,7 @@ $.extend
                 table = $('table', @container).dataTable tableOptions
 
             table.fnClearTable false
-            table.fnAddData data
+            table.fnAddData data.values
 
         @container.html '
         <table cellpadding="0" cellspacing="0" border="0" class="display">

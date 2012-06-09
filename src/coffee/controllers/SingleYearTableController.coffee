@@ -14,7 +14,10 @@ class $.SingleYearTableController extends $.Controller
 		return
 	dataLoaded : (budget) =>
 		# initialization
-		data = []
+		data =
+			title1 : "סעיף"
+			title2 : "תקציב"
+			values : []
 
 		# Latest year
 		# TODO, currently this is the last year.
@@ -23,7 +26,7 @@ class $.SingleYearTableController extends $.Controller
 		# Take the net allocated value and display in the table
 		$.each latestYearData.items, (index, item) ->
 			if item.values.net_allocated?
-				data.push [(parseInt item.values.net_allocated), item.title, item.virtual_id]
+				data.values.push [(parseInt item.values.net_allocated), item.title, item.virtual_id]
 			else
 				true
 				#TODO - mark missing values.
