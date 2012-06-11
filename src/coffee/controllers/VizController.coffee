@@ -72,13 +72,15 @@ $.extend
 					###
 					add button to select the visualization represented bythe controller
 					###
-					button = $("<input type='button' class='vis-button' value='Show " + cont.id + "' id='vis-" + cont.id + "-button'/>")
+					#button = $("<input type='button' class='vis-button' value='Show " + cont.id + "' id='vis-" + cont.id + "-button'/>")
+					button = $("<li><a href='#" + cont.id + "'>" + cont.id + "</a></li>")
 					button.click  ->
 						$.Visualization.showController cont
 						return
 
 					$visButtons.append button
 					return
+			$('.dropdown-toggle').dropdown()
 
 			###
 			Add the Embed button

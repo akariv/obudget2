@@ -34,6 +34,10 @@
         </script>
         <script type="text/javascript" src="lib/json2.js">
         </script>
+        <script type="text/javascript" src="lib/bootstrap-dropdown.js">
+        </script>
+        <script type="text/javascript" src="lib/bootstrap-tab.js">
+        </script>
         <script type="text/javascript" src="lib/highcharts/highcharts.js">
         </script>
         <script type="text/javascript" src="lib/mustache.js">
@@ -76,9 +80,14 @@
         <div id="main" class="container-fluid">
             <div class="row">
                 <div class="span3">
-                    <div class="row">
-                        <div id="vis-buttons">
-                        </div>
+                        <ul class="nav nav-tabs">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">תצוגות<b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="vis-buttons">
+                                    <!-- links -->
+                                </ul>
+                            </li>
+                        </ul>
                         <div id="embed-widget">
                         </div>
                         <ul class="nav nav-list">
@@ -86,23 +95,22 @@
                                 קישורים
                             </li>
                         </ul>
-                    </div>
                 </div>
                 <div class="span9">
                     <ul class="nav nav-tabs">
                         <li class="active">
-                            <a href="#agendas-tab" data-toggle="tab">דגלים</a>
+                            <a href="#agendas-tab" data-toggle="tab">נתונים התקציב</a>
                         </li>
                         <li>
                             <a href="#comments-tab" data-toggle="tab">תגובות גולשים</a>
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div id="agendas-tab" class="tab-pane active">
+                        <div class="tab-pane active" id="agendas-tab" >
                             <div id="vis-contents">
                             </div>
                         </div>
-                        <div id="comments-tab" class="tab-pane">
+                        <div class="tab-pane" id="comments-tab" >
                             <!-- Disqus recent comments -->
                             <div id="recentcomments" class="dsq-widget">
                                 <h2 class="dsq-widget-title">תגובות אחרונות</h2>
