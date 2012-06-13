@@ -22,6 +22,10 @@ $.extend
 						enabled: true
 						color: '#000000'
 						connectorColor: '#000000'
+			credits:
+				enabled: true
+				text: 'התקציב הפתוח 2.0'
+				href: 'http://obudget2.cloudfoundry.com'
 			series : [ {
 				type : 'pie',
 				name : 'הקצאת תקציב - נטו',
