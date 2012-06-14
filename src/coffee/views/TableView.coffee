@@ -10,6 +10,29 @@ $.extend
             table = null
             tableOptions = $.extend {}, tableDef
 
+            # the button widgets are based around Flash, point to the file
+            TableTools.DEFAULTS.sSwfPath="swf/copy_csv_xls.swf"
+            # configure options for Export Buttons using TableTools
+            $.extend tableOptions,  {
+                sDom: "<'row-fluid'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+                oTableTools: {
+                    aButtons: [
+                        {
+                            "sExtends": "csv",
+                            "sButtonText": "שמור כ.CSV"
+                        },
+                        {
+                            "sExtends": "xls",
+                            "sButtonText": "שמור כ.XLS"
+                        },
+                        {
+                            "sExtends": "copy",
+                            "sButtonText": "העתק ללוח"
+                        }
+                    ]
+                }
+            }
+            
             $.extend tableOptions, fnHeaderCallback : (nHead, aData, iStart, iEnd, aiDisplay) ->
 	            nHead.getElementsByTagName('th')[0].innerHTML = data.title1
     	        nHead.getElementsByTagName('th')[1].innerHTML = data.title2
