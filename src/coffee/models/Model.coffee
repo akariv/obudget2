@@ -20,43 +20,43 @@ class _Singleton_Model
 		###
 		load a json response from an ajax call
 		###
-		@loadResponse = (budget) -> #CR: Why are this defined in the constructor and not as regular methods? Are you familiar with the '=>' operator of coffeescript?
-			#console.log "saving " + budget.virtual_id
-			#localStorage.setItem budget.virtual_id, JSON.stringify budget
-			#console.log "localStorage.setItem budget complete"
+	loadResponse : (budget) => #CR: Why are this defined in the constructor and not as regular methods? Are you familiar with the '=>' operator of coffeescript?
+		#console.log "saving " + budget.virtual_id
+		#localStorage.setItem budget.virtual_id, JSON.stringify budget
+		#console.log "localStorage.setItem budget complete"
 
-			that.loading = false
-			console.log "budget"
-			console.log "******"
-			console.log budget
-			that.cache[budget.virtual_id] = budget
-			that.notifyItemLoaded budget
-			localStorage.setItem "ob_" + budget.virtual_id, JSON.stringify budget #CR: Why do you need it twice?
+		this.loading = false
+		console.log "budget"
+		console.log "******"
+		console.log budget
+		this.cache[budget.virtual_id] = budget
+		this.notifyItemLoaded budget
+		localStorage.setItem "ob_" + budget.virtual_id, JSON.stringify budget #CR: Why do you need it twice?
 
+		return
+
+	loadLocally : (slug, callback) => #CR: Why didn't you use the 'jsonp' ajax loading method in jQuery?
+		h=($ 'head')[0]
+		s = document.createElement 'script'
+		s.type = 'text/javascript'
+		s.src =  "." + slug
+		s.addEventListener 'load', (e) ->
+			callback window.exports.data
 			return
-
-		@loadLocally = (slug, callback) -> #CR: Why didn't you use the 'jsonp' ajax loading method in jQuery?
-			h=($ 'head')[0]
-			s = document.createElement 'script'
-			s.type = 'text/javascript'
-			s.src =  "." + slug
-			s.addEventListener 'load', (e) ->
-				callback window.exports.data
-				return
-			, false
-			window.exports = {}
-			h.appendChild s
-			return
+		, false
+		window.exports = {}
+		h.appendChild s
+		return
 
 
 		###
 		tell everyone the item we''ve loaded
 		###
-		@notifyItemLoaded = (item) ->
-			$.each(that.listeners, (i) ->
-				that.listeners[i].loadItem item
-				return)
-			return
+	notifyItemLoaded : (item) =>
+		$.each(this.listeners, (i) =>
+			this.listeners[i].loadItem item
+			return)
+		return
 
 	getData : (slug) =>
 		if @loading
