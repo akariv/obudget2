@@ -17,6 +17,10 @@ $.extend
 			chart :
 				renderTo : $container[0].id
 				type : 'column'
+				events:
+					load: ->
+					# image url,x,y,w,h
+						this.renderer.image('/images/logo.png', 120, 60, 110, 20).add()
 			title :
 				text : 'תקציב המדינה'
 			xAxis :
@@ -28,6 +32,10 @@ $.extend
 				labels :
 					formatter : ->
 						this.value;
+			credits:
+				enabled: false
+				text: 'התקציב הפתוח 2.0'
+				href: 'http://obudget2.cloudfoundry.com'
 			series : [ {
 				name : 'הקצאת תקציב - נטו',
 				data : [ 0, 0 ]
