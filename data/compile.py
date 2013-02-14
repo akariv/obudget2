@@ -6,7 +6,7 @@ import pprint
 import csv
 
 title_fixes = [
-  (u"ביטחון", u"בטחון" )
+  (u"ביטחון", u"בטחון" ),
   (u"הבנוי", u"הבינוי" ),
   (u"`", u"א" ),
   (u"גמלאות", u"גימלאות" ),
@@ -125,7 +125,9 @@ def compile(filename):
     if report != None:
         unified["R:test"] = report
     
-    json.dump(unified,file("out.json","w"),indent=2)
+    of = file("out.json","w")
+    for k,v in unified.iteritems():
+        of.write("%s\n"%json.dumps([k,v]))
 
 if __name__=="__main__":
     compile("master.json")

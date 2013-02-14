@@ -111,8 +111,8 @@ if __name__=="__main__":
     r = Redis()
     r.set('version',int(os.stat('../data/out.json').st_mtime))
     def update_db(r):
-        everything = json.load(file('../data/out.json'))
-        for k,v in everything.iteritems():
+        for line in file('../data/out.json'):
+            k,v = json.loads(line)
             r.set(k,json.dumps(v))
             gevent.sleep(0)
         for k in r.keys("R:*"):
@@ -124,7 +124,7 @@ if __name__=="__main__":
 
         gevent.spawn(update_db,r)
 
-        http_server = WSGIServer(('', 5000), app)
+        http_server = WSGIServer(('', 8000), app)
         print "note: running with greenlet"
         http_server.serve_forever()
 
@@ -132,4 +132,4 @@ if __name__=="__main__":
         raise
         print "note: running without greenlet"
         update_db(everything,r)
-        app.run(host="0.0.0.0",debug=True)
+        app.run(host="0.0.0.0",port=8000,debug=True)
