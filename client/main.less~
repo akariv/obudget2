@@ -1,0 +1,37 @@
+body {
+  text-align: right;
+  direction: rtl;
+  padding-top: 40px;
+  background-color: rgb(51,51,51);
+}
+
+.navbar .brand, .nav-tabs > li { float: right; }
+.popover-content, .popover-title { text-align:right; }
+
+.graph,.report-text,.editor {
+  border: 1px solid black;
+  margin:10px;
+  padding:10px;
+  background-color:white;
+
+  .table td {
+    text-align: right;
+  }
+}
+
+.graph,.editor {
+  height:600px;
+}
+
+#explanations-dialog {
+  width:1000px;
+  margin: 0 0 0 -500px;
+
+  .modal-body {
+     max-height:800px;    
+     img { height:450px;} //TODO: remove
+  }
+}
+
+
+

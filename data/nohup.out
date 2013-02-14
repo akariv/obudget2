@@ -1,0 +1,4 @@
+Connection lost to X server `localhost:12.0'
+When compiled with GTK, Emacs cannot recover from X disconnects.
+This is a GTK bug: https://bugzilla.gnome.org/show_bug.cgi?id=85715
+For details, see etc/PROBLEMS.
