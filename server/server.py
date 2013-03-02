@@ -9,6 +9,8 @@ import os
 import datetime
 from redis import Redis
 import gevent
+import md5
+from svg2png import svg2png
 
 try:
     from gevent import Greenlet, sleep
@@ -21,13 +23,12 @@ except Exception,e:
     print e,"running with native timers"
     from threading import Timer
     
-
 app = Flask(__name__)
 app.debug = True
 
 @app.route('/')
 def idx():
-    return redirect('/r/test')
+    return redirect('/r/home')
 
 @app.route('/api/version')
 def version():
@@ -38,32 +39,61 @@ def version():
 @app.route("/upload", methods=['POST'])
 def upload():
     print "UPLOAD! %r" % request.data  
-    print "%r" % (request.data)
     data = json.loads(request.data)
-    print "%r" % (data)
+    keys_to_del = []
+    allowed_keys = ["description","ids","author","author_link","title","normalize_id", "use_real_values", "compare_id", "extra_details"]
+
+    svg = data.get('svg').encode("utf8")
+    if svg:
+        del data['svg']
+
+    for k,v in data.iteritems():
+        if k not in allowed_keys:
+            keys_to_del.append(k)
+    for k in keys_to_del:
+        del data[k]
+
+    print "UPLOAD: filtered obj %r" % data
+    slug = "|".join( [ json.dumps(data.get(k),ensure_ascii=True) for k in allowed_keys ] )
     data = json.dumps(data,ensure_ascii=True)
-    print "%r" % (data)
-    slug = r.scard("R:all")+1000
-    url = '/r/%d' % slug
+    print "UPLOAD: data for key: %r" % slug
+    slug = md5.md5(slug).hexdigest()[:8]
+    url = '/r/%s' % slug
     print url
-    r.set("R:%d" % slug, data)
+
+    if svg:
+        svg2png( svg, slug )
+
+    r.set("R:%s" % slug, data)
+    r.zincrby("R:all", "R:%s" % slug)
     response = { 'url' : url }
     response = json.dumps(response)
     return Response(response=response, content_type="application/json")
 
+@app.route("/img/<slug>", methods=['GET'])
+def get_image(slug):
+    assert("." not in slug)
+    assert("/" not in slug)
+    return Response(response=file("imgstore/%s.png" % slug).read(), content_type="image/png" )
+
 @app.route("/r/<slug>", methods=['GET'])
 def main_page(slug):
     report = r.get('R:%s' % slug)
+    if not report: report = "null"
     print "%r" % (report)
     return render_template('main.html',
                            report=report,
+                           r=json.loads(report),
+                           slug=slug,
                            less=file('../client/main.less').read(), 
-                           coffee=file('../client/main.coffee').read())
+                           coffee=file('../client/main.coffee').read().decode('utf8'))# + file('../client/visualizations.coffee').read())
 
 @app.route("/api/<slug>", methods=['GET'])
 def getitem(slug):
 
-    if slug.startswith('I'):
+    slug = urllib.unquote(slug)
+
+    if slug.startswith('I') or slug.startswith('C'):
         return Response(response=r.get(slug), content_type="application/json")
 
     if slug.startswith('S'):
@@ -88,8 +118,9 @@ def getitem(slug):
 
     if slug.startswith('R'):
         response = json.loads(r.get(slug))
-        response["ids`"] = [ json.loads(r.get(i)) for i in response["ids"] ]       
+        response["ids"] = [ json.loads(r.get(i)) for i in response["ids"] ]       
         response["id"] = slug
+        r.zincrby("R:all", slug)
         return Response(response=json.dumps(response), content_type="application/json")
 
     if slug == "roots":
@@ -98,12 +129,28 @@ def getitem(slug):
         return Response(response=json.dumps(response), content_type="application/json")      
 
     if slug == "all":
-        all_reps = r.smembers("R:all")
+        all_reps = r.zrange("R:all",0,-1,desc=True)
         response = []
         for slug in all_reps:
-            rep = json.loads(r.get(slug))
+            try:
+                rep = r.get(slug)
+            except:
+                continue
+            if not rep: continue
+            print slug
+            rep = json.loads(rep)
             rep["id"] = slug
             response.append(rep)
+
+        return Response(response=json.dumps(response), content_type="application/json")
+
+    if slug == "series":
+        all_sers = r.smembers("C:all")
+        response = []
+        for slug in all_sers:
+            ser = json.loads(r.get(slug))
+            print "%r" % ser
+            response.append(ser)
             
         return Response(response=json.dumps(response), content_type="application/json")
    
@@ -115,8 +162,14 @@ if __name__=="__main__":
             k,v = json.loads(line)
             r.set(k,json.dumps(v))
             gevent.sleep(0)
+        r.delete("R:all")
         for k in r.keys("R:*"):
-            r.sadd("R:all",k)
+            if k!="R:all":
+                r.zincrby("R:all",k,0)
+        r.delete("C:all")
+        for k in r.keys("C*"):
+            if k != "C:all" and k != "Cinflation":
+                r.sadd("C:all",k)
         print "DONE UPDATING DB"
     try:
         from gevent import monkey ; monkey.patch_all()

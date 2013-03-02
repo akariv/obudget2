@@ -4,6 +4,7 @@
 import json
 import pprint
 import csv
+import md5
 
 title_fixes = [
   (u"ביטחון", u"בטחון" ),
@@ -36,19 +37,23 @@ def unify(f):
         key = [code,title]
         key = json.dumps(key)
         year = int(line["year"])
-        if line.get("net_used",0) > 0:
-            line["value"] = line["net_used"]
-            line["planned"] = False
-        elif line.get("net_allocated",0) > 0:
-            line["value"] = line["net_allocated"]
-            line["planned"] = True
-        else:
-            continue
-        for k in ["title","code","year","net_allocated","net_used","net_revised","gross_allocated","gross_used","gross_revised"]:
+
+        for x in [ "net_allocated", "net_revised", "net_used" ]:
+            if line.get(x):
+                line[x] = 1000*line[x]
+                if line[x] > 0:
+                    line["active_field"] = x
+        if line.get('active_field') == None: continue
+        line["value"] = line[line['active_field']]
+
+        for k in ["title","code","year","gross_allocated","gross_used","gross_revised"]:
             if k in line.keys():
                 del line[k]
         unified.setdefault(key,{}).setdefault("y",{})[year] = line
-        unified[key].setdefault("id","I%d" % len(unified))   
+        ident = "%s%s" % (code,title)
+        ident = ident.encode('utf8')
+        ident = md5.md5(ident).hexdigest()[:8]
+        unified[key].setdefault("id","I%s" % ident)   
         if year == 2011:
             explanation = explanations.get(code)
             if explanation:
@@ -109,10 +114,42 @@ def make_searches(items):
         searches[k] = list(v)
     return searches
 
+def make_series():
+    ret = {}
+    series = csv.DictReader(file('series.csv'))
+    for s in series:
+        keys_to_del = []
+        years = {}
+        for k,v in s.iteritems():
+            if v=="":
+                keys_to_del.append(k)
+            try:
+                y = int(k)
+                try:
+                    val = int(v)
+                except:
+                    val = float(v)                   
+                years[y] = { 'value' : val }
+                keys_to_del.append(k)
+            except:
+                print "INFO: ",k,v
+                pass
+        s["y"]=years
+        for k in keys_to_del:
+            del s[k]
+        if s['title']=="מדד המחירים לצרכן":
+            slug="Cinflation"
+        else:
+            slug = "C"+md5.md5(s['title']).hexdigest()[:8]
+        s["id"]=slug
+        ret[slug]=s
+    return ret       
+
 def compile(filename):
     unified, roots = unify(file(filename))
     searches = make_searches(unified)
     unified.update(searches)
+    unified.update(make_series())
     unified["roots"] = roots
 
     report = None
@@ -131,3 +168,4 @@ def compile(filename):
 
 if __name__=="__main__":
     compile("master.json")
+    print "COMPILATION DONE!"

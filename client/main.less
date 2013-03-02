@@ -1,3 +1,6 @@
+/***********************/
+/* Bootstrap RTL fixes */
+/***********************/
 body {
   text-align: right;
   direction: rtl;
@@ -8,7 +11,24 @@ body {
 .navbar .brand, .nav-tabs > li { float: right; }
 .popover-content, .popover-title { text-align:right; }
 .popover { max-width: 600px; }
+.checkbox, .radio { 
+  padding-left: 0px;
+  padding-right: 20px;
+}
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+  float: right;
+  margin-left: 0px;
+  margin-right: -18px;
+}
+.controls-row [class*="span"], .row-fluid .controls-row [class*="span"] {
+  float:right;
+}
+.row-fluid .controls-row [class*="span"] + [class*="span"] {
+  margin-right: 2.127659574468085%;
+  margin-left: inherit;
+}
 
+/* Layouting */
 .graph,.report-text,.editor {
   border: 1px solid black;
   margin:10px;
@@ -24,6 +44,7 @@ body {
   height:600px;
 }
 
+/* Dialogs and Pop-ups */
 #explanations-dialog {
   width:1000px;
   margin: 0 0 0 -500px;
@@ -31,6 +52,12 @@ body {
   .modal-body {
      max-height:800px;    
      img { height:450px;} //TODO: remove
+  }
+}
+
+#saved-successfully {
+  .modal-body {
+    height:600px;    
   }
 }
 
@@ -42,4 +69,20 @@ body {
   border: 1px solid steelblue;
 }
 
+/* Report editor */
+.selection-widget {
+  cursor: pointer;
+}
 
+.table tbody tr.warning > td{
+  background-color: #ff6;
+}
+
+.table tbody tr.warning:hover > td{
+  background-color: #ffa;
+}
+
+/* Visualization */
+svg {
+  direction: ltr;
+}
