@@ -16,10 +16,12 @@ class ItemModel extends Backbone.Model
                 @on 'change:y', @setYearstr
                 @on 'change:expl', @setExplanations
                 @on 'change:t', @setTitle
+                @on 'change:c', @setCode
 
                 if (@get 'expl') then @setExplanations()
                 if (@get 't') then @setTitle()
                 if (@get 'y') then @setYearstr()
+                if (@get 'c') then @setCode()
 
         fixText: (t) ->
                 t = t.replace(/\n/g,"<br/>")
@@ -73,6 +75,9 @@ class ItemModel extends Backbone.Model
                                 firstyear = lastyear = year
                 @set 'yearstr', yearstr
 
+        setCode: ->
+                @set 'code', (@get 'c').substring(2)
+
         isSelected: ->
                 (selectedItems.where id:@get 'id').length > 0
 
@@ -94,10 +99,12 @@ class ItemCollection extends Backbone.Collection
 class SelectedItemsCollection extends ItemCollection
         initialize: (@options) ->
                 L "SelectedItemsCollection::initialize"
-                @on 'add remove', @updateData
+                @on 'add remove reset', @updateData
         setReportModel: (@reportModel) ->
                 @reportModel.on "change:use_real_values", @updateData
                 @reportModel.on "change:normalization_series", @updateData
+                @reportModel.on 'change:fromyear', @updateData
+                @reportModel.on 'change:toyear', @updateData
 
         updateData: =>
                 L "SelectedItemsCollection::updateData"
@@ -109,7 +116,6 @@ class SelectedItemsCollection extends ItemCollection
                 if normalization_series
                         normalization_series_values = normalization_series.get 'y'
                 units = @reportModel.getUnits()
-                L "NNNNNN", normalization_series
                 if normalization_series
                         numerator = normalization_series.get 'numerator'
                         denominator = normalization_series.get 'denominator'
@@ -133,6 +139,9 @@ class SelectedItemsCollection extends ItemCollection
                         key = "#{code}__#{title}"
                         for year,budget of years
                                 _budget = _.clone(budget)
+                                year=parseInt(year)
+                                if (year < @reportModel.get 'fromyear') or (year > @reportModel.get 'toyear')
+                                        continue
                                 if (@reportModel.get 'use_real_values') and (not skip_inflation)
                                         inflation = (inflationExtraData.get 'y')[year].value
                                         for k,v of _budget
@@ -163,6 +172,8 @@ class ReportModel extends Backbone.Model
                 normalize_id: null
                 use_real_values: true
                 extra_details: false
+                fromyear: 1992
+                toyear: 2012
         initialize: ->
                 @on 'change:compare_id', @fetchExtraData
                 @on 'change:normalize_id', @fetchExtraData
@@ -257,7 +268,7 @@ class ReportDetailsForm extends Backbone.View
 class SelectedItemsView extends Backbone.View
         initialize: (@options) ->
                 _.bindAll @
-                @model.bind 'add remove', @render
+                @model.bind 'add remove reset', @render
                 @render()
 
         render: ->
@@ -266,6 +277,29 @@ class SelectedItemsView extends Backbone.View
                         template = _.template $("#selected-items-list-template").html(), item
                         $(@el).append template
                 $("[data-toggle='popover']").popover({})
+
+class EditableSelectedItemsView extends Backbone.View
+        initialize: ->
+                _.bindAll @
+                @model.bind 'reset add remove', @render
+                @render()
+
+        render: ->
+                L "EditableSelectedItemsView::RENDER"
+                @$(".selected-item-editable").remove()
+                L "EditableSelectedItemsView::RENDER 2 "
+                for item in @model.models
+                        L "EditableSelectedItemsView::RENDER 3", item
+                        template = _.template $("#selected-item-editable-template").html(), item
+                        @$("#selected-items-list-editable").append template
+                        L "EditableSelectedItemsView::RENDER 4"
+
+        events:
+                'click #clear-selection': ->
+                        @model.reset()
+                'click .selected-item-editable': (e) ->
+                        id = $(e.currentTarget).attr('data-id')
+                        @model.remove(@model.get(id))
 
 ############################
 #################### Roots #
@@ -309,7 +343,8 @@ class RootsTabbedView extends Backbone.View
                 @$(".root-tab").remove()
                 for item in @model.models
                         template = _.template $("#roots-tab-template").html(), item
-                        @$("#editor-search-bar").before template
+                        $(@el).append(template)
+                        #@$("#editor-search-bar").before template
                 @$(".root-tab a").click( (e) =>
                         @$(".root-tab").toggleClass('active',false)
                         @$(e.currentTarget).parent().toggleClass('active',true)
@@ -327,6 +362,8 @@ class SearchTermModel extends Backbone.Model
         defaults:
                 term: ""
                 origin: ""
+                fromyear: 1992
+                toyear:2012
         initialize: ->
                 @on "change:term", -> L "term = ",(@get 'term')
                 @on "change:origin", -> L "origin = ",(@get 'origin')
@@ -346,6 +383,22 @@ class SearchResultsCollection extends ItemCollection
                 @fetch
                         success: => L "SearchResultsCollection::doSearch: loaded #{@.models.length} items"
                         error: -> window.alert "error"
+        filteredModels: =>
+                fromyear = searchTermModel.get 'fromyear'
+                toyear = searchTermModel.get 'toyear'
+                _.filter( @models
+                         ,
+                          (m) ->
+                                years = _.map( _.keys(m.get 'y'), (year) -> parseInt(year) )
+                                _.reduce( years
+                                         ,
+                                          (memo, year) ->
+                                                memo or ((year <= toyear) and (year >= fromyear))
+                                         ,
+                                          false )
+                        )
+
+
 
 searchResultsCollection = new SearchResultsCollection
 
@@ -353,19 +406,23 @@ class SearchResultsView extends Backbone.View
         initialize: ->
                 _.bindAll @
                 @model.on 'add remove reset', @render
+                searchTermModel.on 'change:fromyear', @render
+                searchTermModel.on 'change:toyear', @render
+                @selectedItemsModel = @options.selectedItemsModel
+                @selectedItemsModel.on 'add remove reset', @render
                 @render()
                 L "SearchResultsView::initialize"
 
         render: ->
                 @$(".budget-item").remove()
-                for item in @model.models
+                for item in @model.filteredModels()
                         template = _.template $("#search-result-template").html(), item
                         $(@el).append template
                 @setupEvents(@$("tr"))
                 @$("[data-toggle='popover']").popover({})
 
         setupEvents: (el) ->
-                L "SearchResultsView::setupEvents"
+                L "SearchResultsView::setupEvents", el.size()
                 $("a",el).click (e) =>
                         id = @$(e.currentTarget).attr('data-id')
                         model = @model.where id:id
@@ -847,9 +904,9 @@ class GraphView extends Backbone.View
                                 .style("text-anchor", "middle")
                                 .attr("dy",  ".3em" )
                                 .style("font-size", 1)
-                                .text((d) -> "#{d.key.split('__')[0]}" )
+                                .text((d) -> "#{d.key.split('__')[0].substring(2)}" )
                                 .transition()
-                                .style("font-size", (d) -> d.r/3)
+                                .style("font-size", (d) -> d.r/2.5)
                                 .duration(500)
 
                         subc_root.append("circle")
@@ -930,6 +987,7 @@ $( ->
           selectedItems        = new SelectedItemsCollection()
           selectedItems.setReportModel reportModel
           selectedItemsView    = new SelectedItemsView( el:$("#selected-items-list"), model: selectedItems )
+          selectedItemsEditView = new EditableSelectedItemsView( el:$("#current-selection-editable"), model: selectedItems )
 
           graphView            = new GraphView( el:$("#graph-view"), model: selectedItems, reportModel: reportModel )
 
@@ -940,7 +998,7 @@ $( ->
           rootsTabbedView      = new RootsTabbedView el:$("#root-tabs"), model: rootsCollection
 
           searchBarView        = new SearchBarView el:$("#editor-search-bar")
-          searchResultsView    = new SearchResultsView el:$("#search-results"), model: searchResultsCollection
+          searchResultsView    = new SearchResultsView el:$("#search-results"), model: searchResultsCollection, selectedItemsModel: selectedItems
 
           breadCrumbs          = new BreadCrumbs
           breadCrumbsView      = new BreadCrumbsView el:$("#editor-breadcrumbs"), model: breadCrumbs
@@ -977,6 +1035,34 @@ $( ->
         L "show-more-details clicked"
         has_extra_details = reportModel.get 'extra_details'
         reportModel.set 'extra_details', not has_extra_details
+
+  $("#search-year-slider").slider(
+        max: 20,
+        min: 0,
+        values: [0,20],
+        range: true
+        slide: (e,ui) ->
+                toyear = 2012-ui.values[0]
+                fromyear = 2012-ui.values[1]
+                $("#search-fromyear").html( "#{fromyear}" )
+                $("#search-toyear").html( "#{toyear}" )
+                searchTermModel.set 'toyear', toyear
+                searchTermModel.set 'fromyear', fromyear
+  )
+
+  $("#show-year-slider").slider(
+        max: 20,
+        min: 0,
+        values: [0,20],
+        range: true
+        slide: (e,ui) ->
+                toyear = 2012-ui.values[0]
+                fromyear = 2012-ui.values[1]
+                $("#show-fromyear").html( "#{fromyear}" )
+                $("#show-toyear").html( "#{toyear}" )
+                reportModel.set 'toyear', toyear
+                reportModel.set 'fromyear', fromyear
+  )
 )
 
 

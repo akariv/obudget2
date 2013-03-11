@@ -41,7 +41,7 @@ def upload():
     print "UPLOAD! %r" % request.data  
     data = json.loads(request.data)
     keys_to_del = []
-    allowed_keys = ["description","ids","author","author_link","title","normalize_id", "use_real_values", "compare_id", "extra_details"]
+    allowed_keys = ["description","ids","author","author_link","title","normalize_id", "use_real_values", "compare_id", "extra_details", "fromyear", "toyear"]
 
     svg = data.get('svg').encode("utf8")
     if svg:
@@ -156,6 +156,11 @@ def getitem(slug):
    
 if __name__=="__main__":
     r = Redis()
+    try:
+        r.auth(file('password').read())
+        print 'authorized'
+    except:
+        print 'no authorization!'
     r.set('version',int(os.stat('../data/out.json').st_mtime))
     def update_db(r):
         for line in file('../data/out.json'):
